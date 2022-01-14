@@ -22,7 +22,8 @@ module.exports = (sequelize, DataTypes) => {
         references: {
           model: 'workouts',
           key: 'id'
-        }
+        },
+        allowNull: false
       },
       routine_id: {
         type: DataTypes.INTEGER,
@@ -30,7 +31,8 @@ module.exports = (sequelize, DataTypes) => {
         references: {
           model: 'routines',
           key: 'id'
-        }
+        },
+        allowNull: false
       }
     },
     {
