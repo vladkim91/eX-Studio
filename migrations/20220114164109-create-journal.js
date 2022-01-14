@@ -14,14 +14,8 @@ module.exports = {
         references: {
           model: 'users',
           key: 'id'
-        }
-      },
-      note_id: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'notes',
-          key: 'id'
-        }
+        },
+        allowNull: false
       },
       createdAt: {
         allowNull: false,
