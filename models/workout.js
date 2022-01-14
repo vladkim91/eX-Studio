@@ -19,6 +19,7 @@ module.exports = (sequelize, DataTypes) => {
         through: models.User_Workout,
         foreignKey: 'workout_id'
       });
+      Workout.belongsTo(models.User);
       Workout.belongsTo(models.ScheduledWorkout, {
         foreignKey: 'workout_id'
       });
