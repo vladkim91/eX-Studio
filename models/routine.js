@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
         as: 'scheduled_workouts',
         foreignKey: 'routine_id'
       });
+      Routine.belongsTo(models.User);
     }
   }
   Routine.init(
