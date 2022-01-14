@@ -25,7 +25,7 @@
     border-radius: 48px;
 }
 .carrousel {
-    min-height: 40vh;
+    min-height: 20vh;
     width: 80vw;
     margin: auto;
     display: grid;
@@ -99,6 +99,8 @@
 .routine{
     width: 80%;
     margin: auto;
+    min-height: 20vh;
+    padding: 1em;
 }
 .routine-container{
     min-height: 20vh;

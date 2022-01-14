@@ -34,6 +34,35 @@ function Home() {
                     <h1 className="r-name">Lorem, ipsum.</h1>
                 </div>
             </section>
+            <section className='journal'>
+                <div className="container">
+                    <div className="entry entry1">
+                        <p className="time">Mon - 01/01/2022</p>
+                        <p className="j-title">Journal Title Here...</p>
+                        <p className="set">2 hours</p>
+                    </div>
+                    <div className="entry entry2">
+                        <p className="time">Mon - 01/01/2022</p>
+                        <p className="j-title">Journal Title Here...</p>
+                        <p className="set">2 hours</p>
+                    </div>
+                    <div className="entry entry3">
+                        <p className="time">Mon - 01/01/2022</p>
+                        <p className="j-title">Journal Title Here...</p>
+                        <p className="set">2 hours</p>
+                    </div>
+                    <div className="entry entry4">
+                        <p className="time">Mon - 01/01/2022</p>
+                        <p className="j-title">Journal Title Here...</p>
+                        <p className="set">2 hours</p>
+                    </div>
+                    <div className="entry entry5">
+                        <p className="time">Mon - 01/01/2022</p>
+                        <p className="j-title">Journal Title Here...</p>
+                        <p className="set">2 hours</p>
+                    </div>
+                </div>
+            </section>
             
         </div>
     )
