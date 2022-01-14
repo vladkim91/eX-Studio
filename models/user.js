@@ -26,16 +26,16 @@ module.exports = (sequelize, DataTypes) => {
         as: 'journal',
         foreignKey: 'user_id'
       });
-      User.hasMany(model.Routine, {
+      User.hasMany(models.Routine, {
         as: 'routines',
         foreignKey: 'user_id'
       });
-      User.hasMany(model.Exercise, {
+      User.hasMany(models.Exercise, {
         as: 'followed_exercises',
         through: models.User_Exercise,
         foreignKey: 'exercise_id'
       });
-      User.hasMany(model.Exercise, {
+      User.hasMany(models.Exercise, {
         foreignKey: 'user_id'
       });
     }
