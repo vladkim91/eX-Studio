@@ -9,7 +9,7 @@
     font-family: 'Ethno' ;
 }
     
-
+/* Home.jsx css */
 .startW{
     min-height: 20vh;
     min-width: 100%;
@@ -23,4 +23,20 @@
     border: none;
     padding: 2em 1em;
     border-radius: 48px;
+}
+.carrousel {
+    max-height: 40vh;
+}
+.arrow{
+    
+}
+.container{
+    max-height: 100%;
+}
+.container>*{
+    max-height: 100%;
+}
+
+.l-arrow img, r-arrow img{
+    max-height: 50%;
 }
