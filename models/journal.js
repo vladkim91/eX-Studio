@@ -13,8 +13,21 @@ module.exports = (sequelize, DataTypes) => {
   }
   Journal.init(
     {
-      user_id: DataTypes.INTEGER,
-      note_id: DataTypes.INTEGER
+      user_id: {
+        type: DataTypes.INTEGER,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'users',
+          key: 'id'
+        }
+      },
+      note_id: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: 'notes',
+          key: 'id'
+        }
+      }
     },
     {
       sequelize,
