@@ -34,6 +34,7 @@ nav>*{
 .level{
     display: flex;
     justify-content: space-around;
+    align-items: center;
 }
 .level img{
     height: 20px;
