@@ -1,16 +1,16 @@
 {
   "development": {
-    "database": "ex-studio",
+    "database": "ex_studio_development",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "test": {
-    "database": "sequelize_test",
+    "database": "ex_studio_test",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "production": {
-    "database": "sequelize_production",
+    "database": "ex_studio_production",
     "host": "127.0.0.1",
     "dialect": "postgres"
   }

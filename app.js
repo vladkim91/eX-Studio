@@ -1,5 +1,5 @@
-const app = require('express')();
-const bodyParser = require('body-parser');
+const express = require('express');
+const app = express();
 const cors = require('cors');
 const logger = require('morgan');
 
@@ -9,9 +9,9 @@ const PORT = process.env.PORT || 3001;
 
 app.use(cors());
 app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-app.get('/', (req, res) => res.json({ message: 'Server Works' }));
 app.use('/api', AppRouter);
+
 app.listen(PORT, () => console.log(`Server Started On Port: ${PORT}`));
