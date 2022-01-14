@@ -10,8 +10,12 @@
 }
     
 /* Home.jsx css */
+section{
+    margin: 1em auto;
+}
+
 .startW{
-    min-height: 20vh;
+    min-height: 10vh;
     min-width: 100%;
     display: flex;
     align-items: center;
@@ -120,4 +124,32 @@
     z-index: 1;
     color: #fff;
     margin: auto;
+}
+.journal{
+    min-height: 20vh;
+    display: flex;
+}
+
+.journal-container{
+    width: 60%;
+    margin: auto;
+    box-shadow: 0 0 6px #888;
+    border-radius: 13px ;
+}
+
+
+.entry {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    font-size:.7em;
+    min-height: 2em;
+    box-shadow: 0 0 1px #888;
+}
+.entry1{
+    border-radius:13px 13px 0 0  ;
+}
+.entry5{
+    border-radius:0 0 13px 13px  ;
 }

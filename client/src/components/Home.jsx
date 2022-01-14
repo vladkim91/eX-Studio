@@ -35,7 +35,7 @@ function Home() {
                 </div>
             </section>
             <section className='journal'>
-                <div className="container">
+                <div className="journal-container">
                     <div className="entry entry1">
                         <p className="time">Mon - 01/01/2022</p>
                         <p className="j-title">Journal Title Here...</p>
