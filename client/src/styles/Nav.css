@@ -5,6 +5,7 @@ nav{
     align-items: center;
     color: #fff;
     background: #000;
+    min-height: 10vh;
 }
 nav>*{
     margin: auto;

@@ -1,4 +1,21 @@
+
 *{
     margin: 0;
     padding: 0;
+}
+    
+
+.startW{
+    min-height: 20vh;
+    min-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.startW button{
+    background: #C92626;
+    color: #fff;
+    border: none;
+    padding: 2em 1em;
+    border-radius: 48px;
 }
