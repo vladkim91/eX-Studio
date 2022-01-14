@@ -28,7 +28,8 @@ module.exports = {
         type: Sequelize.STRING
       },
       muscle_group: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       image: {
         type: Sequelize.STRING
