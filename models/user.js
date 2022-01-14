@@ -23,6 +23,10 @@ module.exports = (sequelize, DataTypes) => {
         as: 'journal',
         foreignKey: 'user_id'
       });
+      User.hasMany(model.Routinem, {
+        as: 'routines',
+        foreignKey: 'user_id'
+      });
     }
   }
   User.init(
