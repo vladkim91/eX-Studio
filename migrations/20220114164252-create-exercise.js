@@ -8,6 +8,22 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      user_id: {
+        type: Sequelize.INTEGER,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'users',
+          key: 'id'
+        },
+        allowNull: false
+      },
+      workout_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'workouts',
+          key: 'id'
+        }
+      },
       name: {
         type: Sequelize.STRING
       },
@@ -17,12 +33,21 @@ module.exports = {
       image: {
         type: Sequelize.STRING
       },
-      workout_id: {
+      sets: {
         type: Sequelize.INTEGER,
-        references: {
-          model: 'workouts',
-          key: 'id'
-        }
+        defaultValue: 1
+      },
+      time: {
+        type: Sequelize.FLOAT,
+        defaultValue: null
+      },
+      reps: {
+        type: Sequelize.INTEGER,
+        defaultValue: null
+      },
+      weight: {
+        type: Sequelize.FLOAT,
+        defaultValue: null
       },
       createdAt: {
         allowNull: false,
