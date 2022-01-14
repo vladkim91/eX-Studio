@@ -13,8 +13,20 @@ module.exports = (sequelize, DataTypes) => {
   }
   User_Workout.init(
     {
-      user_id: DataTypes.INTEGER,
-      workout_id: DataTypes.INTEGER
+      user_id: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: 'users',
+          key: 'id'
+        }
+      },
+      workout_id: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: 'workouts',
+          key: 'id'
+        }
+      }
     },
     {
       sequelize,
