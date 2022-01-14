@@ -11,6 +11,15 @@ module.exports = {
       text: {
         type: Sequelize.STRING
       },
+      journal_id: {
+        type: Sequelize.INTEGER,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'journals',
+          key: 'id'
+        },
+        allowNull: false
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
