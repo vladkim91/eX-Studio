@@ -1,7 +1,5 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class ScheduledWorkout extends Model {
     /**
@@ -12,14 +10,32 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
     }
-  };
-  ScheduledWorkout.init({
-    day: DataTypes.INTEGER,
-    workout_id: DataTypes.INTEGER,
-    routine_id: DataTypes.INTEGER
-  }, {
-    sequelize,
-    modelName: 'ScheduledWorkout',
-  });
+  }
+  ScheduledWorkout.init(
+    {
+      day: DataTypes.INTEGER,
+      workout_id: {
+        type: DataTypes.INTEGER,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'workouts',
+          key: 'id'
+        }
+      },
+      routine_id: {
+        type: DataTypes.INTEGER,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'routines',
+          key: 'id'
+        }
+      }
+    },
+    {
+      sequelize,
+      modelName: 'ScheduledWorkout',
+      tableName: 'scheduled_workouts'
+    }
+  );
   return ScheduledWorkout;
 };
