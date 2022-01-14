@@ -1,0 +1,62 @@
+nav{
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    justify-content: space-around;
+    align-items: center;
+    color: #fff;
+    background: #000;
+}
+nav>*{
+    margin: auto;
+}
+
+
+.user{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    font-size: .75em;
+    align-items: center;
+}
+.profile{
+    display: flex;
+    align-items: center;
+}
+.p-pic{
+    border: 1px solid #fff;
+    border-radius: 100%;
+    background: #fff;
+    margin: .1em;
+}
+.p-pic img{
+    height: 20px;
+}
+.level{
+    display: flex;
+    justify-content: space-around;
+}
+.level img{
+    height: 20px;
+}
+
+.title{
+    display: grid;
+    height: 90%;
+    grid-template-columns: 1fr .1fr 1fr;
+    
+}
+.t-top{
+    margin: 0 0 auto auto;
+}
+.t-mid{
+    margin: auto;
+}
+.t-bottom{
+    margin: auto auto 0 0;
+}
+
+
+.toggle img{
+    height: 50px;
+    width: 50px;
+}
