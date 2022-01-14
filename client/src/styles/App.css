@@ -26,9 +26,13 @@
 }
 .carrousel {
     min-height: 40vh;
-    display: flex;
+    width: 80vw;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
     align-items: center;
     justify-content: center;
+    text-align: center;
 }
 .arrow img{
     height: 3em;
@@ -44,8 +48,9 @@
 }
 .container{
     display: flex; 
-    justify-content: space-between;  
+    justify-content: space-between;
     position: relative;
+    flex-wrap: wrap;
 }
 .card{
     min-height: 100px;
@@ -54,7 +59,7 @@
     text-align: center;
     display: flex;
     border-radius: 13px;
-    margin: auto 1em;
+    margin: 1em auto;
 }
 .blur{
     position: absolute;
