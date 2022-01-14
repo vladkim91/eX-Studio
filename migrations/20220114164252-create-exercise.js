@@ -17,6 +17,13 @@ module.exports = {
       image: {
         type: Sequelize.STRING
       },
+      workout_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'workouts',
+          key: 'id'
+        }
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
