@@ -21,7 +21,8 @@ module.exports = (sequelize, DataTypes) => {
         references: {
           model: 'journals',
           key: 'id'
-        }
+        },
+        allowNull: false
       }
     },
     {
