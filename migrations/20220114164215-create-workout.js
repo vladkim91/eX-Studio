@@ -15,10 +15,18 @@ module.exports = {
         type: Sequelize.STRING
       },
       exercise_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'exercises',
+          key: 'id'
+        }
       },
       user_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'users',
+          key: 'id'
+        }
       },
       image: {
         type: Sequelize.STRING
