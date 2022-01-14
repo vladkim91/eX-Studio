@@ -12,6 +12,10 @@ module.exports = (sequelize, DataTypes) => {
       Journal.belongsTo(models.User, {
         as: 'journal'
       });
+      Journal.hasMany(models.Note, {
+        as: 'notes',
+        foreignKey: 'journal_id'
+      });
     }
   }
   Journal.init(
