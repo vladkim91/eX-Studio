@@ -19,6 +19,13 @@ module.exports = (sequelize, DataTypes) => {
         onDelete: 'CASCADE',
         key: 'id'
       },
+      workout_id: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: 'workouts',
+          key: 'id'
+        }
+      },
       muscle_group: DataTypes.STRING,
       image: DataTypes.STRING,
       sets: {
@@ -33,12 +40,9 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         defaultValue: null
       },
-      workout_id: {
-        type: DataTypes.INTEGER,
-        references: {
-          model: 'workouts',
-          key: 'id'
-        }
+      weight: {
+        type: DataTypes.FLOAT,
+        defaultValue: null
       }
     },
     {
