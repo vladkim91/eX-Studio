@@ -30,8 +30,8 @@ function Home() {
             </section>
             <section className='routine'>
                 <div className="routine-container">
-                    <div className='blur'></div>
-                    <h1 className="w-name">Lorem, ipsum.</h1>
+                    <div className='blur r-blur'></div>
+                    <h1 className="r-name">Lorem, ipsum.</h1>
                 </div>
             </section>
             

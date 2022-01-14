@@ -65,7 +65,7 @@
 .blur{
     position: absolute;
     height: 100%;
-    width: 200px;
+    width: 100%;
     background: #000;
     opacity: 50%;
     border-radius: 13px;
@@ -97,12 +97,25 @@
 }
 
 .routine{
-    min-height: 20vh;
     width: 80%;
     margin: auto;
 }
 .routine-container{
+    min-height: 20vh;
     position: relative;
-    min-height: 100%;
-    background: url('../assets/routine.jpg');
+    background: url('../assets/routine.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    border-radius: 13px;
+    box-shadow: 0px 5px 5px #888;
+}
+.r-blur{
+    background-color: #000;
+    opacity: 20%;
+}
+.r-name{
+    z-index: 1;
+    color: #fff;
+    margin: auto;
 }
