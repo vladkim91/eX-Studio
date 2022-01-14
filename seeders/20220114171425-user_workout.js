@@ -11,6 +11,7 @@ module.exports = {
       }
     ];
     await queryInterface.bulkInsert('user_workouts', user_workouts);
+  },
 
   down: async (queryInterface, Sequelize) => {
     await queryInterface.bulkDelete('user_workouts', user_workouts);
