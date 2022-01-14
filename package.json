@@ -1,0 +1,30 @@
+{
+  "name": "ex-studio",
+  "version": "1.0.0",
+  "description": "Exercise tracking",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon app.js",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vladkim91/eX-Studio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vladkim91/eX-Studio/issues"
+  },
+  "homepage": "https://github.com/vladkim91/eX-Studio#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.2",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.15",
+    "pg": "^8.7.1",
+    "sequelize": "^6.13.0"
+  }
+}
