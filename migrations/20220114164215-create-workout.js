@@ -14,13 +14,6 @@ module.exports = {
       muscle_groups: {
         type: Sequelize.STRING
       },
-      exercise_id: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'exercises',
-          key: 'id'
-        }
-      },
       user_id: {
         type: Sequelize.INTEGER,
         references: {
