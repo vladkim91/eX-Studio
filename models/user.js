@@ -27,6 +27,14 @@ module.exports = (sequelize, DataTypes) => {
         as: 'routines',
         foreignKey: 'user_id'
       });
+      User.hasMany(model.Exercise, {
+        as: 'followed_exercises',
+        through: models.User_Exercise,
+        foreignKey: 'exercise_id'
+      });
+      User.hasMany(model.Exercise, {
+        foreignKey: 'user_id'
+      });
     }
   }
   User.init(
