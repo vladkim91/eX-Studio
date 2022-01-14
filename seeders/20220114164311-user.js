@@ -9,6 +9,13 @@ module.exports = {
         username: 'johndoe1',
         createdAt: new Date(),
         updatedAt: new Date()
+      },
+      {
+        first_name: 'Robert',
+        last_name: 'Smith',
+        username: 'robsmith',
+        createdAt: new Date(),
+        updatedAt: new Date()
       }
     ];
     await queryInterface.bulkInsert('users', users);

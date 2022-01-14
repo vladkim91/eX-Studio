@@ -6,6 +6,19 @@ module.exports = {
       {
         user_id: 1,
         workout_id: 1,
+
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        user_id: 1,
+        workout_id: 2,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        user_id: 2,
+        workout_id: 2,
         createdAt: new Date(),
         updatedAt: new Date()
       }
