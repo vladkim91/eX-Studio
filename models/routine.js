@@ -13,7 +13,14 @@ module.exports = (sequelize, DataTypes) => {
   }
   Routine.init(
     {
-      user_id: DataTypes.INTEGER
+      user_id: {
+        type: DataTypes.INTEGER,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'users',
+          key: 'id'
+        }
+      }
     },
     {
       sequelize,
