@@ -9,6 +9,13 @@ module.exports = {
         routine_id: 1,
         createdAt: new Date(),
         updatedAt: new Date()
+      },
+      {
+        day: 2,
+        workout_id: 2,
+        routine_id: 2,
+        createdAt: new Date(),
+        updatedAt: new Date()
       }
     ];
     await queryInterface.bulkInsert('scheduled_workouts', scheduled_workouts);
