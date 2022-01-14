@@ -9,10 +9,8 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       name: {
-        type: Sequelize.STRING
-      },
-      muscle_groups: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       user_id: {
         type: Sequelize.INTEGER,
@@ -20,6 +18,10 @@ module.exports = {
           model: 'users',
           key: 'id'
         }
+      },
+      muscle_groups: {
+        type: Sequelize.STRING,
+        allowNull: false
       },
       image: {
         type: Sequelize.STRING
