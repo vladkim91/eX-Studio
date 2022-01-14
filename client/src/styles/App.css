@@ -46,13 +46,14 @@
 .r-arrow img{
     transform: rotate(90deg);
 }
-.container{
+.carrousel-container{
     display: flex; 
     justify-content: space-between;
     position: relative;
     flex-wrap: wrap;
 }
 .card{
+    position: relative;
     min-height: 100px;
     width: 200px;
     background: #888;
@@ -63,7 +64,7 @@
 }
 .blur{
     position: absolute;
-    min-height: 100px;
+    height: 100%;
     width: 200px;
     background: #000;
     opacity: 50%;
@@ -93,4 +94,15 @@
     background: url('../assets/w3.jfif') no-repeat;
     background-size: cover;
     
+}
+
+.routine{
+    min-height: 20vh;
+    width: 80%;
+    margin: auto;
+}
+.routine-container{
+    position: relative;
+    min-height: 100%;
+    background: url('../assets/routine.jpg');
 }

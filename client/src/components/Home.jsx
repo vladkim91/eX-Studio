@@ -11,7 +11,7 @@ function Home() {
             </section>
             <section className="carrousel">
                 <div className="arrow l-arrow"><img src={Arrow} alt="" /></div>
-                <div className="container">
+                <div className="carrousel-container">
                     <div className="card c1">
                         <div className='blur'></div>
                         <h1 className="w-name">Lorem, ipsum.</h1>
@@ -27,6 +27,12 @@ function Home() {
 
                 </div>
                 <div className="arrow r-arrow"><img src={Arrow} alt="" /></div>
+            </section>
+            <section className='routine'>
+                <div className="routine-container">
+                    <div className='blur'></div>
+                    <h1 className="w-name">Lorem, ipsum.</h1>
+                </div>
             </section>
             
         </div>
