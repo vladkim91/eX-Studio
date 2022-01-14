@@ -27,8 +27,14 @@ module.exports = (sequelize, DataTypes) => {
   }
   Workout.init(
     {
-      name: DataTypes.STRING,
-      muscle_groups: DataTypes.STRING,
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      muscle_groups: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
       user_id: {
         type: DataTypes.INTEGER,
         references: {
