@@ -25,7 +25,6 @@ module.exports = (sequelize, DataTypes) => {
     {
       name: DataTypes.STRING,
       muscle_groups: DataTypes.STRING,
-      exercise_id: DataTypes.INTEGER,
       user_id: DataTypes.INTEGER,
       image: DataTypes.STRING
     },
