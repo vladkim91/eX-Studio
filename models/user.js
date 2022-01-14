@@ -19,6 +19,10 @@ module.exports = (sequelize, DataTypes) => {
         through: models.User_Workout,
         foreignKey: 'workout_id'
       });
+      User.hasOne(models.Journal, {
+        as: 'journal',
+        foreignKey: 'user_id'
+      });
     }
   }
   User.init(
