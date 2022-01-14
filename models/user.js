@@ -14,6 +14,9 @@ module.exports = (sequelize, DataTypes) => {
         through: models.User_Workout,
         foreignKey: 'user_id'
       });
+      User.hasMany(models.Workout, {
+        foreignKey: 'user_id'
+      });
       User.belongsToMany(models.Workout, {
         as: 'user',
         through: models.User_Workout,
