@@ -13,7 +13,15 @@ module.exports = (sequelize, DataTypes) => {
   }
   Note.init(
     {
-      text: DataTypes.STRING
+      text: DataTypes.STRING,
+      journal_id: {
+        type: DataTypes.INTEGER,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'journals',
+          key: 'id'
+        }
+      }
     },
     {
       sequelize,
