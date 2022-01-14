@@ -9,6 +9,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Journal.belongsTo(models.User, {
+        as: 'journal'
+      });
     }
   }
   Journal.init(
