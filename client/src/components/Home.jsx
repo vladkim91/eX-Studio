@@ -13,15 +13,15 @@ function Home() {
                 <div className="arrow l-arrow"><img src={Arrow} alt="" /></div>
                 <div className="container">
                     <div className="card c1">
-                        <img src="" alt="" />
+                        <div className='blur'></div>
                         <h1 className="w-name">Lorem, ipsum.</h1>
                     </div>
-                    <div className="card c1">
-                        <img src="" alt="" />
+                    <div className="card c2">
+                        <div className='blur'></div>
                         <h1 className="w-name">Lorem, ipsum.</h1>
                     </div>
-                    <div className="card c1">
-                        <img src="" alt="" />
+                    <div className="card c3">
+                        <div className='blur'></div>
                         <h1 className="w-name">Lorem, ipsum.</h1>
                     </div>
 
