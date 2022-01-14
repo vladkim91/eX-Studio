@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'workout_id'
       });
       Workout.belongsTo(models.User);
-      Workout.belongsTo(models.ScheduledWorkout, {
+      Workout.hasOne(models.ScheduledWorkout, {
         foreignKey: 'workout_id'
       });
     }

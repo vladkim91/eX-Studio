@@ -10,7 +10,9 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       ScheduledWorkout.belongsTo(models.Routine);
-      ScheduledWorkout.hasOne(models.Workout);
+      ScheduledWorkout.belongsTo(models.Workout, {
+        foreignKey: 'workout_id'
+      });
     }
   }
   ScheduledWorkout.init(
