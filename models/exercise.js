@@ -32,7 +32,10 @@ module.exports = (sequelize, DataTypes) => {
           key: 'id'
         }
       },
-      muscle_group: DataTypes.STRING,
+      muscle_group: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
       image: DataTypes.STRING,
       sets: {
         type: DataTypes.INTEGER,
