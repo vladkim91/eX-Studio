@@ -15,7 +15,14 @@ module.exports = (sequelize, DataTypes) => {
     {
       name: DataTypes.STRING,
       muscle_group: DataTypes.STRING,
-      image: DataTypes.STRING
+      image: DataTypes.STRING,
+      workout_id: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: 'workouts',
+          key: 'id'
+        }
+      }
     },
     {
       sequelize,

@@ -10,12 +10,12 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Workout.hasMany(models.User, {
-        as: 'user',
+        as: 'followers',
         through: models.User_Workout,
         foreignKey: 'user_id'
       });
       Workout.belongsToMany(models.User, {
-        as: 'workout',
+        as: 'favorite_workouts',
         through: models.User_Workout,
         foreignKey: 'workout_id'
       });
@@ -25,7 +25,13 @@ module.exports = (sequelize, DataTypes) => {
     {
       name: DataTypes.STRING,
       muscle_groups: DataTypes.STRING,
-      user_id: DataTypes.INTEGER,
+      user_id: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: 'users',
+          key: 'id'
+        }
+      },
       image: DataTypes.STRING
     },
     {
