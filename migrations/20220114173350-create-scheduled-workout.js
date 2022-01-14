@@ -17,7 +17,8 @@ module.exports = {
         references: {
           model: 'workouts',
           key: 'id'
-        }
+        },
+        allowNull: false
       },
       routine_id: {
         type: Sequelize.INTEGER,
@@ -25,7 +26,8 @@ module.exports = {
         references: {
           model: 'routines',
           key: 'id'
-        }
+        },
+        allowNull: false
       },
       createdAt: {
         allowNull: false,
