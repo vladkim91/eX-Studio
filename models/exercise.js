@@ -14,8 +14,25 @@ module.exports = (sequelize, DataTypes) => {
   Exercise.init(
     {
       name: DataTypes.STRING,
+      user_id: {
+        type: Datatypes.INTEGER,
+        onDelete: 'CASCADE',
+        key: 'id'
+      },
       muscle_group: DataTypes.STRING,
       image: DataTypes.STRING,
+      sets: {
+        type: DataTypes.INTEGER,
+        defaultValue: null
+      },
+      time: {
+        type: DataTypes.FLOAT,
+        defaultValue: null
+      },
+      reps: {
+        type: DataTypes.INTEGER,
+        defaultValue: null
+      },
       workout_id: {
         type: DataTypes.INTEGER,
         references: {
