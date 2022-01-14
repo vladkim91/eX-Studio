@@ -21,15 +21,17 @@ width: 95%;
   background: #000;
 }
 .min{
+    transition: linear .4s;
     width: 5%;
 }
 .max{
+    transition: linear .4s;
     width: 20%;
 }
 #burger {
   height: 10vh;
   display: flex;
-  background: #1f34ac;
+  background: #3D51D6;
   cursor: pointer;
 }
 #burger img {
