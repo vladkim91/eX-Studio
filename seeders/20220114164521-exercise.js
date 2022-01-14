@@ -66,6 +66,17 @@ module.exports = {
         sets: 4,
         reps: 10,
         weight: 35
+      },
+      {
+        name: 'Plank',
+        muscle_group: 'ab',
+        image: 'img',
+        workout_id: null,
+        user_id: -1,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        sets: 5,
+        time: 30
       }
     ];
     await queryInterface.bulkInsert('exercises', exercises);
