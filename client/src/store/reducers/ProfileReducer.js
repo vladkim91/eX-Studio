@@ -12,9 +12,11 @@ const iState = {
 const ProfileReducer = (state = iState, action) => {
   switch (action.type) {
     case GET_USER_INFO:
-      return { ...state, user: { ...state.user, ...action.payload } };
-    case GET_USER_JOURNAL:
-      return { ...state, journal: action.payload };
+      return {
+        ...state,
+        user: { ...state.user, ...action.payload.userInfo },
+        journal: action.payload.userJournal
+      };
     default:
       return { ...state };
   }
