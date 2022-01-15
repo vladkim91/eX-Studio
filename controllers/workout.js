@@ -16,6 +16,22 @@ const getWorkoutById = async (req, res) => {
   res.status(200).send(workout);
 };
 
+const searchForWorkouts = async (req, res) => {
+  const { name, muscle_groups } = req.query;
+
+  const search = {};
+
+  if (name) search.name = name;
+  if (muscle_group) search.muscle_group = muscle_group;
+
+  const workouts = await Workout.findAll({
+    where: search
+  });
+
+  res.status(200).send(workouts);
+};
+
 module.exports = {
-  getWorkoutById
+  getWorkoutById,
+  searchForWorkouts
 };
