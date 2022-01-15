@@ -17,6 +17,7 @@
   display: flex;
 }
 .mainBody {
+  position: relative;
   width: 95%;
 }
 /* Side Bar css */
@@ -173,8 +174,12 @@ section {
 }
 .r-blur {
   background-color: #000;
-  opacity: 20%;
+  opacity: 30%;
   z-index: 1;
+  cursor: pointer;
+}
+.routine-container:hover > .blur{
+  opacity: 10%;
 }
 .routine a{
   z-index: 2;
@@ -221,6 +226,7 @@ section {
 .routine-list{
   width: 80%;
   margin: auto;
+  position: relative;
 }
 .routine-cont-list {
   margin: 1em auto;
@@ -232,6 +238,7 @@ section {
   display: flex;
   border-radius: 13px;
   box-shadow: 0px 5px 5px #888;
+  cursor: pointer;
 }
 .back{
   position: absolute;
@@ -242,7 +249,9 @@ section {
   border-radius: 13px;
 }
 
-
+.routine-cont-list:hover > .blur{
+  opacity: 10%;
+}
 .float{
   z-index: 2;
   width: 100%;
@@ -252,3 +261,53 @@ section {
   justify-content: center;
   text-decoration: none;
 } 
+
+
+
+/* Routine Pop UP css */
+
+.popUp{
+  z-index: 3;
+  margin: auto;
+  background: rgba(0, 0, 0, 0.74);
+  /* opacity: 60%; */
+  position: absolute;
+  min-width: 100vw;
+  min-height: 100vh;
+  top: 0;
+  left: 0;
+  display: flex;
+}
+
+.popCard{
+  width: 40em;
+  height: 40em;
+  margin:  auto;
+  align-self: center;
+  background: #fff;
+  position: relative;
+}
+
+.close{
+  background: #e00;
+  text-align: center;
+  padding: 1em;
+  height: 1em;
+  width: 1em;
+  border-radius: 100%;
+  position: absolute;
+  top: -1.5em;
+  right: -1.5em;
+  
+}
+.close img{
+  width: 100%;
+  height: 100%;
+}
+.pophide{
+  display: none;
+}
+
+
+
+
