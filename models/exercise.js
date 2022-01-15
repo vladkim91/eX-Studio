@@ -14,16 +14,21 @@ module.exports = (sequelize, DataTypes) => {
         through: models.User_Exercise,
         foreignKey: 'user_id'
       });
-      Exercise.belongsTo(models.User);
+      Exercise.belongsTo(models.User, {
+        foreignKey: 'user_id'
+      });
     }
   }
   Exercise.init(
     {
       name: DataTypes.STRING,
       user_id: {
-        type: Datatypes.INTEGER,
+        type: DataTypes.INTEGER,
         onDelete: 'CASCADE',
-        key: 'id'
+        references: {
+          model: 'users',
+          key: 'id'
+        }
       },
       workout_id: {
         type: DataTypes.INTEGER,

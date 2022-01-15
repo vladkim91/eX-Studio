@@ -13,7 +13,9 @@ module.exports = (sequelize, DataTypes) => {
         as: 'scheduled_workouts',
         foreignKey: 'routine_id'
       });
-      Routine.belongsTo(models.User);
+      Routine.belongsTo(models.User, {
+        foreignKey: 'user_id'
+      });
     }
   }
   Routine.init(
