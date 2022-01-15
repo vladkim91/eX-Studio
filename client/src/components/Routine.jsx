@@ -5,7 +5,7 @@ import Close from '../assets/close.svg'
 
 function Routine() {
     const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-    const [pop, SetPop] = useState('pophide')
+    const [pop, SetPop] = useState('')
 
     const popClick = () =>{
         if (pop == "pophide") {
@@ -53,8 +53,73 @@ function Routine() {
                                 <p className="r-l-ex-name">Bench Press</p>
                                 <span className="r-l-time">02:00</span>
                             </div>
+                            <div className="r-l-ex">
+                                <span className="r-l-ex-num">1.</span>
+                                <p className="r-l-ex-name">Bench Press</p>
+                                <span className="r-l-time">02:00</span>
+                            </div>
+                            <div className="r-l-ex">
+                                <span className="r-l-ex-num">1.</span>
+                                <p className="r-l-ex-name">Bench Press</p>
+                                <span className="r-l-time">02:00</span>
+                            </div>
+                            <div className="r-l-ex">
+                                <span className="r-l-ex-num">1.</span>
+                                <p className="r-l-ex-name">Bench Press</p>
+                                <span className="r-l-time">02:00</span>
+                            </div>
+                            <div className="r-l-ex">
+                                <span className="r-l-ex-num">1.</span>
+                                <p className="r-l-ex-name">Bench Press</p>
+                                <span className="r-l-time">02:00</span>
+                            </div>
+                            <div className="r-l-ex">
+                                <span className="r-l-ex-num">1.</span>
+                                <p className="r-l-ex-name">Bench Press</p>
+                                <span className="r-l-time">02:00</span>
+                            </div>
+                            <div className="r-l-ex">
+                                <span className="r-l-ex-num">1.</span>
+                                <p className="r-l-ex-name">Bench Press</p>
+                                <span className="r-l-time">02:00</span>
+                            </div>
+                            <div className="r-l-ex">
+                                <span className="r-l-ex-num">1.</span>
+                                <p className="r-l-ex-name">Bench Press</p>
+                                <span className="r-l-time">02:00</span>
+                            </div>
+                            <div className="r-l-ex">
+                                <span className="r-l-ex-num">1.</span>
+                                <p className="r-l-ex-name">Bench Press</p>
+                                <span className="r-l-time">02:00</span>
+                            </div>
+                            <div className="r-l-ex">
+                                <span className="r-l-ex-num">1.</span>
+                                <p className="r-l-ex-name">Bench Press</p>
+                                <span className="r-l-time">02:00</span>
+                            </div>
+                            <div className="r-l-ex">
+                                <span className="r-l-ex-num">1.</span>
+                                <p className="r-l-ex-name">Bench Press</p>
+                                <span className="r-l-time">02:00</span>
+                            </div>
+                            <div className="r-l-ex">
+                                <span className="r-l-ex-num">1.</span>
+                                <p className="r-l-ex-name">Bench Press</p>
+                                <span className="r-l-time">02:00</span>
+                            </div>
+                            <div className="r-l-ex">
+                                <span className="r-l-ex-num">1.</span>
+                                <p className="r-l-ex-name">Bench Press</p>
+                                <span className="r-l-time">02:00</span>
+                            </div>
+                            <div className="r-l-ex">
+                                <span className="r-l-ex-num">1.</span>
+                                <p className="r-l-ex-name">Bench Press</p>
+                                <span className="r-l-time">02:00</span>
+                            </div>
                         </div>
-                        <div className="r-l-startbttn">Start</div>
+                        <div className="r-l-start-bttn">Start</div>
                     </div>
                     <div className="close"  onClick={()=>{popClick()}}>
                         <img src={Close} alt="" />

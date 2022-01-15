@@ -281,7 +281,7 @@ section {
 
 .popCard{
   width: 40em;
-  height: 40em;
+  min-height: 40em;
   margin:  auto;
   align-self: center;
   background: #fff;
@@ -308,6 +308,48 @@ section {
   display: none;
 }
 
+.popInfo{
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-around; */
+  text-align: center;
+  height: 100%;
+}
 
+.r-l-day{
+  background: #376CA7;
+  color: #fff;
+  padding: 2em;
+}
 
+.r-l-title{
+  margin : 2em auto;
+}
 
+.r-l-arr{
+  max-height: 40vh;
+  overflow-y:scroll;
+
+}
+
+.r-l-ex{
+  display: grid ;
+  grid-template-columns: 1fr 2fr 1fr;
+  justify-content: space-around;
+  margin : 2em auto;
+}
+.r-l-ex-name{}
+
+.r-l-start-bttn{
+  margin : 2em auto;
+  min-height: 7em;
+  min-width: 7em;
+  background: #c92626;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.5em;
+  border-radius: 100%;
+}
