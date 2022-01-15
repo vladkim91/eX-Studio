@@ -17,8 +17,7 @@ module.exports = {
         references: {
           model: 'workouts',
           key: 'id'
-        },
-        allowNull: false
+        }
       },
       routine_id: {
         type: Sequelize.INTEGER,

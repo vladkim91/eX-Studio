@@ -12,8 +12,9 @@ module.exports = (sequelize, DataTypes) => {
       ScheduledWorkout.belongsTo(models.Routine, {
         foreignKey: 'routine_id'
       });
-      ScheduledWorkout.hasOne(models.Workout, {
-        foreignKey: 'workout_id'
+      ScheduledWorkout.belongsTo(models.Workout, {
+        foreignKey: 'workout_id',
+        as: 'workout'
       });
     }
   }
