@@ -8,6 +8,7 @@
   padding: 0;
   font-family: "Ethno";
 }
+
 .App, .home{
     min-height: 100vh;
 }
@@ -175,10 +176,17 @@ section {
   background-color: #000;
   opacity: 20%;
 }
-.r-name {
+a{
   z-index: 1;
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+} 
+.r-name {
   color: #fff;
-  margin: auto;
 }
 .journal {
   min-height: 20vh;
