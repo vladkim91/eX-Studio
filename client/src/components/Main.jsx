@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import Arrow from '../assets/arrow.svg'
 
 function Main() {
@@ -29,7 +30,9 @@ function Main() {
             <section className='routine'>
                 <div className="routine-container">
                     <div className='blur r-blur'></div>
+                    <Link to={'/routine'} style={{all:'none'}}>
                     <h1 className="r-name">Lorem, ipsum.</h1>
+                    </Link>
                 </div>
             </section>
             <section className='journal'>
