@@ -1,4 +1,4 @@
-import { GET_USER_INFO, GET_USER_JOURNAL } from '../styles';
+import { GET_USER_INFO, GET_USER_JOURNAL } from '../types';
 
 const iState = {
   user: {
