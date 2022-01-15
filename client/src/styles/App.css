@@ -12,6 +12,39 @@
 .App, .home{
     min-height: 100vh;
 }
+
+/* Landing page Css */
+.intro{
+  min-height: 100vh;
+  width: 100vw;
+  background: #000;
+  margin: 0;
+  position: relative;
+  color: #fff;
+}
+.intro img{
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  z-index: 0;
+}
+header{
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: flex-end;
+  padding: 2em 0;
+}
+
+
+
+
+
+
+
 /* Home css */
 .home {
   display: flex;
