@@ -6,10 +6,12 @@ import Close from '../assets/close.svg'
 function Routine() {
     const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
     const [pop, SetPop] = useState('')
+    const [listDay, SetListDay] = useState('')
 
-    const popClick = () =>{
+    const popClick = (fe) =>{
         if (pop == "pophide") {
             SetPop('')
+            SetListDay(fe)
         }else{
             SetPop('pophide')
         }
@@ -21,7 +23,7 @@ function Routine() {
     for (let i = 0; i<days.length; i++ ){
         
         list.push(
-        <div key={i} className={`routine-cont-list r-${j}`} onClick={()=>{popClick()}}>
+        <div key={i} className={`routine-cont-list r-${j}`} onClick={()=>{popClick(days[i])}}>
             <img className='back' src={require(`../assets/img/${days[i]}.jpg`)} alt="" />
             <div className='blur r-blur'></div>
             <div className="float">
@@ -44,7 +46,7 @@ function Routine() {
             <section className={`popUp ${pop}`}>
                 <div className='popCard'>
                     <div className="popInfo">
-                        <div className="r-l-day"><h1>Sunday</h1></div>
+                        <div className="r-l-day"><h1>{listDay}</h1></div>
                         <div className="r-l-title"><h1>Bootcamp</h1></div>
                         <div className="r-l-divider"></div>
                         <div className="r-l-arr">
