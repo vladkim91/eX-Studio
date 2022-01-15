@@ -31,7 +31,7 @@ function Main() {
                 <div className="routine-container">
                     <div className='blur r-blur'></div>
                     <Link to={'/routine'} style={{all:'none'}}>
-                    <h1 className="r-name">Lorem, ipsum.</h1>
+                    <h1 className="r-name">My Routine</h1>
                     </Link>
                 </div>
             </section>

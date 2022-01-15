@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import Nav from './Nav'
-import SideBar from './SideBar'
+import Nav from '../components/Nav'
+import SideBar from '../components/SideBar'
 import Close from '../assets/close.svg'
 import { Link } from 'react-router-dom'
 

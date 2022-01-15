@@ -1,8 +1,8 @@
 import React, {useState} from 'react'
-import Nav from './Nav'
-import Main from './Main'
+import Nav from '../components/Nav'
+import Main from '../components/Main'
 
-import SideBar from './SideBar'
+import SideBar from '../components/SideBar'
 
 function Home() {
     
