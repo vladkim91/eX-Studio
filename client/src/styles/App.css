@@ -298,6 +298,7 @@ section {
   position: absolute;
   top: -1.5em;
   right: -1.5em;
+  cursor: pointer;
   
 }
 .close img{
@@ -341,6 +342,7 @@ section {
 .r-l-ex-name{}
 
 .r-l-start-bttn{
+  text-decoration: none;
   margin : 2em auto;
   min-height: 7em;
   min-width: 7em;

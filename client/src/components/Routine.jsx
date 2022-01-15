@@ -2,10 +2,11 @@ import React, { useState } from 'react'
 import Nav from './Nav'
 import SideBar from './SideBar'
 import Close from '../assets/close.svg'
+import { Link } from 'react-router-dom'
 
 function Routine() {
     const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-    const [pop, SetPop] = useState('')
+    const [pop, SetPop] = useState('pophide')
     const [listDay, SetListDay] = useState('')
 
     const popClick = (fe) =>{
@@ -121,7 +122,9 @@ function Routine() {
                                 <span className="r-l-time">02:00</span>
                             </div>
                         </div>
-                        <div className="r-l-start-bttn">Start</div>
+                        <Link to={'/training'} className="r-l-start-bttn">
+                            Start
+                        </Link>
                     </div>
                     <div className="close"  onClick={()=>{popClick()}}>
                         <img src={Close} alt="" />
