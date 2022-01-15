@@ -4,20 +4,20 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     const workouts = [
       {
-        name: 'Chest Tricep day',
-        muscle_groups: 'ch tr',
-        image: `https://i.ytimg.com/vi/dHBXHNwzry8/hqdefault.jpg`,
+        name: 'Chest Tricep Day',
+        muscle_groups: 'CH TR',
+        image: `https://static01.nyt.com/images/2017/04/09/well/9minute-workout-promo/9minute-workout-promo-jumbo.png`,
         createdAt: new Date(),
         updatedAt: new Date(),
-        user_id: -1
+        user_id: 1
       },
       {
-        name: 'Back Bicep day',
-        muscle_groups: 'bk bc',
-        image: `https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/mh-strong-muscular-back-royalty-free-image-1580927608.jpg?crop=0.774xw:0.580xh;0.107xw,0.0408xh&resize=1200:*`,
+        name: 'Back workout',
+        muscle_groups: 'CH TR',
+        image: `https://static01.nyt.com/images/2017/04/09/well/9minute-workout-promo/9minute-workout-promo-jumbo.png`,
         createdAt: new Date(),
         updatedAt: new Date(),
-        user_id: -1
+        user_id: 1
       }
     ];
     await queryInterface.bulkInsert('workouts', workouts);
