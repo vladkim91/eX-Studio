@@ -8,6 +8,9 @@
   padding: 0;
   font-family: "Ethno";
 }
+.App, .home{
+    min-height: 100vh;
+}
 /* Home css */
 .home {
   display: flex;
@@ -28,8 +31,9 @@ width: 95%;
     transition: linear .4s;
     width: 20%;
 }
+
 #burger {
-  height: 10vh;
+  min-height: 10vh;
   display: flex;
   background: #3D51D6;
   cursor: pointer;
@@ -41,8 +45,30 @@ width: 95%;
 
 
 #side-content {
-  height: 90vh;
+  min-height: 90vh;
+  color: #fff;
 }
+
+.hide{
+    display: none;
+    /* opacity: ; */
+    transition: linear .4s;
+}
+.show{
+    display: block;
+}
+
+li{
+    list-style: none;
+    line-height: 2em;
+    padding: 1em;
+    font-size: .7em;
+    cursor: pointer;
+}
+li:hover{
+    background: #3D51D6 ;
+}
+
 
 /* Main.jsx css */
 section {
