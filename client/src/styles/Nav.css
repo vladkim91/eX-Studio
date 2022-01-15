@@ -44,7 +44,7 @@ nav>*{
 
 .title{
     display: grid;
-    height: 90%;
+    height: 50%;
     grid-template-columns: 1fr .1fr 1fr;
     
 }
