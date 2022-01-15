@@ -2,14 +2,14 @@ const { Workout, Exercise } = require('../models');
 
 const getWorkoutById = async (req, res) => {
   const { workoutId } = req.params;
-  const workout = await Workout({
+  const workout = await Workout.findOne({
     attributes: ['name', 'muscle_groups', 'image'],
     where: {
       id: workoutId
     },
     include: {
       model: Exercise,
-      as: 'exerices',
+      as: 'exercises',
       attributes: ['name', 'image', 'sets', 'time', 'reps', 'weight']
     }
   });
