@@ -8,19 +8,22 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
-      Workout.hasMany(models.User, {
-        as: 'followers',
-        through: models.User_Workout,
-        foreignKey: 'user_id'
-      });
+      // Association for users that have followed this
       Workout.belongsToMany(models.User, {
-        as: 'favorite_workouts',
+        as: 'followers',
         through: models.User_Workout,
         foreignKey: 'workout_id'
       });
-      Workout.belongsTo(models.User);
-      Workout.belongsTo(models.ScheduledWorkout);
+      Workout.belongsToMany(models.User, {
+        as: 'favorite_workouts',
+        through: models.User_Workout
+      });
+      Workout.belongsTo(models.User, {
+        foreignKey: 'user_id'
+      });
+      Workout.belongsTo(models.ScheduledWorkout, {
+        foreignKey: 'workout_id'
+      });
     }
   }
   Workout.init(

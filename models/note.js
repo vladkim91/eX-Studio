@@ -9,7 +9,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Note.belongsTo(models.Journal);
+      Note.belongsTo(models.Journal, {
+        foreignKey: 'journal_id'
+      });
     }
   }
   Note.init(
