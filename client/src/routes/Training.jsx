@@ -1,5 +1,6 @@
+
 import React, { useState, useEffect } from 'react';
-import Timer from './Timer'
+import Timer from '../components/Timer'
 
 const Training = () => {
   const [fullWorkout, setFullWorkout] = useState([]);
@@ -15,6 +16,16 @@ const Training = () => {
 
   const exercises = [
     {
+      id: 2,
+      name: 'Sprints',
+      user_id: null,
+      workout_id: 1,
+      muscle_group: 'cd',
+      image: 'exerciseImage',
+      sets: 3,
+      time: 60
+    },
+    {
       id: 1,
       name: 'Bench press',
       user_id: null,
@@ -24,17 +35,8 @@ const Training = () => {
       sets: 3,
       reps: 12,
       weight: 135
-    },
-    {
-      id: 2,
-      name: 'Sprints',
-      user_id: null,
-      workout_id: 1,
-      muscle_group: 'cd',
-      image: 'exerciseImage',
-      sets: 3,
-      time: 30
     }
+    
   ];
 
   const rest = {
