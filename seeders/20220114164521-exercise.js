@@ -122,7 +122,7 @@ module.exports = {
         weight: 155,
         typeof: 'equipment',
         description: `If you’re at an advanced fitness level, you’ll need a heavy amount of weight to benefit from deadlifts. If that is the case, perform 1 to 6 deadlifts per set, and perform 3 to 5 sets, resting in between.
-        If you are new to deadlifts and focusing on getting the correct form down with a lower weight, perform 5 to 8 deadlifts per set. Work your way up to 3 to 5 sets.        `
+        If you are new to deadlifts and focusing on getting the correct form down with a lower weight, perform 5 to 8 deadlifts per set. Work your way up to 3 to 5 sets.`
       },
       {
         name: 'Kettlebell deadlift',
@@ -152,8 +152,7 @@ module.exports = {
         reps: 10,
         weight: 60,
         typeof: 'equipment',
-        description: `
-        Training triceps is a must if you want big arms because tri's are two-thirds of the upper arm. The lying triceps extension is also known as the skull crusher so be careful. The lying triceps extension is a good movement to hit all three heads of the triceps`
+        description: `Training triceps is a must if you want big arms because tri's are two-thirds of the upper arm. The lying triceps extension is also known as the skull crusher so be careful. The lying triceps extension is a good movement to hit all three heads of the triceps`
       },
       {
         name: 'Pull up',
@@ -227,6 +226,7 @@ module.exports = {
         updatedAt: new Date(),
         sets: 4,
         reps: 5,
+        typeof: 'equipment',
         weight: 0,
         description: `Generally, lifters will find that the chinup is easier than the pullup. The reasoning for this is that with higher biceps brachii activity, the shoulder-arm-forearm complex can be utilized slightly better than in the pullup.`
       },
@@ -285,9 +285,7 @@ module.exports = {
         sets: 3,
         time: 30,
         typeof: 'bodyweight',
-        description: `
-        Image result for russian twist
-        The Russian twist is an effective way to build your core and shoulders. It's a popular exercise among athletes since it helps with rotational movement, which happens often in sports. It may look like a simple movement, but it requires a lot of strength and support.`
+        description: `The Russian twist is an effective way to build your core and shoulders. It's a popular exercise among athletes since it helps with rotational movement, which happens often in sports. It may look like a simple movement, but it requires a lot of strength and support.`
       },
       {
         name: 'Bicycle crunches',
@@ -387,7 +385,6 @@ module.exports = {
         typeof: 'equipment',
         description: `A lateral raise works your shoulder muscles as well as your triceps. To do this exercise: Stand or sit with your arms at your sides and a dumbbell in each hand`
       },
-      ,
       {
         name: 'Heavy squats',
         muscle_group: 'lg',
@@ -402,7 +399,6 @@ module.exports = {
         typeof: 'equipment',
         description: `Warm up to about 90% of your max but don't squat this weight. Unrack it and hold it for 10 seconds then put it back down. Continue to add 5-10% for each set and up to 20% over your 1RM. ... It stimulates your nervous system and makes you feel more comfortable with heavy weight on your back.`
       },
-      ,
       {
         name: 'Bodyweight squat',
         muscle_group: 'lg',
@@ -417,7 +413,6 @@ module.exports = {
         typeof: 'bodyweight',
         description: `Body squats are good for warming up the body and raising your core temperature. They are a good way to start your exercise routine. Performed regularly these exercises can help you begin toning your glutes and quads. Body squats are also beneficial because they are a gateway exercise.`
       },
-      ,
       {
         name: 'Lunges',
         muscle_group: 'lg',
@@ -432,7 +427,6 @@ module.exports = {
         typeof: 'bodyweight',
         description: `A proper lunge posture can help you achieve a stronger and more stable core. This workout engages your core and abdominal muscles. It helps you build stability which when you move your hips up and down. A stronger core allows you deal with lower back pain and improves your balance and posture as well.`
       },
-      ,
       {
         name: 'Calf raises',
         muscle_group: 'lg',

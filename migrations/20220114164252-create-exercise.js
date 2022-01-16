@@ -48,7 +48,7 @@ module.exports = {
         allowNull: false
       },
       description: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(1000)
       },
       reps: {
         type: Sequelize.INTEGER,
