@@ -8,20 +8,22 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
-      Workout.hasMany(models.User, {
-        as: 'followers',
-        through: models.User_Workout,
-        foreignKey: 'user_id'
-      });
       Workout.belongsToMany(models.User, {
         as: 'favorite_workouts',
         through: models.User_Workout,
         foreignKey: 'workout_id'
       });
-      Workout.belongsTo(models.User);
-      Workout.belongsTo(models.ScheduledWorkout, {
-        foreignKey: 'workout_id'
+      Workout.belongsTo(models.User, {
+        foreignKey: 'user_id',
+        as: 'custom_workouts'
+      });
+      Workout.hasOne(models.ScheduledWorkout, {
+        foreignKey: 'workout_id',
+        as: 'workout'
+      });
+      Workout.hasMany(models.Exercise, {
+        foreignKey: 'workout_id',
+        as: 'exercises'
       });
     }
   }
@@ -31,6 +33,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false
       },
+
       muscle_groups: {
         type: DataTypes.STRING,
         allowNull: false

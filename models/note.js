@@ -9,12 +9,17 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Note.belongsTo(models.Journal);
+      Note.belongsTo(models.Journal, {
+        foreignKey: 'journal_id',
+        as: 'notes'
+      });
     }
   }
   Note.init(
     {
+      title: DataTypes.STRING,
       text: DataTypes.STRING,
+      felt: DataTypes.INTEGER,
       journal_id: {
         type: DataTypes.INTEGER,
         onDelete: 'CASCADE',

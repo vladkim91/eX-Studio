@@ -15,7 +15,7 @@ module.exports = {
           model: 'users',
           key: 'id'
         },
-        allowNull: false
+        allowNull: true
       },
       workout_id: {
         type: Sequelize.INTEGER,
@@ -25,7 +25,8 @@ module.exports = {
         }
       },
       name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       muscle_group: {
         type: Sequelize.STRING,
@@ -42,6 +43,13 @@ module.exports = {
         type: Sequelize.FLOAT,
         defaultValue: null
       },
+      typeof: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      description: {
+        type: Sequelize.STRING(1000)
+      },
       reps: {
         type: Sequelize.INTEGER,
         defaultValue: null
@@ -50,6 +58,7 @@ module.exports = {
         type: Sequelize.FLOAT,
         defaultValue: null
       },
+
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

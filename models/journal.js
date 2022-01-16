@@ -10,7 +10,8 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Journal.belongsTo(models.User, {
-        as: 'journal'
+        as: 'journal',
+        foreignKey: 'user_id'
       });
       Journal.hasMany(models.Note, {
         as: 'notes',
