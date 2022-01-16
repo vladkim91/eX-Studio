@@ -15,6 +15,9 @@ module.exports = {
       text: {
         type: Sequelize.STRING
       },
+      felt: {
+        type: Sequelize.ARRAY(Sequelize.STRING)
+      },
       journal_id: {
         type: Sequelize.INTEGER,
         onDelete: 'CASCADE',
