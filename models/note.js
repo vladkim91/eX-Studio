@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       title: DataTypes.STRING,
       text: DataTypes.STRING,
-      felt: DataTypes.ARRAY(DataTypes.STRING),
+      felt: DataTypes.INTEGER,
       journal_id: {
         type: DataTypes.INTEGER,
         onDelete: 'CASCADE',

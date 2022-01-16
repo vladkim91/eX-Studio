@@ -16,7 +16,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       felt: {
-        type: Sequelize.ARRAY(Sequelize.STRING)
+        type: Sequelize.INTEGER
       },
       journal_id: {
         type: Sequelize.INTEGER,
