@@ -41,7 +41,7 @@ function Main({ profileState }) {
       <section className="journal">
         <div className="journal-container">
           {profileState.journal.map((note, index) => (
-            <div className="entry entry1">
+            <div className={`entry entry${index + 1}`}>
               <p className="time">Mon - 01/01/2022</p>
               <p className="j-title">Journal Title Here...</p>
               <p className="set">2 hours</p>
