@@ -427,8 +427,6 @@ section {
   justify-content: space-around;
   margin : 2em auto;
 }
-.r-l-ex-name{}
-
 .r-l-start-bttn{
   text-decoration: none;
   margin : 2em auto;
@@ -443,3 +441,119 @@ section {
   font-size: 1.5em;
   border-radius: 100%;
 }
+
+
+
+
+
+.si-su{
+  min-height: 100vh;
+  display: flex;
+  /* grid-template-columns: 1fr 1fr; */
+  align-items: center;
+}
+
+/* Sign in */
+
+.signin{
+  background: #fff;
+  text-align: center;
+  width: 50vw;
+  height: 100vh;
+  display: flex;
+}
+.s-i-card{
+  margin: auto;
+}
+
+.separate-s-i-card{
+  background: #000;
+  width: 60%;
+  min-height: .2em;
+  margin: 20px auto;
+}
+
+.s-i-f-input{
+  display: grid;
+
+  width: 80%;
+  margin: 2em auto;
+  align-items: center;
+}
+
+.s-i-f-input input{
+  border: 1px solid #999;
+  border-radius: 2px;
+  box-shadow: 0px 3px 5px #000;
+  outline: none;
+  padding: .3em;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: bold;
+}
+
+.s-i-card form button{
+  background: #000;
+  color: #fff;
+  padding: .8em;
+  border: none;
+  border-radius: 1em;
+}
+
+
+.signup{
+  background: #000;
+  color: #fff;
+  text-align: center;
+  width: 50vw;
+  height: 100vh;
+  display: flex;
+}
+
+.s-u-card{
+  margin: auto;
+}
+
+.s-u-o{
+  height: 2em;
+  width: 25em;
+  display: grid;
+  grid-template-columns: 20% 80%;
+  align-items: center;
+  margin: 2em auto;
+  border: none ;
+  border-radius: 1em;
+  padding: 5px;
+  background: #fff;
+  box-shadow: 0px 0px 20px #000;
+  cursor: pointer;
+}
+.s-u-o img{
+  height: inherit;
+}
+.s-u-card h4{
+  text-align: left;
+}
+
+.o-google{
+  background: #fff;
+  color: #000;
+}
+.o-facebook{
+  background-color: #3D51D6;
+  color: #fff;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
