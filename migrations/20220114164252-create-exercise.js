@@ -42,6 +42,13 @@ module.exports = {
         type: Sequelize.FLOAT,
         defaultValue: null
       },
+      type: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      description: {
+        type: Sequelize.STRING
+      },
       reps: {
         type: Sequelize.INTEGER,
         defaultValue: null
