@@ -25,7 +25,8 @@ module.exports = {
         }
       },
       name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       muscle_group: {
         type: Sequelize.STRING,
@@ -41,6 +42,13 @@ module.exports = {
       time: {
         type: Sequelize.FLOAT,
         defaultValue: null
+      },
+      typeof: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      description: {
+        type: Sequelize.STRING(1000)
       },
       reps: {
         type: Sequelize.INTEGER,

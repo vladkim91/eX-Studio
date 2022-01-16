@@ -19,6 +19,7 @@ module.exports = {
           key: 'id'
         }
       },
+
       muscle_groups: {
         type: Sequelize.STRING,
         allowNull: false

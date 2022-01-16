@@ -62,11 +62,13 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.FLOAT,
         defaultValue: null
       },
-      type: {
-        type: DataTypes.STRING
+      typeof: {
+        type: DataTypes.STRING,
+        allowNull: false
       },
-      Description: {
-        type: DataTypes.STRING
+      description: {
+        type: DataTypes.STRING(1000)
+
       }
     },
     {
