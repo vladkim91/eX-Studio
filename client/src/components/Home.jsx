@@ -26,7 +26,7 @@ function Home(props) {
     <div className="home">
       <SideBar />
       <div className="mainBody">
-        <Nav />
+        <Nav {...props} />
         <Main {...props} />
       </div>
     </div>

@@ -1,7 +1,7 @@
 import { GET_USER_INFO, GET_USER_JOURNAL } from '../types';
 
 const iState = {
-  user: {
+  userInfo: {
     username: '',
     first_name: '',
     last_name: ''
@@ -14,7 +14,7 @@ const ProfileReducer = (state = iState, action) => {
     case GET_USER_INFO:
       return {
         ...state,
-        user: { ...state.user, ...action.payload.userInfo },
+        userInfo: { ...state.userInfo, ...action.payload.userInfo },
         journal: action.payload.userJournal
       };
     default:
