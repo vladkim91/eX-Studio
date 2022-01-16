@@ -62,7 +62,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.FLOAT,
         defaultValue: null
       },
-      type: {
+      typeof: {
         type: DataTypes.STRING,
         allowNull: false
       },

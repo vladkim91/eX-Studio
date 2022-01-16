@@ -25,7 +25,8 @@ module.exports = {
         }
       },
       name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       muscle_group: {
         type: Sequelize.STRING,
@@ -42,7 +43,7 @@ module.exports = {
         type: Sequelize.FLOAT,
         defaultValue: null
       },
-      type: {
+      typeof: {
         type: Sequelize.STRING,
         allowNull: false
       },
