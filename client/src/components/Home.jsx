@@ -1,22 +1,36 @@
-import React, {useState} from 'react'
-import Nav from './Nav'
-import Main from './Main'
+import React, { useEffect } from 'react';
+import Nav from './Nav';
+import Main from './Main';
+import SideBar from './SideBar';
+import { connect } from 'react-redux';
+import { GetUserProfile } from '../store/actions/ProfileActions';
 
-import SideBar from './SideBar'
+const mapStateToProps = (state) => {
+  return {
+    profileState: state.profileState
+  };
+};
 
-function Home() {
-    
-    
-    return (
-        <div className='home'>
-            <SideBar />
-            <div className="mainBody">
-                <Nav />
-                <Main />
-            </div>
-            
-        </div>
-    )
+const mapActionsToProps = (dispatch) => {
+  return {
+    getUserProfile: (userId) => dispatch(GetUserProfile(userId))
+  };
+};
+
+function Home(props) {
+  useEffect(() => {
+    props.getUserProfile(1);
+  }, []);
+
+  return (
+    <div className="home">
+      <SideBar />
+      <div className="mainBody">
+        <Nav {...props} />
+        <Main {...props} />
+      </div>
+    </div>
+  );
 }
 
-export default Home
+export default connect(mapStateToProps, mapActionsToProps)(Home);

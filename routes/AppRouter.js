@@ -1,10 +1,12 @@
-const Router = require('express').Router();
-// const LiegeRouter = require('./LiegeRouter');
-// const CastleRouter = require('./CastleRouter');
-// const VesselRouter = require('./VesselRouter');
-// Router.use('/lieges', LiegeRouter);
+const router = require('express').Router();
+const journal = require('./journal');
+const routine = require('./routine');
+const user = require('./user');
+const workout = require('./workout');
 
-// Router.use('/vessels', VesselRouter);
+router.use('/journal', journal);
+router.use('/routine', routine);
+router.use('/user', user);
+router.use('/workout', workout);
 
-// Router.use('/castles', CastleRouter);
-module.exports = Router;
+module.exports = router;
