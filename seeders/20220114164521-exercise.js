@@ -15,7 +15,7 @@ module.exports = {
         sets: 3,
         reps: 12,
         weight: 135,
-        type: 'equiment'
+        type: 'equipment'
       },
       {
         name: 'Push up',
@@ -70,7 +70,7 @@ module.exports = {
         sets: 3,
         reps: 10,
         weight: 60,
-        type: 'equiment'
+        type: 'equipment'
       },
       {
         name: 'Overhead Extension',
@@ -83,7 +83,7 @@ module.exports = {
         sets: 3,
         reps: 10,
         weight: 25,
-        type: 'equiment'
+        type: 'equipment'
       },
       {
         name: 'Bench Dip',
@@ -110,7 +110,7 @@ module.exports = {
         sets: 5,
         reps: 5,
         weight: 155,
-        type: 'equiment'
+        type: 'equipment'
       },
       {
         name: 'Kettlebell Deadlift',
@@ -124,7 +124,7 @@ module.exports = {
         sets: 3,
         reps: 12,
         weight: 52,
-        type: 'equiment'
+        type: 'equipment'
       },
       {
         name: 'Lying Triceps Extension',
@@ -138,7 +138,7 @@ module.exports = {
         sets: 3,
         reps: 10,
         weight: 60,
-        type: 'equiment'
+        type: 'equipment'
       },
       {
         name: 'Pull up',
@@ -152,7 +152,7 @@ module.exports = {
         sets: 3,
         reps: 7,
         weight: 0,
-        type: 'equiment'
+        type: 'equipment'
       },
       {
         name: 'Lat Pulldown',
@@ -166,7 +166,7 @@ module.exports = {
         sets: 3,
         reps: 12,
         weight: 40,
-        type: 'equiment'
+        type: 'equipment'
       },
       {
         name: 'Bent-Over Row',
@@ -180,7 +180,7 @@ module.exports = {
         sets: 3,
         reps: 10,
         weight: 45,
-        type: 'equiment'
+        type: 'equipment'
       },
       {
         name: 'Hammer Curl',
@@ -194,7 +194,7 @@ module.exports = {
         sets: 3,
         reps: 10,
         weight: 30,
-        type: 'equiment'
+        type: 'equipment'
       },
       {
         name: 'Chin-up',
@@ -221,7 +221,7 @@ module.exports = {
         sets: 3,
         reps: 8,
         weight: 35,
-        type: 'equiment'
+        type: 'equipment'
       },
       {
         name: 'Cable Curl',
@@ -235,7 +235,7 @@ module.exports = {
         sets: 3,
         reps: 12,
         weight: 50,
-        type: 'equiment'
+        type: 'equipment'
       },
       {
         name: 'Crunch',
@@ -310,7 +310,7 @@ module.exports = {
         sets: 3,
         reps: 10,
         weight: 25,
-        type: 'equiment'
+        type: 'equipment'
       },
       {
         name: 'Military press',
@@ -323,7 +323,7 @@ module.exports = {
         sets: 3,
         reps: 10,
         weight: 70,
-        type: 'equiment'
+        type: 'equipment'
       },
       {
         name: 'Bottoms-Up Kettlebell Press',
@@ -336,7 +336,7 @@ module.exports = {
         sets: 3,
         reps: 10,
         weight: 25,
-        type: 'equiment'
+        type: 'equipment'
       },
       {
         name: 'Lateral raise',
@@ -349,7 +349,7 @@ module.exports = {
         sets: 3,
         reps: 12,
         weight: 20,
-        type: 'equiment'
+        type: 'equipment'
       },
       ,
       {
@@ -363,7 +363,7 @@ module.exports = {
         sets: 3,
         reps: 8,
         weight: 70,
-        type: 'equiment'
+        type: 'equipment'
       },
       ,
       {
@@ -418,7 +418,7 @@ module.exports = {
         sets: 5,
         reps: 10,
         weight: 25,
-        type: 'equiment'
+        type: 'equipment'
       },
       {
         name: 'Burpees',
@@ -457,7 +457,7 @@ module.exports = {
         sets: 5,
         reps: 5,
         weight: 0,
-        type: 'equiment'
+        type: 'equipment'
       }
     ];
     await queryInterface.bulkInsert('exercises', exercises);
