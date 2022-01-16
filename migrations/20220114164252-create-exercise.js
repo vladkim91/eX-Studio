@@ -50,6 +50,12 @@ module.exports = {
         type: Sequelize.FLOAT,
         defaultValue: null
       },
+      type: {
+        type: Sequelize.STRING
+      },
+      description: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

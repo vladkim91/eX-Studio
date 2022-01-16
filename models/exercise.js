@@ -61,6 +61,12 @@ module.exports = (sequelize, DataTypes) => {
       weight: {
         type: DataTypes.FLOAT,
         defaultValue: null
+      },
+      type: {
+        type: DataTypes.STRING
+      },
+      Description: {
+        type: DataTypes.STRING
       }
     },
     {
