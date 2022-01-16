@@ -81,7 +81,7 @@ module.exports = {
         description: `With your feet shoulder width apart, face a pulley machine with an attached rope, v-bar, or solid straight bar hanging at chest height.`
       },
       {
-        name: 'Overhead Extension',
+        name: 'Overhead extension',
         muscle_group: 'tr',
         image: 'https://www.burnthefatinnercircle.com/members/images/1870.jpg',
         workout_id: 1,
@@ -95,7 +95,7 @@ module.exports = {
         description: `The overhead triceps extension is the fourth most effective triceps exercise, coming in at about 76% of muscle activation. 1 The key to this exercise is to keep the arms next to the ears as you lower the weight behind you. Make sure you can contract the abs to keep your back from arching.`
       },
       {
-        name: 'Bench Dip',
+        name: 'Bench dip',
         muscle_group: 'tr',
         image: 'https://www.burnthefatinnercircle.com/members/images/1870.jpg',
         workout_id: 1,
@@ -109,7 +109,7 @@ module.exports = {
         description: `Bench dips can strengthen muscles in your triceps, chest, and shoulders. They’re also simple to scale. Whether you want to ease some pressure or take on more of a challenge, bench dips are a versatile move to add to your routine.`
       },
       {
-        name: 'Barbell Deadlift',
+        name: 'Barbell deadlift',
         muscle_group: 'bk',
         image:
           'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/deadlift-workout-for-back-royalty-free-image-527680187-1553003041.jpg?crop=1.00xw:0.752xh;0,0.0793xh&resize=1200:*',
@@ -125,7 +125,7 @@ module.exports = {
         If you are new to deadlifts and focusing on getting the correct form down with a lower weight, perform 5 to 8 deadlifts per set. Work your way up to 3 to 5 sets.        `
       },
       {
-        name: 'Kettlebell Deadlift',
+        name: 'Kettlebell deadlift',
         muscle_group: 'bk',
         image:
           'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/deadlift-workout-for-back-royalty-free-image-527680187-1553003041.jpg?crop=1.00xw:0.752xh;0,0.0793xh&resize=1200:*',
@@ -141,7 +141,7 @@ module.exports = {
         These kettlebell deadlifts are one of the greatest compound exercises for the strengthening of glutes, hamstrings, quadriceps, and muscles of the lower as well as upper body. ... Kettlebells improve the overall strength of the body and improve the coordination, balance and flexibility of the body.`
       },
       {
-        name: 'Lying Tricep Extension',
+        name: 'Lying tricep extension',
         muscle_group: 'tr',
         image:
           'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/deadlift-workout-for-back-royalty-free-image-527680187-1553003041.jpg?crop=1.00xw:0.752xh;0,0.0793xh&resize=1200:*',
@@ -173,7 +173,7 @@ module.exports = {
         Keep your shoulders back and your core engaged throughout. Then pull up. Focus on enlisting every upper body muscle to aid your upward endeavours.`
       },
       {
-        name: 'Lat Pulldown',
+        name: 'Lat pulldown',
         muscle_group: 'bk',
         image:
           'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/bicep-curls-1556108522.jpg',
@@ -188,7 +188,7 @@ module.exports = {
         description: `The lat pulldown is a fantastic exercise to strengthen the latissimus dorsi muscle, the broadest muscle in your back, which promotes good postures and spinal stability. Form is crucial when performing a lat pulldown to prevent injury and reap the best results.`
       },
       {
-        name: 'Bent-Over Row',
+        name: 'Bent-Over row',
         muscle_group: 'bk',
         image:
           'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/bicep-curls-1556108522.jpg',
@@ -203,7 +203,7 @@ module.exports = {
         description: `The bent over row is a multi-jointed exercise that recruits several different muscles. It improves strength in the upper and lower back, glutes, hamstrings, lats, and shoulders.`
       },
       {
-        name: 'Hammer Curl',
+        name: 'Hammer curl',
         muscle_group: 'bc',
         image:
           'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/bicep-curls-1556108522.jpg',
@@ -232,7 +232,7 @@ module.exports = {
         description: `Generally, lifters will find that the chinup is easier than the pullup. The reasoning for this is that with higher biceps brachii activity, the shoulder-arm-forearm complex can be utilized slightly better than in the pullup.`
       },
       {
-        name: 'Barbell Curl',
+        name: 'Barbell curl',
         muscle_group: 'bc',
         image:
           'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/bicep-curls-1556108522.jpg',
@@ -247,7 +247,7 @@ module.exports = {
         description: `The barbell curl targets your biceps brachii muscle as well as the brachialis, a muscle responsible for elbow flexion. With regular practice, barbell curls can help you build bigger biceps. Barbell curls generally allow you to lift heavier weight than dumbbell curls. Barbell curls improve your grip strength.`
       },
       {
-        name: 'Cable Curl',
+        name: 'Cable curl',
         muscle_group: 'bc',
         image:
           'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/bicep-curls-1556108522.jpg',
@@ -276,7 +276,7 @@ module.exports = {
         description: `The crunch is a classic core exercise. It specifically trains your abdominal muscles, which are part of your core. ... It also includes your oblique muscles on the sides of your trunk, as well as the muscles in your pelvis, lower back, and hips. Together, these muscles help stabilize your body.`
       },
       {
-        name: 'Russian Twist',
+        name: 'Russian twist',
         muscle_group: 'ab',
         image: 'img',
         workout_id: null,
@@ -291,7 +291,7 @@ module.exports = {
         The Russian twist is an effective way to build your core and shoulders. It's a popular exercise among athletes since it helps with rotational movement, which happens often in sports. It may look like a simple movement, but it requires a lot of strength and support.`
       },
       {
-        name: 'Bicycle Crunches',
+        name: 'Bicycle crunches',
         muscle_group: 'ab',
         image: 'img',
         workout_id: null,
@@ -361,7 +361,7 @@ module.exports = {
         description: `A military press, also known as an overhead press and a shoulder press, is a barbell strength training exercise that works muscle groups in the upper body like the triceps in your arms, the trapezius muscles in your upper back, and the deltoid muscles in your shoulders, including the anterior and medial delts.`
       },
       {
-        name: 'Bottoms-Up Kettlebell Press',
+        name: 'Bottoms-Up kettlebell press',
         muscle_group: 'sh',
         image: 'img',
         workout_id: null,
@@ -449,7 +449,7 @@ module.exports = {
         description: `The calf raise is an exercise you can do with dumbbells to work the calf muscles. The calf muscles are located in the back of the lower legs. Strengthening your calf muscles with the calf raise exercise will help protect your Achilles tendon and calf from injury.`
       },
       {
-        name: 'Kettlebell Swings',
+        name: 'Kettlebell swings',
         muscle_group: 'fb',
         image: 'img',
         workout_id: null,
