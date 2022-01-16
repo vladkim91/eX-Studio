@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './routes/Home';
+import Journal from './routes/Journal';
 import Landing from './routes/Landing';
 import Routine from './routes/Routine';
 import Sign from './routes/Sign';
@@ -14,6 +15,7 @@ function App() {
     <Route path="/routine" element={<Routine />} />
     <Route path="/landing" element={<Landing />} />
     <Route path="/sign" element={<Sign />} />
+    <Route path="/journal" element={<Journal />} />
     </Routes>
     </BrowserRouter>
   </div>;

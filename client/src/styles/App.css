@@ -445,7 +445,7 @@ section {
 
 
 
-
+/* Sign Page css */
 .si-su{
   min-height: 100vh;
   display: flex;
@@ -453,7 +453,7 @@ section {
   align-items: center;
 }
 
-/* Sign in */
+/* Sign in component css*/
 
 .signin{
   background: #fff;
@@ -475,7 +475,7 @@ section {
 
 .s-i-f-input{
   display: grid;
-
+  
   width: 80%;
   margin: 2em auto;
   align-items: center;
@@ -500,6 +500,7 @@ section {
 }
 
 
+/* Sign in component css*/
 .signup{
   background: #000;
   color: #fff;
@@ -541,7 +542,6 @@ section {
 .o-facebook{
   background-color: #3D51D6;
   color: #fff;
-
 }
 
 
