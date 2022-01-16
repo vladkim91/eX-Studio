@@ -19,6 +19,13 @@ module.exports = {
           key: 'id'
         }
       },
+      type: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      description: {
+        type: Sequelize.STRING
+      },
       muscle_groups: {
         type: Sequelize.STRING,
         allowNull: false
