@@ -41,13 +41,22 @@ function Main({ profileState }) {
       <section className="journal">
         <div className="journal-container">
           {profileState.journal.map((note, index) => (
-            <div className={`entry entry${index + 1}`}>
-              <p className="time">Mon - 01/01/2022</p>
+            <div key={index} className={`entry entry${index + 1}`}>
+              <p className="time">
+                {new Date(note.createdAt)
+                  .toLocaleDateString(undefined, {
+                    weekday: 'short',
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: '2-digit'
+                  })
+                  .replace(',', ' - ')}
+              </p>
               <p className="j-title">Journal Title Here...</p>
               <p className="set">2 hours</p>
             </div>
           ))}
-          <div className="entry entry2">
+          {/* <div className="entry entry2">
             <p className="time">Mon - 01/01/2022</p>
             <p className="j-title">Journal Title Here...</p>
             <p className="set">2 hours</p>
@@ -66,7 +75,7 @@ function Main({ profileState }) {
             <p className="time">Mon - 01/01/2022</p>
             <p className="j-title">Journal Title Here...</p>
             <p className="set">2 hours</p>
-          </div>
+          </div> */}
         </div>
       </section>
     </div>
