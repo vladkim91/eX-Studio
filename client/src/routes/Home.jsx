@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import Nav from './Nav';
-import Main from './Main';
-import SideBar from './SideBar';
+import Nav from '../components/Nav'
+import Main from '../components/Main'
+import SideBar from '../components/SideBar'
 import { connect } from 'react-redux';
 import { GetUserProfile } from '../store/actions/ProfileActions';
 
