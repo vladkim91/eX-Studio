@@ -33,13 +33,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false
       },
-      type: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
-      description: {
-        type: DataTypes.STRING
-      },
+
       muscle_groups: {
         type: DataTypes.STRING,
         allowNull: false
