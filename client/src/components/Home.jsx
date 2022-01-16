@@ -19,8 +19,8 @@ const mapActionsToProps = (dispatch) => {
 
 function Home(props) {
   useEffect(() => {
-    props.getUserProfile();
-  });
+    props.getUserProfile(1);
+  }, []);
 
   return (
     <div className="home">

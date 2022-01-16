@@ -14,7 +14,7 @@ const getJournalByUser = async (req, res) => {
       attributes: ['text', 'createdAt']
     }
   });
-  res.status(200).send(journal);
+  res.status(200).send(journal.notes);
 };
 
 module.exports = {
