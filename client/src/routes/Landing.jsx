@@ -11,8 +11,8 @@ function Landing() {
                 <header>
                     <Link to={'/'}>Home</Link>
                     <Link to={'about'}>About</Link>
-                    <Link to={'singin'}>Sign In</Link>
-                    <Link to={'signup'}>Sign Up</Link>
+                    <Link to={'/sign'}>Sign In/Up</Link>
+
                 </header>
                 <div className="banner">
                 <div className="l-title">
