@@ -23,8 +23,8 @@ module.exports = (sequelize, DataTypes) => {
         as: 'journal',
         foreignKey: 'user_id'
       });
-      User.hasMany(models.Routine, {
-        as: 'routines',
+      User.hasOne(models.Routine, {
+        as: 'routine',
         foreignKey: 'user_id'
       });
       User.belongsToMany(models.Exercise, {

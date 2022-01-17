@@ -1,15 +1,13 @@
-import { GET_USER_INFO, GET_USER_JOURNAL } from '../types';
-import { getUserById } from '../services/ProfileServices';
-import { getJournalByUser } from '../services/JournalServices';
+import { GET_USER_PROFILE } from '../types';
+import { getUserProfile } from '../services/ProfileServices';
 
 export const GetUserProfile = (userId) => {
   return async (dispatch) => {
-    const userInfo = await getUserById(userId);
-    const userJournal = await getJournalByUser(userId);
+    const userProfile = await getUserProfile(userId);
 
     dispatch({
-      type: GET_USER_INFO,
-      payload: { userInfo, userJournal }
+      type: GET_USER_PROFILE,
+      payload: userProfile
     });
   };
 };
