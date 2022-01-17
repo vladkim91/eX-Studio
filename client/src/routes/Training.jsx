@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Timer from '../components/Timer';
 import { connect } from 'react-redux';
 import {
   SetCountdownInterval,
   SetCountdown,
   SetCurrentExerciseIndex,
-  SetWorkoutActive
+  SetWorkoutActive,
+  SetFullWorkout
 } from '../store/actions/TrainingActions';
 
 const mapStateToProps = (state) => {
@@ -23,12 +24,14 @@ const mapActionsToProps = (dispatch) => {
       setCurrentExerciseIndex: (exerciseIndex) =>
         dispatch(SetCurrentExerciseIndex(exerciseIndex)),
       setWorkoutActive: (state) => dispatch(SetWorkoutActive(state))
-    }
+    },
+    setFullWorkout: (fullWorkout) => dispatch(SetFullWorkout(fullWorkout))
   };
 };
 
 const Training = (props) => {
-  const [fullWorkout, setFullWorkout] = useState([]);
+  const { fullWorkout } = props.trainingState;
+  const setFullWorkout = props.setFullWorkout;
 
   const workout = {
     id: 1,
@@ -66,14 +69,17 @@ const Training = (props) => {
     name: 'Break',
     time: 30
   };
+
   const longerRest = {
     time: 60,
     name: 'Long break'
   };
+
   const warmup = {
     name: 'Warmup',
     time: 5
   };
+
   useEffect(() => {
     const newFullWorkout = [];
     newFullWorkout.push(warmup);
