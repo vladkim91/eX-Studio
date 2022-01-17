@@ -57,7 +57,7 @@ function Main({ profileState }) {
                   })
                   .replace(',', ' - ')}
               </p>
-              <p className="j-title">Journal Title Here...</p>
+              <p className="j-title">{note.title}</p>
               <p className="set">2 hours</p>
             </div>
           ))}

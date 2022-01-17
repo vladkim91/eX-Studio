@@ -13,7 +13,7 @@ function Nav({ profileState }) {
             <div className="p-pic">
               <img src={User} alt="" />
             </div>
-            <h3 className="nav-text"></h3>
+            <h3 className="nav-text">{profileState.userInfo.username}</h3>
           </div>
           <div className="level">
             <h3 className="nav-text">LEVEL</h3>
