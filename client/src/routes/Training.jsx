@@ -22,7 +22,7 @@ const mapActionsToProps = (dispatch) => {
       setCountdown: (countdown) => dispatch(SetCountdown(countdown)),
       setCurrentExerciseIndex: (exerciseIndex) =>
         dispatch(SetCurrentExerciseIndex(exerciseIndex)),
-      SetWorkoutActive: (state) => dispatch(SetWorkoutActive(state))
+      setWorkoutActive: (state) => dispatch(SetWorkoutActive(state))
     }
   };
 };
@@ -117,7 +117,11 @@ const Training = (props) => {
         })}
       </div>
       <br />
-      <Timer fullWorkout={fullWorkout} {...props.timerActions} />
+      <Timer
+        fullWorkout={fullWorkout}
+        trainingState={props.trainingState}
+        {...props.timerActions}
+      />
 
       {/* <button className="start-workout">Start Workout</button> */}
     </div>
