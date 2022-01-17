@@ -1,5 +1,4 @@
 const { User, Workout } = require('../models');
-const Sequelize = require('sequelize');
 
 const createNewUser = async (req, res) => {};
 
