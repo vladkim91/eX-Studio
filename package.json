@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
     "dev": "nodemon app.js",
-    "build": "cd client && rm -rf build && npm i && npm run build"
+    "build": "cd client && rm -rf build && rm -rf node_modules && rm -f package-lock.json && npm install && npm run build"
   },
   "repository": {
     "type": "git",
