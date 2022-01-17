@@ -1,10 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
-const Timer = ({ fullWorkout }) => {
-  const [workoutActive, setWorkoutActive] = useState(false);
-  const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
-  const [countdown, setCountdown] = useState(0);
-  const [countdownInterval, setCountdownInterval] = useState(null);
+const Timer = ({
+  fullWorkout,
+  trainingState,
+  setWorkoutActive,
+  setCurrentExerciseIndex,
+  setCountdown,
+  setCountdownInterval
+}) => {
+  const { workoutActive, currentExerciseIndex, countdown, countdownInterval } =
+    trainingState.timer;
 
   const getCurrentExercise = () => {
     return fullWorkout[currentExerciseIndex];
@@ -28,10 +33,7 @@ const Timer = ({ fullWorkout }) => {
         setCountdown(countdown);
 
         if (!countdown) {
-          if (nextExerciseIndex + 1 < fullWorkout.length) {
-            startNextExercise(nextExerciseIndex + 1);
-          }
-
+          startNextExercise(nextExerciseIndex + 1);
           clearInterval(newInterval);
         }
       }, 1000);

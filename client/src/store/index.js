@@ -2,10 +2,12 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from '@redux-devtools/extension';
 import ProfileReducer from '../store/reducers/ProfileReducer';
+import TrainingReducer from './reducers/TrainingReducer';
 
 const store = createStore(
   combineReducers({
-    profileState: ProfileReducer
+    profileState: ProfileReducer,
+    trainingState: TrainingReducer
   }),
   composeWithDevTools(applyMiddleware(thunk))
 );

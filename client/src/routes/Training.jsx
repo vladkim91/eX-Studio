@@ -1,8 +1,37 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Timer from '../components/Timer';
+import { connect } from 'react-redux';
+import {
+  SetCountdownInterval,
+  SetCountdown,
+  SetCurrentExerciseIndex,
+  SetWorkoutActive,
+  SetFullWorkout
+} from '../store/actions/TrainingActions';
 
-const Training = () => {
-  const [fullWorkout, setFullWorkout] = useState([]);
+const mapStateToProps = (state) => {
+  return {
+    trainingState: state.trainingState
+  };
+};
+
+const mapActionsToProps = (dispatch) => {
+  return {
+    timerActions: {
+      setCountdownInterval: (countdownInterval) =>
+        dispatch(SetCountdownInterval(countdownInterval)),
+      setCountdown: (countdown) => dispatch(SetCountdown(countdown)),
+      setCurrentExerciseIndex: (exerciseIndex) =>
+        dispatch(SetCurrentExerciseIndex(exerciseIndex)),
+      setWorkoutActive: (state) => dispatch(SetWorkoutActive(state))
+    },
+    setFullWorkout: (fullWorkout) => dispatch(SetFullWorkout(fullWorkout))
+  };
+};
+
+const Training = (props) => {
+  const { fullWorkout } = props.trainingState;
+  const setFullWorkout = props.setFullWorkout;
 
   const workout = {
     id: 1,
@@ -40,14 +69,17 @@ const Training = () => {
     name: 'Break',
     time: 30
   };
+
   const longerRest = {
     time: 60,
     name: 'Long break'
   };
+
   const warmup = {
     name: 'Warmup',
     time: 5
   };
+
   useEffect(() => {
     const newFullWorkout = [];
     newFullWorkout.push(warmup);
@@ -91,11 +123,15 @@ const Training = () => {
         })}
       </div>
       <br />
-      <Timer fullWorkout={fullWorkout} />
+      <Timer
+        fullWorkout={fullWorkout}
+        trainingState={props.trainingState}
+        {...props.timerActions}
+      />
 
       {/* <button className="start-workout">Start Workout</button> */}
     </div>
   );
 };
 
-export default Training;
+export default connect(mapStateToProps, mapActionsToProps)(Training);
