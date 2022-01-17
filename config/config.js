@@ -14,6 +14,9 @@ module.exports = {
   production: {
     database: 'ex_studio_production',
     url: process.env.DATABASE_URL,
-    dialect: 'postgres'
+    dialect: 'postgres',
+    dialectOptions: {
+      ssl: true
+    }
   }
 };
