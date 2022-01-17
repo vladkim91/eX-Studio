@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import Close from '../assets/close.svg';
 import { Link } from 'react-router-dom';
-import Nav from '../components/Nav'
-import SideBar from '../components/SideBar'
+import Nav from '../components/Nav';
+import SideBar from '../components/SideBar';
+import { useLocation } from 'react-router-dom';
 
-function Routine(props) {
+function Routine() {
+  const location = useLocation();
+
   const days = [
     'Sunday',
     'Monday',
@@ -53,7 +56,7 @@ function Routine(props) {
     <div className="home">
       <SideBar />
       <div className="mainBody">
-        <Nav />
+        <Nav profileState={location.state.profileState} />
         <div className="routine-list">
           <section className="r-list">{list}</section>
         </div>

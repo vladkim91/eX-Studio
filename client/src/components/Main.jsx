@@ -33,12 +33,7 @@ function Main({ profileState }) {
       <section className="routine">
         <div className="routine-container">
           <div className="blur r-blur"></div>
-          <Link
-            to={{
-              pathname: '/routine'
-            }}
-            style={{ all: 'none' }}
-          >
+          <Link to="/routine" state={{ profileState }} style={{ all: 'none' }}>
             <h1 className="r-name">Lorem, ipsum.</h1>
           </Link>
         </div>
