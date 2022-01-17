@@ -546,9 +546,29 @@ section {
 
 
 
+/* Journal css */
 
+.j-page{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 80vw;
+  box-shadow: 0px 1px 5px #000;
+}
+.j-page > * {
+  margin: 10px auto;
+}
+.j-p-content{
+  width: 45ch;
+  text-align: start;
+}
 
-
+.separate-j-page{
+  background: #000;
+  width: 60%;
+  min-height: .2em;
+  margin: 20px auto;
+}
 
 
 

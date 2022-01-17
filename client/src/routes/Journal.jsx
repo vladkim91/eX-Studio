@@ -5,8 +5,19 @@ function Journal() {
         <div>
             <section className='j-page'>
                 <h1 className="j-p-title">Journal title</h1>
-                <h4 className="j-p-date"></h4>
-                <div className='j-p-content'></div>
+                <h4 className="j-p-date">January 15, 2022</h4>
+                <div className="separate-j-page"></div>
+                <p className='j-p-content'>
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                     Dignissimos temporibus similique, fuga quod placeat cum 
+                     dolores deleniti quas blanditiis consequuntur quo debitis 
+                     voluptatum hic, nihil ad autem rerum animi expedita suscipit 
+                     vitae perspiciatis? At voluptatum ipsa, voluptatem aperiam
+                      omnis quam saepe facere perferendis, quidem earum totam 
+                      vitae recusandae, optio reprehenderit quisquam. Itaque 
+                      magni deserunt repellendus cupiditate! Vero atque voluptas
+                       soluta minima ratione, consectetur in.
+                </p>
             </section>
             <section className="journal">
                 <div className="journal-container">
