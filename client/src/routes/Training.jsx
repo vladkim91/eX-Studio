@@ -37,9 +37,25 @@ const Training = (props) => {
   const exercises = workout.exercises;
   const fullWorkout = [];
 
+  /*
+  WORKOUT:
+    -bench | 3 sets, 10 reps
+    -rest | 30 seconds
+    -bench | 3 sets, 10 reps
+    -rest | 30 seconds
+    -bench | 3 sets, 10 reps // Finish exercise
+    // Start next exercise : 3 sets of pushups
+    -pushups | 3 sets, 10 reps
+  */
+
+  fullWorkout.push({ name: 'Warmup', time: 5 });
   exercises.forEach((exercise) => {
     for (let i = 0; i < exercise.sets; i++) {
       fullWorkout.push(exercise);
+
+      if (i < exercise.sets - 1) {
+        fullWorkout.push({ name: 'Rest', time: 30 });
+      }
     }
   });
 
