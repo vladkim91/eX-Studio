@@ -1,8 +1,22 @@
 import React, { useState } from 'react';
 import Close from '../assets/close.svg';
 import { Link } from 'react-router-dom';
-import Nav from '../components/Nav'
-import SideBar from '../components/SideBar'
+import Nav from '../components/Nav';
+import SideBar from '../components/SideBar';
+import { connect } from 'react-redux';
+import { GetUserProfile } from '../store/actions/ProfileActions';
+
+const mapStateToProps = (state) => {
+  return {
+    profileState: state.profileState
+  };
+};
+
+const mapActionsToProps = (dispatch) => {
+  return {
+    getUserProfile: (userId) => dispatch(GetUserProfile(userId))
+  };
+};
 
 function Routine(props) {
   const days = [
@@ -53,7 +67,7 @@ function Routine(props) {
     <div className="home">
       <SideBar />
       <div className="mainBody">
-        <Nav />
+        <Nav {...props} />
         <div className="routine-list">
           <section className="r-list">{list}</section>
         </div>
@@ -158,4 +172,4 @@ function Routine(props) {
   );
 }
 
-export default Routine;
+export default connect(mapStateToProps, mapActionsToProps)(Routine);
