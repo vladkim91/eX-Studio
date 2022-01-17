@@ -19,3 +19,8 @@ export const getUserCustomWorkouts = async (userId) => {
   const result = await Client.get(`user/${userId}`);
   return result.data;
 };
+
+export const getUserProfile = async (userId) => {
+  const result = await Client.get(`user/${userId}/profile`);
+  return result.data;
+};
