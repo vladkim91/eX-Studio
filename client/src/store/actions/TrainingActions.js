@@ -1,6 +1,6 @@
 import {
   TRAINING_SET_COUNTDOWN_INTERVAL,
-  TRAINING_SET_COUTNDOWN,
+  TRAINING_SET_COUNTDOWN,
   TRAINING_SET_CURRENT_EXERCISE_INDEX,
   TRAINING_SET_WORKOUT_ACTIVE
 } from '../types';
@@ -14,7 +14,7 @@ export const SetCountdownInterval = (countdownInterval) => {
 
 export const SetCountdown = (countdown) => {
   return {
-    type: TRAINING_SET_COUTNDOWN,
+    type: TRAINING_SET_COUNTDOWN,
     payload: countdown
   };
 };

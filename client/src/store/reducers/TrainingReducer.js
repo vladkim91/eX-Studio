@@ -1,6 +1,6 @@
 import {
   TRAINING_SET_COUNTDOWN_INTERVAL,
-  TRAINING_SET_COUTNDOWN,
+  TRAINING_SET_COUNTDOWN,
   TRAINING_SET_CURRENT_EXERCISE_INDEX,
   TRAINING_SET_WORKOUT_ACTIVE
 } from '../types';
@@ -22,7 +22,7 @@ const TrainingReducer = (state = iState, action) => {
         ...state,
         timer: { ...state.timer, countdownInterval: action.payload }
       };
-    case TRAINING_SET_COUTNDOWN:
+    case TRAINING_SET_COUNTDOWN:
       return { ...state, timer: { ...state.timer, countdown: action.payload } };
     case TRAINING_SET_CURRENT_EXERCISE_INDEX:
       return {
