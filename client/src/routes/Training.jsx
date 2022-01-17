@@ -1,11 +1,9 @@
-
 import React, { useState, useEffect } from 'react';
-import Timer from '../components/Timer'
+import Timer from '../components/Timer';
 
 const Training = () => {
   const [fullWorkout, setFullWorkout] = useState([]);
 
- 
   const workout = {
     id: 1,
     name: 'Chest Sprint day',
@@ -16,16 +14,6 @@ const Training = () => {
 
   const exercises = [
     {
-      id: 2,
-      name: 'Sprints',
-      user_id: null,
-      workout_id: 1,
-      muscle_group: 'cd',
-      image: 'exerciseImage',
-      sets: 3,
-      time: 60
-    },
-    {
       id: 1,
       name: 'Bench press',
       user_id: null,
@@ -35,8 +23,17 @@ const Training = () => {
       sets: 3,
       reps: 12,
       weight: 135
+    },
+    {
+      id: 2,
+      name: 'Sprints',
+      user_id: null,
+      workout_id: 1,
+      muscle_group: 'cd',
+      image: 'exerciseImage',
+      sets: 3,
+      time: 60
     }
-    
   ];
 
   const rest = {
@@ -50,57 +47,53 @@ const Training = () => {
   const warmup = {
     name: 'Warmup',
     time: 5
-  }
-useEffect(() => {
-  const newFullWorkout = [];
-  newFullWorkout.push(warmup)
-  exercises.forEach((exercise, i) => {
-    if (exercise.reps) {
-      for (let i = 0; i < exercise.sets; i++) {
-        newFullWorkout.push(exercise);
-        if (i < exercise.sets - 1) {
-          newFullWorkout.push({ ...rest });
+  };
+  useEffect(() => {
+    const newFullWorkout = [];
+    newFullWorkout.push(warmup);
+    exercises.forEach((exercise, i) => {
+      if (exercise.reps) {
+        for (let i = 0; i < exercise.sets; i++) {
+          newFullWorkout.push(exercise);
+          if (i < exercise.sets - 1) {
+            newFullWorkout.push({ ...rest });
+          }
         }
-      }
-      newFullWorkout.push(longerRest);
-    } else if (exercise.time) {
-      for (let i = 0; i < exercise.sets; i++) {
-        newFullWorkout.push(exercise);
-        if (i < exercise.sets - 1) {
-          newFullWorkout.push({ ...rest });
+        newFullWorkout.push(longerRest);
+      } else if (exercise.time) {
+        for (let i = 0; i < exercise.sets; i++) {
+          newFullWorkout.push(exercise);
+          if (i < exercise.sets - 1) {
+            newFullWorkout.push({ ...rest });
+          }
         }
+        newFullWorkout.push(longerRest);
       }
-      newFullWorkout.push(longerRest);
-    }
-  });
-  setFullWorkout(newFullWorkout);
- 
-
-},[])
-
+    });
+    setFullWorkout(newFullWorkout);
+  }, []);
 
   return (
     <div>
       {workout.name}
+      <hr />
       <div>
         {fullWorkout.map((exercise, i) => {
           return exercise.name ? (
-            <div>
+            <div key={i}>
               <p>{exercise.name}</p>
             </div>
           ) : (
-            <div>
+            <div key={i}>
               <p>Break</p>
             </div>
           );
         })}
       </div>
-
+      <br />
       <Timer fullWorkout={fullWorkout} />
 
-      <button className="start-workout" >
-        Start Workout
-      </button>
+      {/* <button className="start-workout">Start Workout</button> */}
     </div>
   );
 };
