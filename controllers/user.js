@@ -1,4 +1,11 @@
-const { User, Workout } = require('../models');
+const {
+  User,
+  Routine,
+  ScheduledWorkout,
+  Journal,
+  Note,
+  Workout
+} = require('../models');
 
 const createNewUser = async (req, res) => {};
 
@@ -46,9 +53,51 @@ const getUserCustomWorkouts = async (req, res) => {
   res.status(200).send(customWorkouts);
 };
 
+const getUserProfileById = async (req, res) => {
+  const { userId } = req.params;
+  const userProfile = await User.findOne({
+    where: {
+      id: userId
+    },
+    nest: true,
+    attributes: ['username', 'first_name', 'last_name'],
+    include: [
+      {
+        model: Journal,
+        as: 'journal',
+        attributes: ['id'],
+        include: {
+          model: Note,
+          as: 'notes'
+        }
+      },
+      {
+        model: Routine,
+        as: 'routine',
+        attributes: ['id'],
+        include: {
+          model: ScheduledWorkout,
+          as: 'scheduled_workouts',
+          attributes: ['id', 'workout_id'],
+          include: {
+            attributes: ['name', 'muscle_groups', 'image'],
+            model: Workout,
+            as: 'workout'
+          }
+        }
+      }
+    ]
+  });
+
+  userProfile.journal.notes = userProfile.journal.notes.slice(0, 5);
+
+  res.status(200).send(userProfile);
+};
+
 module.exports = {
   createNewUser,
   getUserById,
   getUserFavoritedWorkouts,
-  getUserCustomWorkouts
+  getUserCustomWorkouts,
+  getUserProfileById
 };

@@ -14,8 +14,8 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'user_id'
       });
       Journal.hasMany(models.Note, {
-        as: 'notes',
-        foreignKey: 'journal_id'
+        foreignKey: 'journal_id',
+        as: 'notes'
       });
     }
   }
