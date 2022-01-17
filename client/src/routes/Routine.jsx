@@ -92,7 +92,11 @@ function Routine() {
                 </div>
               </>
             )}
-            <Link to={'/training'} className="r-l-start-bttn">
+            <Link
+              to={'/training'}
+              state={{ workout: scheduledWorkout.workout }}
+              className="r-l-start-bttn"
+            >
               Start
             </Link>
           </div>
