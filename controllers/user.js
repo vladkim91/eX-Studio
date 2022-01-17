@@ -4,7 +4,8 @@ const {
   ScheduledWorkout,
   Journal,
   Note,
-  Workout
+  Workout,
+  Exercise
 } = require('../models');
 
 const createNewUser = async (req, res) => {};
@@ -82,7 +83,22 @@ const getUserProfileById = async (req, res) => {
           include: {
             attributes: ['name', 'muscle_groups', 'image'],
             model: Workout,
-            as: 'workout'
+            as: 'workout',
+            include: {
+              attributes: [
+                'name',
+                'muscle_group',
+                'image',
+                'sets',
+                'time',
+                'reps',
+                'weight',
+                'typeof',
+                'description'
+              ],
+              model: Exercise,
+              as: 'exercises'
+            }
           }
         }
       }
