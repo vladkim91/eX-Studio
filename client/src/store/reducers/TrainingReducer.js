@@ -2,11 +2,12 @@ import {
   TRAINING_SET_COUNTDOWN_INTERVAL,
   TRAINING_SET_COUNTDOWN,
   TRAINING_SET_CURRENT_EXERCISE_INDEX,
-  TRAINING_SET_WORKOUT_ACTIVE
+  TRAINING_SET_WORKOUT_ACTIVE,
+  TRAINING_SET_FULL_WORKOUT
 } from '../types';
 
 const iState = {
-  workout: [],
+  fullWorkout: [],
   timer: {
     workoutActive: false,
     currentExerciseIndex: 0,
@@ -34,6 +35,8 @@ const TrainingReducer = (state = iState, action) => {
         ...state,
         timer: { ...state.timer, workoutActive: action.payload }
       };
+    case TRAINING_SET_FULL_WORKOUT:
+      return { ...state, fullWorkout: action.payload };
     default:
       return { ...state };
   }
