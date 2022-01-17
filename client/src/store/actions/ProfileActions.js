@@ -1,4 +1,4 @@
-import { GET_USER_INFO, GET_USER_JOURNAL } from '../types';
+import { GET_USER_PROFILE, GET_USER_JOURNAL } from '../types';
 import { getUserById } from '../services/ProfileServices';
 import { getJournalByUser } from '../services/JournalServices';
 
@@ -8,7 +8,7 @@ export const GetUserProfile = (userId) => {
     const userJournal = await getJournalByUser(userId);
 
     dispatch({
-      type: GET_USER_INFO,
+      type: GET_USER_PROFILE,
       payload: { userInfo, userJournal }
     });
   };

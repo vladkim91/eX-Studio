@@ -1,4 +1,4 @@
-import { GET_USER_INFO, GET_USER_JOURNAL } from '../types';
+import { GET_USER_PROFILE, GET_USER_JOURNAL } from '../types';
 
 const iState = {
   userInfo: {
@@ -11,7 +11,7 @@ const iState = {
 
 const ProfileReducer = (state = iState, action) => {
   switch (action.type) {
-    case GET_USER_INFO:
+    case GET_USER_PROFILE:
       return {
         ...state,
         userInfo: { ...state.userInfo, ...action.payload.userInfo },
