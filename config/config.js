@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 module.exports = {
   development: {
     database: 'ex_studio_development',
@@ -11,9 +13,7 @@ module.exports = {
   },
   production: {
     database: 'ex_studio_production',
-    host: process.env.SEQUELIZER_HOST,
-    username: process.env.SEQUELIZER_USERNAME,
-    password: process.env.SEQUELIZER_PASSWORD,
+    url: process.env.DATABASE_URL,
     dialect: 'postgres'
   }
 };
