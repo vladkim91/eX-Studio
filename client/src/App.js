@@ -3,6 +3,7 @@ import Home from './routes/Home';
 import Landing from './routes/Landing';
 import Routine from './routes/Routine';
 import Sign from './routes/Sign';
+import Training from './routes/Training';
 import './styles/App.css';
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/routine" element={<Routine />} />
+          <Route path="/training" element={<Training />} />
           <Route path="/landing" element={<Landing />} />
           <Route path="/sign" element={<Sign />} />
         </Routes>
