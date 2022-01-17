@@ -2,6 +2,9 @@ const { Workout, Exercise } = require('../models');
 
 const getWorkoutById = async (req, res) => {
   const { workoutId } = req.params;
+  let { id, ...atts } = Exercise.rawAttributes;
+  atts = Object.keys(atts);
+
   const workout = await Workout.findOne({
     attributes: ['name', 'muscle_groups', 'image'],
     where: {
@@ -10,7 +13,7 @@ const getWorkoutById = async (req, res) => {
     include: {
       model: Exercise,
       as: 'exercises',
-      attributes: ['name', 'image', 'sets', 'time', 'reps', 'weight']
+      attributes: atts
     }
   });
   res.status(200).send(workout);
