@@ -10,7 +10,8 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       ScheduledWorkout.belongsTo(models.Routine, {
-        foreignKey: 'routine_id'
+        foreignKey: 'routine_id',
+        as: 'scheduled_workouts'
       });
       ScheduledWorkout.belongsTo(models.Workout, {
         foreignKey: 'workout_id',

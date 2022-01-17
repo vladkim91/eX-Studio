@@ -8,6 +8,7 @@ import {
   SetWorkoutActive,
   SetFullWorkout
 } from '../store/actions/TrainingActions';
+import { useLocation } from 'react-router-dom';
 
 const mapStateToProps = (state) => {
   return {
@@ -30,80 +31,33 @@ const mapActionsToProps = (dispatch) => {
 };
 
 const Training = (props) => {
-  const { fullWorkout } = props.trainingState;
   const setFullWorkout = props.setFullWorkout;
+  const location = useLocation();
+  const workout = location.state.workout;
+  const exercises = workout.exercises;
+  const fullWorkout = [];
 
-  const workout = {
-    id: 1,
-    name: 'Chest Sprint day',
-    user_id: null,
-    muscle_groups: 'ch cd',
-    image: 'images'
-  };
+  /*
+  WORKOUT:
+    -bench | 3 sets, 10 reps
+    -rest | 30 seconds
+    -bench | 3 sets, 10 reps
+    -rest | 30 seconds
+    -bench | 3 sets, 10 reps // Finish exercise
+    // Start next exercise : 3 sets of pushups
+    -pushups | 3 sets, 10 reps
+  */
 
-  const exercises = [
-    {
-      id: 1,
-      name: 'Bench press',
-      user_id: null,
-      workout_id: 1,
-      muscle_group: 'ch',
-      image: 'exerciseImage',
-      sets: 3,
-      reps: 12,
-      weight: 135
-    },
-    {
-      id: 2,
-      name: 'Sprints',
-      user_id: null,
-      workout_id: 1,
-      muscle_group: 'cd',
-      image: 'exerciseImage',
-      sets: 3,
-      time: 60
-    }
-  ];
+  fullWorkout.push({ name: 'Warmup', time: 5 });
+  exercises.forEach((exercise) => {
+    for (let i = 0; i < exercise.sets; i++) {
+      fullWorkout.push(exercise);
 
-  const rest = {
-    name: 'Break',
-    time: 30
-  };
-
-  const longerRest = {
-    time: 60,
-    name: 'Long break'
-  };
-
-  const warmup = {
-    name: 'Warmup',
-    time: 5
-  };
-
-  useEffect(() => {
-    const newFullWorkout = [];
-    newFullWorkout.push(warmup);
-    exercises.forEach((exercise, i) => {
-      if (exercise.reps) {
-        for (let i = 0; i < exercise.sets; i++) {
-          newFullWorkout.push(exercise);
-          if (i < exercise.sets - 1) {
-            newFullWorkout.push({ ...rest });
-          }
-        }
-        newFullWorkout.push(longerRest);
-      } else if (exercise.time) {
-        for (let i = 0; i < exercise.sets; i++) {
-          newFullWorkout.push(exercise);
-          if (i < exercise.sets - 1) {
-            newFullWorkout.push({ ...rest });
-          }
-        }
-        newFullWorkout.push(longerRest);
+      if (i < exercise.sets - 1) {
+        fullWorkout.push({ name: 'Rest', time: 30 });
       }
-    });
-    setFullWorkout(newFullWorkout);
-  }, []);
+    }
+  });
 
   return (
     <div>
@@ -128,8 +82,6 @@ const Training = (props) => {
         trainingState={props.trainingState}
         {...props.timerActions}
       />
-
-      {/* <button className="start-workout">Start Workout</button> */}
     </div>
   );
 };

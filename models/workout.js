@@ -25,6 +25,11 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'workout_id',
         as: 'exercises'
       });
+      Workout.belongsToMany(models.Exercise, {
+        as: 'added_exercises',
+        through: models.Workout_Exercise,
+        foreignKey: 'exercise_id'
+      });
     }
   }
   Workout.init(
