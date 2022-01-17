@@ -78,7 +78,7 @@ const getUserProfileById = async (req, res) => {
         include: {
           model: ScheduledWorkout,
           as: 'scheduled_workouts',
-          attributes: ['id', 'workout_id'],
+          attributes: ['id', 'day'],
           include: {
             attributes: ['name', 'muscle_groups', 'image'],
             model: Workout,
