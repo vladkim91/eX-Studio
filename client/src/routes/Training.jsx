@@ -1,5 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import Timer from '../components/Timer';
+import { connect } from 'react-redux';
+
+const mapStateToProps = (state) => {
+  return {
+    trainingState: state.trainingState
+  };
+};
+
+const mapActionsToProps = (dispatch) => {
+  return {};
+};
 
 const Training = () => {
   const [fullWorkout, setFullWorkout] = useState([]);
@@ -98,4 +109,4 @@ const Training = () => {
   );
 };
 
-export default Training;
+export default connect(mapStateToProps, mapActionsToProps)(Training);
