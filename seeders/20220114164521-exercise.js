@@ -84,7 +84,7 @@ module.exports = {
         name: 'Overhead extension',
         muscle_group: 'tr',
         image: 'https://www.burnthefatinnercircle.com/members/images/1870.jpg',
-        workout_id: 1,
+        workout_id: null,
         user_id: null,
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -98,7 +98,7 @@ module.exports = {
         name: 'Bench dip',
         muscle_group: 'tr',
         image: 'https://www.burnthefatinnercircle.com/members/images/1870.jpg',
-        workout_id: 1,
+        workout_id: null,
         user_id: null,
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -497,8 +497,7 @@ module.exports = {
         weight: 0,
         typeof: 'equipment',
         description: `
-        Image result for box jumps
-        Explosive strength , speed strength , and vertical jumping power are the primary areas you train. In box jump training you work all of your leg muscles and strengthen your core using your own body weight. Box jumps also boost endurance and improve your cardiovascular health.`
+       Explosive strength , speed strength , and vertical jumping power are the primary areas you train. In box jump training you work all of your leg muscles and strengthen your core using your own body weight. Box jumps also boost endurance and improve your cardiovascular health.`
       }
     ];
     await queryInterface.bulkInsert('exercises', exercises);
