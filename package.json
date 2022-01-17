@@ -3,10 +3,14 @@
   "version": "1.0.0",
   "description": "Exercise tracking",
   "main": "index.js",
+  "engines": {
+    "node": "16.x"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "build": "cd client && rm -rf build && rm -rf node_modules && rm -f package-lock.json && npm i -D --save-exact mini-css-extract-plugin@2.4.6 && npm install && npm run build"
   },
   "repository": {
     "type": "git",
@@ -21,6 +25,7 @@
   "homepage": "https://github.com/vladkim91/eX-Studio#readme",
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^13.0.1",
     "express": "^4.17.2",
     "morgan": "^1.10.0",
     "pg": "^8.7.1",
