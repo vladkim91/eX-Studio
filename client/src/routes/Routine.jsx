@@ -57,28 +57,6 @@ function Routine() {
     </div>
   ));
 
-  // for (let day = 0; day < 7; day++) {
-  //   workouts.push(
-  //     <div
-  //       key={day}
-  //       className={`routine-cont-list r-${j}`}
-  //       onClick={() => {
-  //         popClick(days[day]);
-  //       }}
-  //     >
-  //       <img
-  //         className="back"
-  //         src={require(`../assets/img/${days[day]}.jpg`)}
-  //         alt=""
-  //       />
-  //       <div className="blur r-blur"></div>
-  //       <div className="float">
-  //         <h1 className="r-name">{days[day]}</h1>
-  //       </div>
-  //     </div>
-  //   );
-  // }
-
   return (
     <div className="home">
       <SideBar />
@@ -92,92 +70,25 @@ function Routine() {
         <div className="popCard">
           <div className="popInfo">
             <div className="r-l-day">
-              <h1>
-                {scheduledWorkout?.workout?.name || 'No Workout Scheduled'}
-              </h1>
+              <h1>{scheduledWorkout.day}</h1>
             </div>
 
             {scheduledWorkout.workout && (
               <>
                 <div className="r-l-title">
-                  <h1>Bootcamp</h1>
+                  <h1>
+                    {scheduledWorkout?.workout?.name || 'No Workout Scheduled'}
+                  </h1>
                 </div>
                 <div className="r-l-divider"></div>
                 <div className="r-l-arr">
-                  <div className="r-l-ex">
-                    {scheduledWorkout.workout.map((exercise, index) => (
-                      <div key={index}>
-                        <span className="r-l-ex-num">{index}.</span>
-                        <p className="r-l-ex-name">{exercise.name}</p>
-                        <span className="r-l-time">02:00</span>
-                      </div>
-                    ))}
-                  </div>
-                  {/* <div className="r-l-ex">
-                    <span className="r-l-ex-num">1.</span>
-                    <p className="r-l-ex-name">Bench Press</p>
-                    <span className="r-l-time">02:00</span>
-                  </div>
-                  <div className="r-l-ex">
-                    <span className="r-l-ex-num">1.</span>
-                    <p className="r-l-ex-name">Bench Press</p>
-                    <span className="r-l-time">02:00</span>
-                  </div>
-                  <div className="r-l-ex">
-                    <span className="r-l-ex-num">1.</span>
-                    <p className="r-l-ex-name">Bench Press</p>
-                    <span className="r-l-time">02:00</span>
-                  </div>
-                  <div className="r-l-ex">
-                    <span className="r-l-ex-num">1.</span>
-                    <p className="r-l-ex-name">Bench Press</p>
-                    <span className="r-l-time">02:00</span>
-                  </div>
-                  <div className="r-l-ex">
-                    <span className="r-l-ex-num">1.</span>
-                    <p className="r-l-ex-name">Bench Press</p>
-                    <span className="r-l-time">02:00</span>
-                  </div>
-                  <div className="r-l-ex">
-                    <span className="r-l-ex-num">1.</span>
-                    <p className="r-l-ex-name">Bench Press</p>
-                    <span className="r-l-time">02:00</span>
-                  </div>
-                  <div className="r-l-ex">
-                    <span className="r-l-ex-num">1.</span>
-                    <p className="r-l-ex-name">Bench Press</p>
-                    <span className="r-l-time">02:00</span>
-                  </div>
-                  <div className="r-l-ex">
-                    <span className="r-l-ex-num">1.</span>
-                    <p className="r-l-ex-name">Bench Press</p>
-                    <span className="r-l-time">02:00</span>
-                  </div>
-                  <div className="r-l-ex">
-                    <span className="r-l-ex-num">1.</span>
-                    <p className="r-l-ex-name">Bench Press</p>
-                    <span className="r-l-time">02:00</span>
-                  </div>
-                  <div className="r-l-ex">
-                    <span className="r-l-ex-num">1.</span>
-                    <p className="r-l-ex-name">Bench Press</p>
-                    <span className="r-l-time">02:00</span>
-                  </div>
-                  <div className="r-l-ex">
-                    <span className="r-l-ex-num">1.</span>
-                    <p className="r-l-ex-name">Bench Press</p>
-                    <span className="r-l-time">02:00</span>
-                  </div>
-                  <div className="r-l-ex">
-                    <span className="r-l-ex-num">1.</span>
-                    <p className="r-l-ex-name">Bench Press</p>
-                    <span className="r-l-time">02:00</span>
-                  </div>
-                  <div className="r-l-ex">
-                    <span className="r-l-ex-num">1.</span>
-                    <p className="r-l-ex-name">Bench Press</p>
-                    <span className="r-l-time">02:00</span>
-                  </div> */}
+                  {scheduledWorkout.workout.exercises.map((exercise, index) => (
+                    <div key={index} className="r-l-ex">
+                      <span className="r-l-ex-num">{index + 1}.</span>
+                      <p className="r-l-ex-name">{exercise.name}</p>
+                      <span className="r-l-time">02:00</span>
+                    </div>
+                  ))}
                 </div>
               </>
             )}
