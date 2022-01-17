@@ -16,7 +16,7 @@ const getJournalByUser = async (req, res) => {
     include: {
       model: Note,
       as: 'notes',
-      attributes: ['text', 'createdAt']
+      attributes: ['title', 'text', 'createdAt']
     }
   });
 
