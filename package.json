@@ -10,7 +10,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
     "dev": "nodemon app.js",
-    "build": "cd client && rm -rf build && rm -rf node_modules && rm -f package-lock.json && npm install && npm run build"
+    "build": "cd client && rm -rf build && rm -rf node_modules && rm -f package-lock.json && npm i -D --save-exact mini-css-extract-plugin@2.4.6 && npm install && npm run build"
   },
   "repository": {
     "type": "git",
