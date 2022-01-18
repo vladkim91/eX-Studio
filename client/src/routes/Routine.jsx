@@ -1,14 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Close from '../assets/close.svg';
 import { Link } from 'react-router-dom';
 import Nav from '../components/Nav';
 import SideBar from '../components/SideBar';
-import { useLocation } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { GetRoutineByUserId } from '../store/actions/ProfileActions';
 
-function Routine() {
-  const location = useLocation();
-  const profileState = location.state.profileState;
-  const routine = profileState.routine;
+const mapStateToProps = (state) => {
+  return {
+    routine: state.profileState.routine.scheduled_workouts || []
+  };
+};
+
+const mapActionsToProps = (dispatch) => {
+  return {
+    getRoutineByUserId: (userId) => dispatch(GetRoutineByUserId(userId))
+  };
+};
+
+function Routine({ routine, getRoutineByUserId }) {
+  useEffect(() => {
+    getRoutineByUserId(1);
+  }, []);
 
   const days = [
     'Sunday',
@@ -61,7 +74,7 @@ function Routine() {
     <div className="home">
       <SideBar />
       <div className="mainBody">
-        <Nav profileState={profileState} />
+        <Nav />
         <div className="routine-list">
           <section className="r-list">{workouts}</section>
         </div>
@@ -114,4 +127,4 @@ function Routine() {
   );
 }
 
-export default Routine;
+export default connect(mapStateToProps, mapActionsToProps)(Routine);
