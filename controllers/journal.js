@@ -1,9 +1,16 @@
 const { Journal, Note } = require('../models');
 
 const createNewNote = async (req, res) => {
-  const { journalId } = req.params;
+  const { userId } = req.params;
+
+  const journal = await Journal.findOne({
+    where: {
+      user_id: userId
+    }
+  });
+
   const result = await Note.create({
-    journal_id: journalId,
+    journal_id: journal.id,
     title: req.body.title,
     text: req.body.text,
     felt: parseInt(req.body.felt),

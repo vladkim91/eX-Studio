@@ -5,6 +5,22 @@ import Delete from '../assets/delete.svg';
 import Edit from '../assets/edit.svg'
 import Nav from '../components/Nav';
 import SideBar from '../components/SideBar';
+import { connect } from 'react-redux'
+
+const mapStateToProps = (state) => {
+    return {
+
+    }
+};
+
+const mapActionsToProps = (dispatch) => {
+    return {
+        
+    }
+}
+
+export default connect(mapStateToProps, mapActionsToProps)(Journal)
+
 
 function Journal() {
     let maxLength = 1000
@@ -13,7 +29,7 @@ function Journal() {
     const [deleteP, setDeleteP] = useState('pophide');
     const [isEditing, setIsEditing] = useState(false)
 
-    const handleChange = (e) =>{
+    const handleChange = (e) => {
         SetTextValue(e.target.value)
     }
 
