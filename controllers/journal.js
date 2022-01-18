@@ -1,4 +1,4 @@
-const { Journal, Note } = require('../models');
+const { Journal, Note, sequelize } = require('../models');
 
 const createNewNote = async (req, res) => {
   const { userId } = req.params;
@@ -37,7 +37,8 @@ const getJournalByUser = async (req, res) => {
       model: Note,
       as: 'notes',
       attributes: ['id', 'title', 'text', 'createdAt']
-    }
+    },
+    order: [[{ model: Note, as: 'notes' }, 'createdAt', 'DESC']]
   });
 
   const notes = [];
