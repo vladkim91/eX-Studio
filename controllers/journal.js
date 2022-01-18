@@ -1,5 +1,18 @@
 const { Journal, Note } = require('../models');
 
+const createNewNote = async (req, res) => {
+  const { journalId } = req.params;
+  const result = await Note.create({
+    journal_id: journalId,
+    title: req.body.title,
+    text: req.body.text,
+    felt: parseInt(req.body.felt),
+    createdAt: new Date(),
+    updatedAt: new Date()
+  });
+  res.status(201).send(result);
+};
+
 const getJournalByUser = async (req, res) => {
   const { userId } = req.params;
   const noteLimit = parseInt(req.query.noteLimit);
@@ -35,6 +48,42 @@ const getJournalByUser = async (req, res) => {
   res.status(200).send(notes);
 };
 
+const editNoteById = async (req, res) => {
+  const { noteId } = req.params;
+
+  const result = await Note.update(
+    {
+      title: req.body.title,
+      text: req.body.text,
+      felt: parseInt(req.body.felt),
+      updatedAt: new Date()
+    },
+    {
+      where: {
+        id: noteId
+      },
+      returning: true
+    }
+  );
+
+  res.status(200).send(result);
+};
+
+const deleteNoteById = async (req, res) => {
+  const { noteId } = req.params;
+
+  await Note.destroy({
+    where: {
+      id: noteId
+    }
+  });
+
+  res.sendStatus(200);
+};
+
 module.exports = {
-  getJournalByUser
+  createNewNote,
+  getJournalByUser,
+  editNoteById,
+  deleteNoteById
 };

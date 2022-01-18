@@ -1,4 +1,4 @@
-const { Routine, ScheduledWorkout, Workout } = require('../models');
+const { Routine, ScheduledWorkout, Workout, Exercise } = require('../models');
 
 const getRoutineByUser = async (req, res) => {
   const { userId } = req.params;
@@ -6,22 +6,36 @@ const getRoutineByUser = async (req, res) => {
     where: {
       user_id: userId
     },
-    logging: true,
     nest: true,
     include: [
       {
         model: ScheduledWorkout,
         as: 'scheduled_workouts',
-        attributes: ['day'],
+        attributes: ['id', 'day'],
         include: {
+          attributes: ['name', 'muscle_groups', 'image'],
           model: Workout,
-          as: 'workout'
+          as: 'workout',
+          include: {
+            attributes: [
+              'name',
+              'muscle_group',
+              'image',
+              'sets',
+              'time',
+              'reps',
+              'weight',
+              'typeof',
+              'description'
+            ],
+            model: Exercise,
+            as: 'exercises'
+          }
         }
       }
-    ],
-    raw: true
+    ]
   });
-  console.log(routine);
+
   res.status(200).send(routine);
 };
 
