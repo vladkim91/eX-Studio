@@ -41,7 +41,7 @@ function Main({ profileState }) {
       <section className="journal">
         <div className="journal-container">
           {profileState.journal.map((note, index) => (
-            <div key={index} className={`entry entry${index + 1}`}>
+            <div key={index} className={`entry`}>
               <p className="time">
                 {new Date(note.createdAt)
                   .toLocaleDateString(undefined, {

@@ -1,12 +1,12 @@
 @font-face {
-  font-family: "Ethno";
-  src: url("../fonts/ethnocentric-rg.ttf") format("truetype");
+  font-family: 'Ethno';
+  src: url('../fonts/ethnocentric-rg.ttf') format('truetype');
   font-weight: normal;
 }
 * {
   margin: 0;
   padding: 0;
-  font-family: "Ethno";
+  font-family: 'Ethno';
 }
 
 .App,
@@ -15,7 +15,7 @@
 }
 input,
 textarea {
-  font-family: "Merriweather", serif;
+  font-family: 'Merriweather', serif;
   font-size: 1.5em;
 }
 
@@ -232,15 +232,15 @@ section {
   z-index: 1;
 }
 .c1 {
-  background: url("../assets/img/w1.jpg") no-repeat;
+  background: url('../assets/img/w1.jpg') no-repeat;
   background-size: cover;
 }
 .c2 {
-  background: url("../assets/img/w2.jpeg") no-repeat;
+  background: url('../assets/img/w2.jpeg') no-repeat;
   background-size: cover;
 }
 .c3 {
-  background: url("../assets/img/w3.jfif") no-repeat;
+  background: url('../assets/img/w3.jfif') no-repeat;
   background-size: cover;
 }
 
@@ -253,7 +253,7 @@ section {
 .routine-container {
   min-height: 20vh;
   position: relative;
-  background: url("../assets/img/routine.jpg") no-repeat;
+  background: url('../assets/img/routine.jpg') no-repeat;
   background-size: cover;
   background-position: center;
   display: flex;
@@ -514,7 +514,7 @@ section {
   flex-direction: column;
   margin: 1em auto;
 }
-.j-cont-name{
+.j-cont-name {
   margin: 1em auto;
 }
 
@@ -533,15 +533,18 @@ section {
   min-height: 2em;
   box-shadow: 0 0 1px #888;
   text-align: center;
+  cursor: pointer;
 }
-.entry1 {
+
+.entry:nth-child(1) {
   border-radius: 13px 13px 0 0;
 }
-.entry5 {
+
+.entry:last-child {
   border-radius: 0 0 13px 13px;
 }
 
-.pop-deletion{
+.pop-deletion {
   margin: auto;
   background: rgba(0, 0, 0, 0.6);
   height: 100vh;
@@ -551,33 +554,31 @@ section {
   right: 0;
   z-index: 5;
 }
-.delete-show{
+.delete-show {
   display: flex;
 }
-.deletion{
+.deletion {
   text-align: center;
   background: #fff;
   border-radius: 1em;
   padding: 1em;
-  margin:auto
+  margin: auto;
 }
-.d-d-btn{
+.d-d-btn {
   cursor: pointer;
   margin: 1em;
   border: none;
-  padding: .8em 1.5em;
+  padding: 0.8em 1.5em;
   font-size: 1.2em;
 }
-.y-delete{
+.y-delete {
   background: #c92626;
   color: #fff;
 }
-.n-delete{
+.n-delete {
   background: #376ca7;
   color: #fff;
 }
-
-
 
 .j-page {
   display: flex;
@@ -591,48 +592,46 @@ section {
 .j-page > * {
   margin: 10px auto;
 }
-.edit{
+.edit {
   margin: auto 2em auto auto;
   position: relative;
 }
-.edit-btn{
+.edit-btn {
   font-size: 2em;
   cursor: pointer;
 }
-.edit-dropd{
+.edit-dropd {
   position: absolute;
   background: #fff;
   border: 1px solid #bbb;
   right: 0;
 }
-.edit-btn:hover > .edit-dropd{
+.edit-btn:hover > .edit-dropd {
   display: block;
-
 }
-.edit-dd{
+.edit-dd {
   display: flex;
   align-items: center;
   list-style-type: none;
   text-align: center;
   padding: 1em;
-
 }
-.edit-dd:hover{
-
+.edit-dd:hover {
   cursor: pointer;
 }
-.dd1:hover{
+.dd1:hover {
   color: #fff;
   background: #5d7a9b;
 }
-.dd2:hover{
+.dd2:hover {
   color: #fff;
   background: #9c6e6e;
 }
-.edit-dd img{
+.edit-dd img {
   max-width: 2em;
-  margin: auto .3em;
-}.edit-dd p{
+  margin: auto 0.3em;
+}
+.edit-dd p {
   margin: auto;
 }
 .edit-show {
@@ -674,7 +673,6 @@ section {
   cursor: pointer;
   max-width: 3em;
 }
-
 
 /* journal pop-up */
 .j-add {
@@ -744,46 +742,18 @@ form {
   color: #fff;
   border: none;
   font-size: 1.5em;
-  padding: .5em 1em;
+  padding: 0.5em 1em;
   /* border-radius: 10.1em; */
   box-shadow: 0px 3px 2px #000;
   cursor: pointer;
   margin: auto 1em;
 }
-.btn-save{
+.btn-save {
   background: #197c2a;
 }
-.btn-cancel{
+.btn-cancel {
   background: #aa1b13;
 }
 .j-add-p-btn:active {
   box-shadow: none;
-}
-
-
-.arrow {
-  border: solid black;
-  border-width: 0 3px 3px 0;
-  display: inline-block;
-  padding: 3px;
-}
-
-.right {
-  transform: rotate(-45deg);
-  -webkit-transform: rotate(-45deg);
-}
-
-.left {
-  transform: rotate(135deg);
-  -webkit-transform: rotate(135deg);
-}
-
-.up {
-  transform: rotate(-135deg);
-  -webkit-transform: rotate(-135deg);
-}
-
-.down {
-  transform: rotate(45deg);
-  -webkit-transform: rotate(45deg);
 }
