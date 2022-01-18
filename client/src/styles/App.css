@@ -9,16 +9,18 @@
   font-family: "Ethno";
 }
 
-.App, .home{
-    min-height: 100vh;
+.App,
+.home {
+  min-height: 100vh;
 }
-input, textarea{
-  font-family: 'Merriweather', serif;
+input,
+textarea {
+  font-family: "Merriweather", serif;
   font-size: 1.5em;
 }
 
 /* Landing page Css */
-.intro{
+.intro {
   min-height: 100vh;
   width: 100vw;
   background: #000;
@@ -26,7 +28,7 @@ input, textarea{
   position: relative;
   color: #fff;
 }
-.intro .l-i-back{
+.intro .l-i-back {
   height: 100vh;
   position: absolute;
   top: 0;
@@ -35,14 +37,14 @@ input, textarea{
   margin: auto;
   z-index: 0;
 }
-header{
+header {
   position: relative;
   z-index: 1;
   display: flex;
   justify-content: flex-end;
   padding: 2em 0;
 }
-header a{
+header a {
   margin: 0 2em;
   list-style: none;
   text-decoration: none;
@@ -50,16 +52,18 @@ header a{
   padding: 1em;
   font-size: 1em;
   cursor: pointer;
-  transition: linear .1s;
+  transition: linear 0.1s;
   color: #fff;
 }
-header a:hover{
-  transition: linear .1s;
-    background: #3D51D6 ;
+header a:hover {
+  transition: linear 0.1s;
+  background: #3d51d6;
 }
-a:visited{color: #fff;}
+a:visited {
+  color: #fff;
+}
 
-.banner{
+.banner {
   position: relative;
   height: 80vh;
   margin: auto;
@@ -68,41 +72,35 @@ a:visited{color: #fff;}
   justify-content: center;
 }
 
-.l-title{
+.l-title {
   position: relative;
   z-index: 3;
   display: grid;
-  grid-template-columns: 1fr .1fr 1fr;
-  
-
+  grid-template-columns: 1fr 0.1fr 1fr;
 }
-.l-title h1{
+.l-title h1 {
   font-size: 5em;
 }
-.l-t-top{
+.l-t-top {
   margin: 0 0 auto auto;
-  color: #376CA7;
+  color: #376ca7;
 }
 
-.l-t-mid{
+.l-t-mid {
   font-size: 7em;
   margin: auto auto;
 }
 
-.l-t-bottom{
+.l-t-bottom {
   margin: auto auto 0 0;
 }
 
-.curve{
+.curve {
   position: absolute;
   bottom: 0;
   /* max-height: 40vh; */
   width: 100%;
 }
-
-
-
-
 
 /* Home css */
 .home {
@@ -116,19 +114,19 @@ a:visited{color: #fff;}
 .sideBar {
   background: #000;
 }
-.min{
-    transition: linear .4s;
-    width: 5%;
+.min {
+  transition: linear 0.4s;
+  width: 5%;
 }
-.max{
-    transition: linear .4s;
-    width: 20%;
+.max {
+  transition: linear 0.4s;
+  width: 20%;
 }
 
 #burger {
   min-height: 10vh;
   display: flex;
-  background: #3D51D6;
+  background: #3d51d6;
   cursor: pointer;
 }
 #burger img {
@@ -136,32 +134,30 @@ a:visited{color: #fff;}
   width: 2em;
 }
 
-
 #side-content {
   min-height: 90vh;
   color: #fff;
 }
 
-.hide{
-    display: none;
-    /* opacity: ; */
-    transition: linear .4s;
+.hide {
+  display: none;
+  /* opacity: ; */
+  transition: linear 0.4s;
 }
-.show{
-    display: block;
-}
-
-.sideBar li{
-    list-style: none;
-    line-height: 2em;
-    padding: 1em;
-    font-size: 1em;
-    cursor: pointer;
-}
-.sideBar li:hover{
-    background: #3D51D6 ;
+.show {
+  display: block;
 }
 
+.sideBar li {
+  list-style: none;
+  line-height: 2em;
+  padding: 1em;
+  font-size: 1em;
+  cursor: pointer;
+}
+.sideBar li:hover {
+  background: #3d51d6;
+}
 
 /* Main.jsx css */
 section {
@@ -270,10 +266,10 @@ section {
   z-index: 1;
   cursor: pointer;
 }
-.routine-container:hover > .blur{
+.routine-container:hover > .blur {
   opacity: 10%;
 }
-.routine a{
+.routine a {
   z-index: 2;
   width: 100%;
   min-height: 100%;
@@ -281,15 +277,13 @@ section {
   align-items: center;
   justify-content: center;
   text-decoration: none;
-} 
+}
 .r-name {
   color: #fff;
 }
 
-
-
 /* Routine css */
-.routine-list{
+.routine-list {
   width: 80%;
   margin: auto;
   position: relative;
@@ -306,7 +300,7 @@ section {
   box-shadow: 0px 5px 5px #888;
   cursor: pointer;
 }
-.back{
+.back {
   position: absolute;
   z-index: 0;
   object-fit: cover;
@@ -315,10 +309,10 @@ section {
   border-radius: 13px;
 }
 
-.routine-cont-list:hover > .blur{
+.routine-cont-list:hover > .blur {
   opacity: 10%;
 }
-.float{
+.float {
   z-index: 2;
   width: 100%;
   min-height: 100%;
@@ -326,13 +320,11 @@ section {
   align-items: center;
   justify-content: center;
   text-decoration: none;
-} 
-
-
+}
 
 /* Routine Pop UP css */
 
-.popUp{
+.popUp {
   z-index: 3;
   margin: auto;
   background: rgba(0, 0, 0, 0.74);
@@ -345,16 +337,16 @@ section {
   display: flex;
 }
 
-.popCard{
+.popCard {
   width: 40em;
   min-height: 40em;
-  margin:  auto;
+  margin: auto;
   align-self: center;
   background: #fff;
   position: relative;
 }
 
-.close{
+.close {
   background: #e00;
   text-align: center;
   padding: 1em;
@@ -365,17 +357,16 @@ section {
   top: -1.5em;
   right: -1.5em;
   cursor: pointer;
-  
 }
-.close img{
+.close img {
   width: 100%;
   height: 100%;
 }
-.pophide{
+.pophide {
   display: none;
 }
 
-.popInfo{
+.popInfo {
   display: flex;
   flex-direction: column;
   /* justify-content: space-around; */
@@ -383,31 +374,30 @@ section {
   height: 100%;
 }
 
-.r-l-day{
-  background: #376CA7;
+.r-l-day {
+  background: #376ca7;
   color: #fff;
   padding: 2em;
 }
 
-.r-l-title{
-  margin : 2em auto;
+.r-l-title {
+  margin: 2em auto;
 }
 
-.r-l-arr{
+.r-l-arr {
   max-height: 40vh;
-  overflow-y:scroll;
-
+  overflow-y: scroll;
 }
 
-.r-l-ex{
-  display: grid ;
+.r-l-ex {
+  display: grid;
   grid-template-columns: 1fr 2fr 1fr;
   justify-content: space-around;
-  margin : 2em auto;
+  margin: 2em auto;
 }
-.r-l-start-bttn{
+.r-l-start-bttn {
   text-decoration: none;
-  margin : 2em auto;
+  margin: 2em auto;
   min-height: 7em;
   min-width: 7em;
   background: #c92626;
@@ -420,11 +410,8 @@ section {
   border-radius: 100%;
 }
 
-
-
-
 /* Sign Page css */
-.si-su{
+.si-su {
   min-height: 100vh;
   display: flex;
   /* grid-template-columns: 1fr 1fr; */
@@ -433,52 +420,51 @@ section {
 
 /* Sign in component css*/
 
-.signin{
+.signin {
   background: #fff;
   text-align: center;
   width: 50vw;
   height: 100vh;
   display: flex;
 }
-.s-i-card{
+.s-i-card {
   margin: auto;
 }
 
-.separate-s-i-card{
+.separate-s-i-card {
   background: #000;
   width: 60%;
-  min-height: .2em;
+  min-height: 0.2em;
   margin: 20px auto;
 }
 
-.s-i-f-input{
+.s-i-f-input {
   display: grid;
-  
+
   width: 80%;
   margin: 2em auto;
   align-items: center;
 }
 
-.s-i-f-input input{
+.s-i-f-input input {
   border: 1px solid #999;
   border-radius: 2px;
   box-shadow: 0px 3px 5px #000;
   outline: none;
-  padding: .3em;
+  padding: 0.3em;
   font-weight: bold;
 }
 
-.s-i-card form button{
+.s-i-card form button {
   background: #000;
   color: #fff;
-  padding: .8em;
+  padding: 0.8em;
   border: none;
   border-radius: 1em;
 }
 
-
 /* Sign in component css*/
-.signup{
+.signup {
   background: #000;
   color: #fff;
   text-align: center;
@@ -487,47 +473,49 @@ section {
   display: flex;
 }
 
-.s-u-card{
+.s-u-card {
   margin: auto;
 }
 
-.s-u-o{
+.s-u-o {
   height: 2em;
   width: 25em;
   display: grid;
   grid-template-columns: 20% 80%;
   align-items: center;
   margin: 2em auto;
-  border: none ;
+  border: none;
   border-radius: 1em;
   padding: 5px;
   background: #fff;
   box-shadow: 0px 0px 20px #000;
   cursor: pointer;
 }
-.s-u-o img{
+.s-u-o img {
   height: inherit;
 }
-.s-u-card h4{
+.s-u-card h4 {
   text-align: left;
 }
 
-.o-google{
+.o-google {
   background: #fff;
   color: #000;
 }
-.o-facebook{
-  background-color: #3D51D6;
+.o-facebook {
+  background-color: #3d51d6;
   color: #fff;
 }
-
-
 
 /* Journal css */
 .journal {
   min-height: 20vh;
   display: flex;
   flex-direction: column;
+  margin: 1em auto;
+}
+.j-cont-name{
+  margin: 1em auto;
 }
 
 .journal-container {
@@ -552,56 +540,144 @@ section {
 .entry5 {
   border-radius: 0 0 13px 13px;
 }
-.j-page{
+
+.pop-deletion{
+  margin: auto;
+  background: rgba(0, 0, 0, 0.6);
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 5;
+}
+.delete-show{
+  display: flex;
+}
+.deletion{
+  text-align: center;
+  background: #fff;
+  border-radius: 1em;
+  padding: 1em;
+  margin:auto
+}
+.d-d-btn{
+  cursor: pointer;
+  margin: 1em;
+  border: none;
+  padding: .8em 1.5em;
+  font-size: 1.2em;
+}
+.y-delete{
+  background: #c92626;
+  color: #fff;
+}
+.n-delete{
+  background: #376ca7;
+  color: #fff;
+}
+
+
+
+.j-page {
   display: flex;
   flex-direction: column;
   text-align: center;
   width: 80vw;
+  height: auto;
   box-shadow: 0px 1px 5px #000;
+  margin: 2em auto;
 }
 .j-page > * {
   margin: 10px auto;
 }
-.j-p-content{
+.edit{
+  margin: auto 2em auto auto;
+  position: relative;
+}
+.edit-btn{
+  font-size: 2em;
+  cursor: pointer;
+}
+.edit-dropd{
+  position: absolute;
+  background: #fff;
+  border: 1px solid #bbb;
+  right: 0;
+}
+.edit-btn:hover > .edit-dropd{
+  display: block;
+
+}
+.edit-dd{
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+  text-align: center;
+  padding: 1em;
+
+}
+.edit-dd:hover{
+
+  cursor: pointer;
+}
+.dd1:hover{
+  color: #fff;
+  background: #5d7a9b;
+}
+.dd2:hover{
+  color: #fff;
+  background: #9c6e6e;
+}
+.edit-dd img{
+  max-width: 2em;
+  margin: auto .3em;
+}.edit-dd p{
+  margin: auto;
+}
+.edit-show {
+  display: block;
+}
+.j-p-content {
   max-width: 45ch;
   text-align: start;
+  padding: 0 1em;
 }
 
-.separate-j-page{
+.separate-j-page {
   background: #000;
   width: 60%;
-  min-height: .2em;
+  min-height: 0.2em;
   margin: 20px auto;
 }
 
-.j-cont-name, .j-name{
+.j-cont-name,
+.j-name {
   text-align: center;
 }
 
-.j-cont-add{
+.j-cont-add {
   text-align: center;
   width: 97%;
   margin: 1em auto;
-  padding: .5em 0;
+  padding: 0.5em 0;
   border: 2px dashed #999;
   background: #ccc;
   cursor: pointer;
 }
 
-.j-cont-add img{
+.j-cont-add img {
   max-width: 3em;
+}
 
-}
-.j-cont-delete{
-}
-.j-cont-delete img{
+.j-cont-delete img {
   cursor: pointer;
   max-width: 3em;
 }
 
 
 /* journal pop-up */
-.j-add{
+.j-add {
   background: rgba(0, 0, 0, 0.6);
   height: 100vh;
   position: absolute;
@@ -610,7 +686,7 @@ section {
   right: 0;
   bottom: 0;
 }
-.j-add-p{
+.j-add-p {
   width: 80%;
   background: #fff;
   margin: auto;
@@ -619,65 +695,95 @@ section {
   text-align: center;
   position: relative;
 }
-form{
+form {
   width: 100%;
 }
-.j-add-p form > *{
+.j-add-p form > * {
   display: flex;
   flex-direction: column;
   margin: 1em auto;
 }
-.j-add-p form >* >*{
-  margin: .5em auto;
+.j-add-p form > * > * {
+  margin: 0.5em auto;
 }
 
-.j-add-p input{
-  padding: .1em .3em;
+.j-page input {
+  padding: 0.1em 0.3em;
 }
 
-.j-add-p textarea{
-  padding: .5em 1em;
+.j-page textarea {
+  padding: 0.5em 1em;
   outline: none;
   border: none;
-  resize: none;
+  resize: vertical;
   min-width: 80%;
-  min-height: 80%;
-  
+  min-height: 20vh;
+  height: auto;
 }
-.j-add-p input, .j-add-p-textarea{
+.j-page input,
+.j-add-p-textarea {
   border: 1px solid #999;
   border-radius: 2px;
   box-shadow: 0px 3px 5px #000;
   outline: none;
 }
-.j-add-p-textarea{
+.j-add-p-textarea {
   display: flex;
   flex-direction: column;
   width: 80%;
-  height: 25vh;
+  min-height: 25vh;
   position: relative;
 }
-.j-add-p-textarea span{
+.j-add-p-textarea span {
   background: #fff;
   color: #999;
 }
 
-.j-add-p-btn{
-  background: #3D51D6;
+.j-add-p-btn {
+  background: #3d51d6;
   color: #fff;
   border: none;
-  padding: 1em 2em;
-  border-radius: 10.1em;
-  box-shadow: 0px 5px 2px #000;
+  font-size: 1.5em;
+  padding: .5em 1em;
+  /* border-radius: 10.1em; */
+  box-shadow: 0px 3px 2px #000;
   cursor: pointer;
+  margin: auto 1em;
 }
-.j-add-p-btn:active{
+.btn-save{
+  background: #197c2a;
+}
+.btn-cancel{
+  background: #aa1b13;
+}
+.j-add-p-btn:active {
   box-shadow: none;
 }
 
-.j-pop-show{
-  display: flex;
+
+.arrow {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
 }
 
+.right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
 
+.left {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
 
+.up {
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+}
+
+.down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
