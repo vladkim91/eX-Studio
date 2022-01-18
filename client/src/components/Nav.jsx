@@ -1,10 +1,28 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Toggle from '../assets/switch.svg';
 import Medal from '../assets/medal.png';
 import User from '../assets/user.png';
 import '../styles/Nav.css';
+import { connect } from 'react-redux';
+import { GetUserInfo } from '../store/actions/ProfileActions';
 
-function Nav({ profileState }) {
+const mapStateToProps = (state) => {
+  return {
+    userInfo: state.profileState.userInfo
+  };
+};
+
+const mapActionsToProps = (dispatch) => {
+  return {
+    getUserInfoById: (userId) => dispatch(GetUserInfo(userId))
+  };
+};
+
+function Nav({ userInfo, getUserInfoById }) {
+  useEffect(() => {
+    getUserInfoById(1);
+  }, []);
+
   return (
     <div className="header">
       <nav>
@@ -13,7 +31,7 @@ function Nav({ profileState }) {
             <div className="p-pic">
               <img src={User} alt="" />
             </div>
-            <h3 className="nav-text">{profileState.userInfo.username}</h3>
+            <h3 className="nav-text">{userInfo.username}</h3>
           </div>
           <div className="level">
             <h3 className="nav-text">LEVEL</h3>
@@ -35,4 +53,4 @@ function Nav({ profileState }) {
   );
 }
 
-export default Nav;
+export default connect(mapStateToProps, mapActionsToProps)(Nav);

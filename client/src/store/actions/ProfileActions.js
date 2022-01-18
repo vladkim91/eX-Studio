@@ -1,5 +1,9 @@
-import { GET_USER_PROFILE } from '../types';
-import { getUserProfile } from '../services/ProfileServices';
+import { GET_USER_PROFILE, GET_USER_INFO, GET_ROUTINE } from '../types';
+import {
+  getUserProfile,
+  getUserInfoById,
+  getRoutineByUserId
+} from '../services/ProfileServices';
 
 export const GetUserProfile = (userId) => {
   return async (dispatch) => {
@@ -8,6 +12,28 @@ export const GetUserProfile = (userId) => {
     dispatch({
       type: GET_USER_PROFILE,
       payload: userProfile
+    });
+  };
+};
+
+export const GetRoutineByUserId = (userId) => {
+  return async (dispatch) => {
+    const routine = await getRoutineByUserId(userId);
+
+    dispatch({
+      type: GET_ROUTINE,
+      payload: routine
+    });
+  };
+};
+
+export const GetUserInfo = (userId) => {
+  return async (dispatch) => {
+    const userInfo = await getUserInfoById(userId);
+
+    dispatch({
+      type: GET_USER_INFO,
+      payload: userInfo
     });
   };
 };
