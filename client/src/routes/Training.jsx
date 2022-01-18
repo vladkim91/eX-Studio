@@ -9,6 +9,7 @@ import {
   SetFullWorkout
 } from '../store/actions/TrainingActions';
 import { useLocation } from 'react-router-dom';
+import Nav from '../components/Nav';
 
 const mapStateToProps = (state) => {
   return {
@@ -61,28 +62,51 @@ const Training = (props) => {
 
   return (
     <div>
-      {workout.name}
-      <hr />
-      <div>
-        {fullWorkout.map((exercise, i) => {
-          return exercise.name ? (
-            <div key={i}>
-              <p>{exercise.name}</p>
-            </div>
-          ) : (
-            <div key={i}>
-              <p>Break</p>
-            </div>
-          );
-        })}
+      <Nav />
+    <div className='training'>
+      <h1>Exercise Name</h1>
+      <span className="t-timer">00:27</span>
+      <button className='t-options'>Start</button>
+      <button className='t-skip'>Skip</button>
+      <div className="t-list">
+      <div className="t-l-info">
+        <p>Total Exercise: 10</p>
+        <p>Exercise Left: 7</p>
+        
       </div>
-      <br />
-      <Timer
-        fullWorkout={fullWorkout}
-        trainingState={props.trainingState}
-        {...props.timerActions}
-      />
+      </div>
+
     </div>
+    </div>
+
+
+
+
+
+
+
+    //   {/* {workout.name}
+      
+    //   <div>
+    //     {fullWorkout.map((exercise, i) => {
+    //       return exercise.name ? (
+    //         <div key={i}>
+    //           <p>{exercise.name}</p>
+    //         </div>
+    //       ) : (
+    //         <div key={i}>
+    //           <p>Break</p>
+    //         </div>
+    //       );
+    //     })}
+    //   </div>
+    //   <br />
+    //   <Timer
+    //     fullWorkout={fullWorkout}
+    //     trainingState={props.trainingState}
+    //     {...props.timerActions}
+    //   /> */}
+    // {/* </div> */}
   );
 };
 

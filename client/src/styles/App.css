@@ -773,3 +773,41 @@ form {
 .j-add-p-btn:active {
   box-shadow: none;
 }
+
+
+.training{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  text-align: center;
+  align-content: center;
+  min-height: 80vh;
+}
+.training h1{
+  font-size: 4em;
+}
+.t-timer{
+  font-size: 3em;
+}
+
+.training button{
+  margin: auto;
+  border: none;
+  color: #fff;
+}
+.t-options{
+  background: #B51E1E;
+  color: #fff;
+  font-size: 3em;
+  min-width: 6em;
+  min-height: 6em;
+  border-radius: 100%
+}
+.t-skip{
+  background-color: #185488;
+  color: #fff;
+  font-size: 2em;
+  min-width: 5em;
+  min-height: 2em;
+  border-radius: 1em
+}
