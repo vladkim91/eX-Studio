@@ -74,7 +74,7 @@ function Routine({ routine, getRoutineByUserId }) {
     <div className="home">
       <SideBar />
       <div className="mainBody">
-        <Nav {...props} />
+        <Nav />
         <div className="routine-list">
           <section className="r-list">{workouts}</section>
         </div>
