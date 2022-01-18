@@ -41,10 +41,12 @@ nav>*{
 .level img{
     height: 20px;
 }
-
+.header a{
+    height: 50%;
+}
 .title{
     display: grid;
-    height: 50%;
+    height: 100%;
     grid-template-columns: 1fr .1fr 1fr;
     
 }

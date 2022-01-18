@@ -5,6 +5,7 @@ import User from '../assets/user.png';
 import '../styles/Nav.css';
 import { connect } from 'react-redux';
 import { GetUserInfo } from '../store/actions/ProfileActions';
+import { Link } from 'react-router-dom';
 
 const mapStateToProps = (state) => {
   return {
@@ -40,11 +41,13 @@ function Nav({ userInfo, getUserInfoById }) {
             </div>
           </div>
         </div>
+        <Link to={"/"}>
         <div className="title">
           <h2 className="t-top">EX</h2>
           <span className="t-mid">/</span>
           <h2 className="t-bottom">STUDIO</h2>
         </div>
+          </Link>
         <div className="toggle">
           <img src={Toggle} alt="" />
         </div>

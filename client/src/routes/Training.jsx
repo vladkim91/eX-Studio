@@ -9,6 +9,7 @@ import {
   SetFullWorkout
 } from '../store/actions/TrainingActions';
 import { useLocation } from 'react-router-dom';
+import Nav from '../components/Nav';
 
 const mapStateToProps = (state) => {
   return {
@@ -61,28 +62,107 @@ const Training = (props) => {
 
   return (
     <div>
-      {workout.name}
-      <hr />
-      <div>
-        {fullWorkout.map((exercise, i) => {
-          return exercise.name ? (
-            <div key={i}>
-              <p>{exercise.name}</p>
-            </div>
-          ) : (
-            <div key={i}>
-              <p>Break</p>
-            </div>
-          );
-        })}
+      <Nav />
+    <div className='training'>
+      <h1>Exercise Name</h1>
+      <span className="t-timer">00:30</span>
+      <button className='t-options'>Start</button>
+      <button className='t-skip'>Skip</button>
+      <div className="t-list">
+        <div className="t-l-info">
+          <p>Total Exercise: 10</p>
+          <p>Exercise Left: 7</p>
+        </div>
+        <div className="t-l-array">
+          <div className="t-l-a-child">
+            <span className='t-l-a-c-text'>
+              1.
+            </span>
+            <span className='t-l-a-c-text'>
+              Exercise Name
+            </span>
+            <span className='t-l-a-c-text'>
+              02:00
+            </span>
+          </div>
+          <div className="t-l-a-child">
+            <span className='t-l-a-c-text'>
+              2.
+            </span>
+            <span className='t-l-a-c-text'>
+              Exercise Name
+            </span>
+            <span className='t-l-a-c-text'>
+              12
+            </span>
+          </div>
+          <div className="t-l-a-child">
+            <span className='t-l-a-c-text'>
+              2.
+            </span>
+            <span className='t-l-a-c-text'>
+              Exercise Name
+            </span>
+            <span className='t-l-a-c-text'>
+              12
+            </span>
+          </div>
+          <div className="t-l-a-child">
+            <span className='t-l-a-c-text'>
+              2.
+            </span>
+            <span className='t-l-a-c-text'>
+              Exercise Name
+            </span>
+            <span className='t-l-a-c-text'>
+              12
+            </span>
+          </div>
+          <div className="t-l-a-child">
+            <span className='t-l-a-c-text'>
+              2.
+            </span>
+            <span className='t-l-a-c-text'>
+              Exercise Name
+            </span>
+            <span className='t-l-a-c-text'>
+              12
+            </span>
+          </div>
+        </div>
       </div>
-      <br />
-      <Timer
-        fullWorkout={fullWorkout}
-        trainingState={props.trainingState}
-        {...props.timerActions}
-      />
+
     </div>
+    </div>
+
+
+
+
+
+
+
+    //   {/* {workout.name}
+      
+    //   <div>
+    //     {fullWorkout.map((exercise, i) => {
+    //       return exercise.name ? (
+    //         <div key={i}>
+    //           <p>{exercise.name}</p>
+    //         </div>
+    //       ) : (
+    //         <div key={i}>
+    //           <p>Break</p>
+    //         </div>
+    //       );
+    //     })}
+    //   </div>
+    //   <br />
+    //   <Timer
+    //     fullWorkout={fullWorkout}
+    //     trainingState={props.trainingState}
+    //     {...props.timerActions}
+    //   /> */}
+    // {/* </div> */}
   );
 };
 
