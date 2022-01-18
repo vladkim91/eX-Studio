@@ -7,7 +7,10 @@ import {
   EDIT_NOTE,
   DELETE_NOTE,
   SET_NOTE_CREATION,
-  SET_CREATING_NEW_NOTE
+  SET_CREATING_NEW_NOTE,
+  RESET_NOTE_CREATION,
+  SET_SELECTED_NOTE,
+  SHIFT_PAGE
 } from '../types';
 import {
   getUserProfile,
@@ -105,9 +108,29 @@ export const SetNoteCreation = (noteCreationInfo) => {
   };
 };
 
+export const ResetNoteCreation = () => {
+  return {
+    type: RESET_NOTE_CREATION
+  };
+};
+
 export const SetCreatingNewNote = (creatingNewNote) => {
   return {
     type: SET_CREATING_NEW_NOTE,
-    payload: createNewNote
+    payload: creatingNewNote
+  };
+};
+
+export const SetSelectedNote = (selectedNote) => {
+  return {
+    type: SET_SELECTED_NOTE,
+    payload: selectedNote
+  };
+};
+
+export const ShiftPage = (direction) => {
+  return {
+    type: SHIFT_PAGE,
+    payload: direction
   };
 };

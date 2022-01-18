@@ -543,12 +543,21 @@ section {
   cursor: pointer;
 }
 
+.entry:nth-child(2n) {
+  background-color: #ddd;
+}
+
 .entry:nth-child(1) {
   border-radius: 13px 13px 0 0;
 }
 
 .entry:last-child {
   border-radius: 0 0 13px 13px;
+}
+
+.entry.selected-entry {
+  background-color: #4a5ba8;
+  color: #fff;
 }
 
 .pop-deletion {

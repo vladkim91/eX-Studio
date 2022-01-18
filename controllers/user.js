@@ -54,6 +54,23 @@ const getUserCustomWorkouts = async (req, res) => {
   res.status(200).send(customWorkouts);
 };
 
+const getUserExercises = async (req, res) => {
+  const { userId } = req.params;
+  const userExercises = await User.findOne({
+    attributes: ['username'],
+    where: {
+      id: userId
+    },
+    include: {
+      model: Exercise,
+      as: 'followed_exercises',
+      through: { attributes: [] },
+      attributes: ['name']
+    }
+  });
+  res.status(200).send(userExercises);
+};
+
 const getUserProfileById = async (req, res) => {
   const { userId } = req.params;
   const userProfile = await User.findOne({
@@ -115,5 +132,6 @@ module.exports = {
   getUserInfoById,
   getUserFavoritedWorkouts,
   getUserCustomWorkouts,
-  getUserProfileById
+  getUserProfileById,
+  getUserExercises
 };
