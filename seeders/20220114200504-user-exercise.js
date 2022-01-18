@@ -17,13 +17,13 @@ module.exports = {
       },
       {
         user_id: 2,
-        exercise_id: 4,
+        exercise_id: 3,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         user_id: 2,
-        exercise_id: 5,
+        exercise_id: 4,
         createdAt: new Date(),
         updatedAt: new Date()
       }
