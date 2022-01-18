@@ -10,8 +10,8 @@ export const getJournalByUser = async (userId) => {
   return result.data;
 };
 
-export const editNoteById = async (noteInfo) => {
-  const result = await Client.put(`journal/notes/${noteInfo.noteId}`, noteInfo);
+export const editNoteById = async (noteId, noteInfo) => {
+  const result = await Client.put(`journal/notes/${noteId}`, noteInfo);
   return result.data;
 };
 

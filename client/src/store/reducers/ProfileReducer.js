@@ -5,7 +5,9 @@ import {
   CREATE_NEW_NOTE,
   EDIT_NOTE,
   DELETE_NOTE,
-  GET_ROUTINE
+  GET_ROUTINE,
+  SET_NOTE_CREATION,
+  SET_CREATING_NEW_NOTE
 } from '../types';
 
 const iState = {
@@ -15,7 +17,13 @@ const iState = {
     last_name: ''
   },
   journal: [],
-  routine: []
+  routine: [],
+  noteCreation: {
+    title: '',
+    text: '',
+    felt: 0
+  },
+  creatingNewNote: false
 };
 
 const ProfileReducer = (state = iState, action) => {
@@ -48,9 +56,19 @@ const ProfileReducer = (state = iState, action) => {
       newJournal[action.payload.noteIndex] = action.payload.editedNote;
       return { ...state, journal: newJournal };
     case DELETE_NOTE:
-      const newJournal = [...state.journal];
-      newJournal.splice(action.payload.noteIndex, 1);
-      return { ...state, journal: newJournal };
+      const smallerJournal = [...state.journal];
+      smallerJournal.splice(action.payload.noteIndex + 1, 1);
+      return { ...state, journal: smallerJournal };
+    case SET_NOTE_CREATION:
+      return {
+        ...state,
+        noteCreation: { ...state.noteCreation, ...action.payload }
+      };
+    case SET_CREATING_NEW_NOTE:
+      return {
+        ...state,
+        creatingNewNote: action.payload
+      };
     default:
       return { ...state };
   }

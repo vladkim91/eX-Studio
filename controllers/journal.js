@@ -36,7 +36,7 @@ const getJournalByUser = async (req, res) => {
     include: {
       model: Note,
       as: 'notes',
-      attributes: ['title', 'text', 'createdAt']
+      attributes: ['id', 'title', 'text', 'createdAt']
     }
   });
 
@@ -56,7 +56,7 @@ const getJournalByUser = async (req, res) => {
 };
 
 const editNoteById = async (req, res) => {
-  const { noteId } = req.params;
+  const noteId = parseInt(req.params.noteId);
 
   const result = await Note.update(
     {
@@ -73,7 +73,7 @@ const editNoteById = async (req, res) => {
     }
   );
 
-  res.status(200).send(result);
+  res.status(200).send(result[1][0].dataValues);
 };
 
 const deleteNoteById = async (req, res) => {

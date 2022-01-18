@@ -5,7 +5,9 @@ import {
   CREATE_NEW_NOTE,
   GET_USER_JOURNAL,
   EDIT_NOTE,
-  DELETE_NOTE
+  DELETE_NOTE,
+  SET_NOTE_CREATION,
+  SET_CREATING_NEW_NOTE
 } from '../types';
 import {
   getUserProfile,
@@ -74,9 +76,9 @@ export const GetJournalByUser = (userId) => {
   };
 };
 
-export const EditNoteById = (noteIndex, noteId) => {
+export const EditNoteById = (noteId, noteIndex, noteInfo) => {
   return async (dispatch) => {
-    const editedNote = await editNoteById(noteId);
+    const editedNote = await editNoteById(noteId, noteInfo);
 
     dispatch({
       type: EDIT_NOTE,
@@ -93,5 +95,19 @@ export const DeleteNoteById = (noteIndex, noteId) => {
       type: DELETE_NOTE,
       payload: noteIndex
     });
+  };
+};
+
+export const SetNoteCreation = (noteCreationInfo) => {
+  return {
+    type: SET_NOTE_CREATION,
+    payload: noteCreationInfo
+  };
+};
+
+export const SetCreatingNewNote = (creatingNewNote) => {
+  return {
+    type: SET_CREATING_NEW_NOTE,
+    payload: createNewNote
   };
 };
