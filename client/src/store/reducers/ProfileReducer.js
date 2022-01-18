@@ -7,7 +7,10 @@ import {
   DELETE_NOTE,
   GET_ROUTINE,
   SET_NOTE_CREATION,
-  SET_CREATING_NEW_NOTE
+  SET_CREATING_NEW_NOTE,
+  RESET_NOTE_CREATION,
+  SET_SELECTED_NOTE,
+  SHIFT_PAGE
 } from '../types';
 
 const iState = {
@@ -17,13 +20,16 @@ const iState = {
     last_name: ''
   },
   journal: [],
+  journalPage: 0,
+  journalPageRange: 5,
   routine: [],
   noteCreation: {
     title: '',
     text: '',
     felt: 0
   },
-  creatingNewNote: false
+  creatingNewNote: false,
+  selectedNote: 0
 };
 
 const ProfileReducer = (state = iState, action) => {
@@ -48,7 +54,10 @@ const ProfileReducer = (state = iState, action) => {
         routine: userRoutine
       };
     case CREATE_NEW_NOTE:
-      return { ...state, journal: [...state.journal, action.payload] };
+      const addedNoteJournal = [...state.journal];
+      addedNoteJournal.unshift(action.payload);
+
+      return { ...state, journal: addedNoteJournal, selectedNote: 0 };
     case GET_USER_JOURNAL:
       return { ...state, journal: action.payload };
     case EDIT_NOTE:
@@ -57,18 +66,54 @@ const ProfileReducer = (state = iState, action) => {
       return { ...state, journal: newJournal };
     case DELETE_NOTE:
       const smallerJournal = [...state.journal];
-      smallerJournal.splice(action.payload.noteIndex + 1, 1);
-      return { ...state, journal: smallerJournal };
+      smallerJournal.splice(action.payload, 1);
+
+      let newSelectedNote = state.selectedNote;
+      if (newSelectedNote > 0) {
+        newSelectedNote--;
+      }
+
+      return {
+        ...state,
+        journal: smallerJournal,
+        selectedNote: newSelectedNote
+      };
     case SET_NOTE_CREATION:
       return {
         ...state,
         noteCreation: { ...state.noteCreation, ...action.payload }
       };
+    case RESET_NOTE_CREATION:
+      return { ...state, noteCreation: { ...iState.noteCreation } };
     case SET_CREATING_NEW_NOTE:
       return {
         ...state,
-        creatingNewNote: action.payload
+        creatingNewNote: action.payload,
+        noteCreation: { ...iState.noteCreation }
       };
+    case SET_SELECTED_NOTE:
+      return { ...state, selectedNote: action.payload };
+    case SHIFT_PAGE:
+      const direction = action.payload;
+      let newJournalPage = state.journalPage;
+
+      if (direction > 0) {
+        newJournalPage += direction * state.journalPageRange;
+      } else if (direction < 0) {
+        newJournalPage -= direction * state.journalPageRange;
+      }
+
+      const maximumJournalPage = Math.min(
+        0,
+        state.journal.length - state.journalPageRange - 1
+      );
+
+      newJournalPage = Math.max(
+        0,
+        Math.min(maximumJournalPage, newJournalPage)
+      );
+
+      return { ...state, journalPage: newJournalPage };
     default:
       return { ...state };
   }

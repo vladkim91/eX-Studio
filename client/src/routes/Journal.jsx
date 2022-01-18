@@ -11,14 +11,20 @@ import {
   CreateNewNote,
   EditNoteById,
   DeleteNoteById,
-  SetCreatingNewNote
+  SetCreatingNewNote,
+  ResetNoteCreation,
+  SetSelectedNote,
+  ShiftPage
 } from '../store/actions/ProfileActions';
 
 const mapStateToProps = (state) => {
   return {
     journal: state.profileState.journal,
     noteCreation: state.profileState.noteCreation,
-    creatingNewNote: state.profileState.creatingNewNote
+    creatingNewNote: state.profileState.creatingNewNote,
+    selectedNote: state.profileState.selectedNote,
+    journalPage: state.profileState.journalPage,
+    journalPageRange: state.profileState.journalPageRange
   };
 };
 
@@ -34,7 +40,10 @@ const mapActionsToProps = (dispatch) => {
     deleteNoteById: (noteIndex, noteId) =>
       dispatch(DeleteNoteById(noteIndex, noteId)),
     setCreatingNewNote: (creatingNewNote) =>
-      dispatch(SetCreatingNewNote(creatingNewNote))
+      dispatch(SetCreatingNewNote(creatingNewNote)),
+    resetNoteCreation: () => dispatch(ResetNoteCreation()),
+    setSelectedNote: (selectedNote) => dispatch(SetSelectedNote(selectedNote)),
+    shiftPage: (direction) => dispatch(ShiftPage(direction))
   };
 };
 
@@ -47,13 +56,18 @@ function Journal({
   editNoteById,
   deleteNoteById,
   setCreatingNewNote,
-  creatingNewNote
+  creatingNewNote,
+  resetNoteCreation,
+  setSelectedNote,
+  selectedNote,
+  journalPage,
+  journalPageRange,
+  shiftPage
 }) {
   let maxLength = 1000;
   const [edit, setEdit] = useState('pophide');
   const [deleteP, setDeleteP] = useState('pophide');
   const [isEditing, setIsEditing] = useState(false);
-  const [selectedNote, setSelectedNote] = useState(0);
 
   useEffect(() => {
     getJournal(1);
@@ -69,12 +83,9 @@ function Journal({
   const editPopClick = () => {
     if (edit == 'pophide') {
       setEdit('edit-show');
-      setNoteCreation({
-        title: journal[selectedNote]?.title,
-        text: journal[selectedNote]?.text
-      });
     } else {
       setEdit('pophide');
+      setCreatingNewNote(false);
     }
   };
   const deletePopClick = () => {
@@ -97,16 +108,19 @@ function Journal({
             <div
               className="j-cont-add"
               onClick={() => {
+                resetNoteCreation();
                 setIsEditing(true);
                 setCreatingNewNote(true);
               }}
             >
               <img src={Add} alt="" />
             </div>
-            {journal.map((note, index) => (
+            {journal.slice(journalPage, journalPageRange).map((note, index) => (
               <div
                 key={index}
-                className="entry"
+                className={`entry ${
+                  selectedNote === index ? 'selected-entry' : ''
+                }`}
                 onClick={() => {
                   setSelectedNote(index);
                 }}
@@ -149,115 +163,123 @@ function Journal({
             </div>
           </div>
         </section>
-        <section className="j-page">
-          {!isEditing && (
-            <div className="edit">
-              <span className="edit-btn" onClick={() => editPopClick()}>
-                ...
-              </span>
-              <div className={`edit-dropd ${edit}`}>
-                <div
-                  className="edit-dd dd1"
-                  onClick={() => {
-                    editPopClick();
-                    setIsEditing(true);
-                  }}
-                >
-                  <img src={Edit} alt="" /> <p>Edit Page</p>
-                </div>
-                <div
-                  className="edit-dd dd2"
-                  onClick={() => {
-                    editPopClick();
-                    deletePopClick();
-                  }}
-                >
-                  <img src={Delete} alt="" />
-                  <p>Delete page</p>
+        {(journal.length > 0 || creatingNewNote) && (
+          <section className="j-page">
+            {!isEditing && (
+              <div className="edit">
+                <span className="edit-btn" onClick={() => editPopClick()}>
+                  ...
+                </span>
+                <div className={`edit-dropd ${edit}`}>
+                  <div
+                    className="edit-dd dd1"
+                    onClick={() => {
+                      editPopClick();
+                      setIsEditing(true);
+                      setNoteCreation({
+                        title: journal[selectedNote]?.title,
+                        text: journal[selectedNote]?.text
+                      });
+                    }}
+                  >
+                    <img src={Edit} alt="" /> <p>Edit Page</p>
+                  </div>
+                  <div
+                    className="edit-dd dd2"
+                    onClick={() => {
+                      editPopClick();
+                      deletePopClick();
+                    }}
+                  >
+                    <img src={Delete} alt="" />
+                    <p>Delete page</p>
+                  </div>
                 </div>
               </div>
-            </div>
-          )}
-          {!isEditing ? (
-            <h1 className="j-p-title">
-              {journal[selectedNote]?.title || null}
-            </h1>
-          ) : (
-            <input
-              type="text"
-              className="j-p-title"
-              placeholder="Page Title"
-              value={noteCreation.title}
-              onChange={(e) => {
-                setNoteCreation({
-                  ...noteCreation,
-                  title: e.target.value
-                });
-              }}
-            />
-          )}
-          <h4 className="j-p-date">
-            {journal[selectedNote] &&
-              new Date(journal[selectedNote].createdAt).toLocaleDateString(
-                undefined,
-                {
-                  weekday: 'short',
-                  day: '2-digit',
-                  month: '2-digit',
-                  year: '2-digit'
-                }
-              )}
-          </h4>
-          <div className="separate-j-page"></div>
-          {!isEditing ? (
-            <p className="j-p-content">{journal[selectedNote]?.text || null}</p>
-          ) : (
-            <div className="j-add-p-textarea">
-              <textarea
-                name=""
-                id=""
-                maxLength={maxLength}
-                placeholder={`Enter note... Limit ${maxLength} characters`}
-                value={noteCreation.text}
-                onChange={(e) => handleChange(e)}
-              ></textarea>
-              <span>{`${
-                maxLength - noteCreation.text.length
-              }/${maxLength}`}</span>
-            </div>
-          )}
-          {isEditing && (
-            <div className="btn-submit">
-              <button
-                type="submit"
-                className="j-add-p-btn btn-save"
-                onClick={() => {
-                  setIsEditing(false);
-
-                  if (!creatingNewNote) {
-                    editNoteById(
-                      journal[selectedNote].id,
-                      selectedNote,
-                      noteCreation
-                    );
-                  } else {
-                    createNewNote(1, noteCreation);
-                    setCreatingNewNote(false);
-                  }
+            )}
+            {!isEditing ? (
+              <h1 className="j-p-title">
+                {journal[selectedNote]?.title || null}
+              </h1>
+            ) : (
+              <input
+                type="text"
+                className="j-p-title"
+                placeholder="Page Title"
+                value={noteCreation.title}
+                onChange={(e) => {
+                  setNoteCreation({
+                    ...noteCreation,
+                    title: e.target.value
+                  });
                 }}
-              >
-                {!creatingNewNote ? 'Save' : 'Create'}
-              </button>
-              <button
-                type=""
-                className="j-add-p-btn btn-cancel"
-                onClick={() => setIsEditing(false)}
-              >
-                Cancel
-              </button>
-            </div>
-          )}
-        </section>
+              />
+            )}
+            <h4 className="j-p-date">
+              {journal[selectedNote] &&
+                new Date(journal[selectedNote].createdAt).toLocaleDateString(
+                  undefined,
+                  {
+                    weekday: 'short',
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: '2-digit'
+                  }
+                )}
+            </h4>
+            <div className="separate-j-page"></div>
+            {!isEditing ? (
+              <p className="j-p-content">
+                {journal[selectedNote]?.text || null}
+              </p>
+            ) : (
+              <div className="j-add-p-textarea">
+                <textarea
+                  name=""
+                  id=""
+                  maxLength={maxLength}
+                  placeholder={`Enter note... Limit ${maxLength} characters`}
+                  value={noteCreation.text}
+                  onChange={(e) => handleChange(e)}
+                ></textarea>
+                <span>{`${
+                  maxLength - noteCreation.text.length
+                }/${maxLength}`}</span>
+              </div>
+            )}
+            {isEditing && (
+              <div className="btn-submit">
+                <button
+                  type="submit"
+                  className="j-add-p-btn btn-save"
+                  onClick={() => {
+                    setIsEditing(false);
+
+                    if (!creatingNewNote) {
+                      editNoteById(
+                        journal[selectedNote].id,
+                        selectedNote,
+                        noteCreation
+                      );
+                    } else {
+                      createNewNote(1, noteCreation);
+                      setCreatingNewNote(false);
+                    }
+                  }}
+                >
+                  {!creatingNewNote ? 'Save' : 'Create'}
+                </button>
+                <button
+                  type=""
+                  className="j-add-p-btn btn-cancel"
+                  onClick={() => setIsEditing(false)}
+                >
+                  Cancel
+                </button>
+              </div>
+            )}
+          </section>
+        )}
       </div>
     </div>
   );
