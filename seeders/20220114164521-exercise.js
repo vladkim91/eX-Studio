@@ -21,7 +21,7 @@ module.exports = {
       },
       {
         name: 'Push up',
-        muscle_group: 'ch tr',
+        muscle_group: 'ch',
         image:
           'https://cdn2.coachmag.co.uk/sites/coachmag/files/2017/05/bench-press_0.jpg',
         workout_id: null,
