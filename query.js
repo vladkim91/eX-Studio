@@ -21,8 +21,6 @@ const getUserAndWorkouts = async () => {
 
 const getUserFavoriteExercises = async () => {
   const results = await User.findAll({
-    raw: true,
-    // nest: true,
     where: { id: 1 },
     include: [
       {
@@ -34,6 +32,7 @@ const getUserFavoriteExercises = async () => {
     ]
   });
   console.log(results);
+  // stringify(results);
 };
 
 const getAllWorkoutsWithExercises = async () => {
@@ -58,7 +57,7 @@ const getAllWorkoutsWithExercises = async () => {
 
 const run = async () => {
   // await getUserAndWorkouts();
-  await getUserFavoriteExercises();
+  // await getUserFavoriteExercises();
   // await getAllWorkoutsWithExercises();
 };
 
