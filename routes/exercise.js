@@ -3,6 +3,6 @@ const controller = require('../controllers/exercise');
 
 router.get('/', controller.getAllExercises);
 router.get('/exercise/:exercise_id', controller.getExerciseById);
-router.get('/filter', controller.getExerciseByMuscleGroup);
+router.get('/filter', controller.getExercisesAndWorkoutsByMuscleGroup);
 
 module.exports = router;

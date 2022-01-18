@@ -11,12 +11,11 @@ const getExerciseById = async (req, res) => {
   res.status(200).send(result);
 };
 
-const getExerciseByMuscleGroup = async (req, res) => {
+const getExercisesAndWorkoutsByMuscleGroup = async (req, res) => {
   const searchQuery = req.query.name;
-  const muscleGroup = req.query.muscle_group;
-
+  const muscleGroup = req.query.muscle_group.split(' ');
   const type = req.query.type;
-  // if muscleGroup
+
   if (type === 'exercises') {
     const result = await Exercise.findAll({
       where: {
@@ -25,19 +24,18 @@ const getExerciseByMuscleGroup = async (req, res) => {
     });
     res.status(200).send(result);
   } else if (type === 'workouts') {
-    let muscleGroups = muscleGroup.split(' ');
     const workouts = await Workout.findAll({
       raw: true
     });
     const arraysOfMuscleGroups = workouts.map((workout, i) => {
       return { muscleGroups: workout.muscle_groups.split(' '), workout };
     });
-    console.log(muscleGroups);
+    console.log(muscleGroup);
     // console.log(arraysOfMuscleGroups);
 
     const filteredArray = arraysOfMuscleGroups.filter((workout, i) => {
       return workout.muscleGroups.some((muscle_group, ind) => {
-        return muscleGroups.some((muscleGroup, index) => {
+        return muscleGroup.some((muscleGroup, index) => {
           return muscle_group === muscleGroup;
         });
       });
@@ -55,5 +53,5 @@ const getExerciseByMuscleGroup = async (req, res) => {
 module.exports = {
   getAllExercises,
   getExerciseById,
-  getExerciseByMuscleGroup
+  getExercisesAndWorkoutsByMuscleGroup
 };
