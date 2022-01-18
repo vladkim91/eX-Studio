@@ -1,4 +1,10 @@
-const { User, User_Exercise, Exercise } = require('./models');
+const {
+  User,
+  User_Exercise,
+  Exercise,
+  Workout,
+  Workout_Exercise
+} = require('./models');
 
 const getUserAndWorkouts = async () => {
   const results = await User.findAll({
@@ -13,14 +19,37 @@ const getUserAndWorkouts = async () => {
   }
 };
 
-const getWorkoutsFollowers = async () => {
+const getUserFavoriteExercises = async () => {
   const results = await User.findAll({
     raw: true,
-    through: User_Exercise,
+    // nest: true,
+    where: { id: 1 },
     include: [
       {
         model: Exercise,
-        as: 'followed_exercises'
+        as: 'followed_exercises',
+        through: { attributes: [] },
+        attributes: ['name']
+      }
+    ]
+  });
+  console.log(results);
+};
+
+const getAllWorkoutsWithExercises = async () => {
+  const results = await Workout.findAll({
+    raw: true,
+    nest: true,
+    where: {
+      id: 1
+    },
+    include: [
+      {
+        through: {
+          attributes: []
+        },
+        model: Exercise,
+        as: 'added_to_workout'
       }
     ]
   });
@@ -29,7 +58,8 @@ const getWorkoutsFollowers = async () => {
 
 const run = async () => {
   // await getUserAndWorkouts();
-  await getWorkoutsFollowers();
+  await getUserFavoriteExercises();
+  // await getAllWorkoutsWithExercises();
 };
 
 run();

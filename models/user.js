@@ -9,6 +9,11 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // Association for workouts the user has favorited
+      User.belongsToMany(models.Exercise, {
+        as: 'followed_exercises',
+        through: models.User_Exercise,
+        foreignKey: 'user_id'
+      });
       User.belongsToMany(models.Workout, {
         as: 'favorited_workouts',
         through: models.User_Workout,
@@ -26,11 +31,6 @@ module.exports = (sequelize, DataTypes) => {
       User.hasOne(models.Routine, {
         as: 'routine',
         foreignKey: 'user_id'
-      });
-      User.belongsToMany(models.Exercise, {
-        as: 'followed_exercises',
-        through: models.User_Exercise,
-        foreignKey: 'exercise_id'
       });
       User.hasMany(models.Exercise, {
         foreignKey: 'user_id'
