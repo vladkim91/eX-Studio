@@ -45,7 +45,7 @@ const ProfileReducer = (state = iState, action) => {
       return { ...state, journal: action.payload };
     case EDIT_NOTE:
       const newJournal = [...state.journal];
-      newJournal[action.payload.noteIndex] = action.payload.updatedNote;
+      newJournal[action.payload.noteIndex] = action.payload.editedNote;
       return { ...state, journal: newJournal };
     case DELETE_NOTE:
       const newJournal = [...state.journal];
