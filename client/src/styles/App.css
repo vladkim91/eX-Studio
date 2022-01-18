@@ -12,6 +12,10 @@
 .App, .home{
     min-height: 100vh;
 }
+input, textarea{
+  font-family: 'Merriweather', serif;
+  font-size: 1.5em;
+}
 
 /* Landing page Css */
 .intro{
@@ -281,33 +285,7 @@ section {
 .r-name {
   color: #fff;
 }
-.journal {
-  min-height: 20vh;
-  display: flex;
-}
 
-.journal-container {
-  width: 60%;
-  margin: auto;
-  box-shadow: 0 0 6px #888;
-  border-radius: 13px;
-}
-
-.entry {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-around;
-  font-size: 0.7em;
-  min-height: 2em;
-  box-shadow: 0 0 1px #888;
-}
-.entry1 {
-  border-radius: 13px 13px 0 0;
-}
-.entry5 {
-  border-radius: 0 0 13px 13px;
-}
 
 
 /* Routine css */
@@ -445,7 +423,7 @@ section {
 
 
 
-
+/* Sign Page css */
 .si-su{
   min-height: 100vh;
   display: flex;
@@ -453,7 +431,7 @@ section {
   align-items: center;
 }
 
-/* Sign in */
+/* Sign in component css*/
 
 .signin{
   background: #fff;
@@ -475,7 +453,7 @@ section {
 
 .s-i-f-input{
   display: grid;
-
+  
   width: 80%;
   margin: 2em auto;
   align-items: center;
@@ -487,7 +465,6 @@ section {
   box-shadow: 0px 3px 5px #000;
   outline: none;
   padding: .3em;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-weight: bold;
 }
 
@@ -500,6 +477,7 @@ section {
 }
 
 
+/* Sign in component css*/
 .signup{
   background: #000;
   color: #fff;
@@ -541,19 +519,165 @@ section {
 .o-facebook{
   background-color: #3D51D6;
   color: #fff;
-
 }
 
 
 
+/* Journal css */
+.journal {
+  min-height: 20vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.journal-container {
+  width: 60%;
+  margin: auto;
+  box-shadow: 0 0 6px #888;
+  border-radius: 13px;
+}
+
+.entry {
+  display: grid;
+  grid-template-columns: 2fr 4fr 2fr 1fr;
+  align-items: center;
+  font-size: 0.7em;
+  min-height: 2em;
+  box-shadow: 0 0 1px #888;
+  text-align: center;
+}
+.entry1 {
+  border-radius: 13px 13px 0 0;
+}
+.entry5 {
+  border-radius: 0 0 13px 13px;
+}
+.j-page{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 80vw;
+  box-shadow: 0px 1px 5px #000;
+}
+.j-page > * {
+  margin: 10px auto;
+}
+.j-p-content{
+  max-width: 45ch;
+  text-align: start;
+}
+
+.separate-j-page{
+  background: #000;
+  width: 60%;
+  min-height: .2em;
+  margin: 20px auto;
+}
+
+.j-cont-name, .j-name{
+  text-align: center;
+}
+
+.j-cont-add{
+  text-align: center;
+  width: 97%;
+  margin: 1em auto;
+  padding: .5em 0;
+  border: 2px dashed #999;
+  background: #ccc;
+  cursor: pointer;
+}
+
+.j-cont-add img{
+  max-width: 3em;
+
+}
+.j-cont-delete{
+}
+.j-cont-delete img{
+  cursor: pointer;
+  max-width: 3em;
+}
 
 
+/* journal pop-up */
+.j-add{
+  background: rgba(0, 0, 0, 0.6);
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.j-add-p{
+  width: 80%;
+  background: #fff;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  position: relative;
+}
+form{
+  width: 100%;
+}
+.j-add-p form > *{
+  display: flex;
+  flex-direction: column;
+  margin: 1em auto;
+}
+.j-add-p form >* >*{
+  margin: .5em auto;
+}
 
+.j-add-p input{
+  padding: .1em .3em;
+}
 
+.j-add-p textarea{
+  padding: .5em 1em;
+  outline: none;
+  border: none;
+  resize: none;
+  min-width: 80%;
+  min-height: 80%;
+  
+}
+.j-add-p input, .j-add-p-textarea{
+  border: 1px solid #999;
+  border-radius: 2px;
+  box-shadow: 0px 3px 5px #000;
+  outline: none;
+}
+.j-add-p-textarea{
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  height: 25vh;
+  position: relative;
+}
+.j-add-p-textarea span{
+  background: #fff;
+  color: #999;
+}
 
+.j-add-p-btn{
+  background: #3D51D6;
+  color: #fff;
+  border: none;
+  padding: 1em 2em;
+  border-radius: 10.1em;
+  box-shadow: 0px 5px 2px #000;
+  cursor: pointer;
+}
+.j-add-p-btn:active{
+  box-shadow: none;
+}
 
-
-
+.j-pop-show{
+  display: flex;
+}
 
 
 

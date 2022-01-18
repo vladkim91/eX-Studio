@@ -1,118 +1,90 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
-const Timer = ({ fullWorkout }) => {
-  const [seconds, setSeconds] = useState(0);
-  const [isActive, setisActive] = useState(false);
-  const [inProgress, setInProgress] = useState(false)
-  const [exCounter, setExCounter] = useState(-1);
-  const [timer, setTimer] = useState(null)
-  
+const Timer = ({
+  fullWorkout,
+  trainingState,
+  setWorkoutActive,
+  setCurrentExerciseIndex,
+  setCountdown,
+  setCountdownInterval
+}) => {
+  const { workoutActive, currentExerciseIndex, countdown, countdownInterval } =
+    trainingState.timer;
 
-  const toggle = () => {
-    setisActive(!isActive);
+  const getCurrentExercise = () => {
+    return fullWorkout[currentExerciseIndex];
   };
-  const startWorkout = () => {
-    toggle();
-    setSeconds(fullWorkout[exCounter].time);
-  };
 
-  const completeSet = () => {
-// Function that require user input for reps
-    prompt('input amount of reps')
-    setInProgress(false)
-    toggle()
-    setSeconds(fullWorkout[exCounter].time)
-  }
-
-  function reset() {
-    setExCounter((count) => {
-      let newCount = count + 1;
-      // console.log(newCount)
-      if (!fullWorkout[newCount].time) {
-        setInProgress(true)
-        toggle();
-        // setSeconds(fullWorkout[newCount].time);
-      } else {
-        console.log(newCount)
-        setSeconds(fullWorkout[newCount].time)
-      
-        // console.log(fullWorkout[newCount])
-      }
-      return newCount;
-    });
-
-  }
-  const startNextExercise = () => {
-    console.log('ex counter: ',exCounter)
- 
-    if (fullWorkout[exCounter + 1].time) {
-      let seconds= fullWorkout[exCounter + 1].time;
-      console.log(fullWorkout)
-        let interval = setInterval(() => {
-        seconds--
-        console.log(seconds)
-        if (!seconds) {
-            console.log('seconds = 0')
-            setExCounter(count => {
-              let newCount = count + 1
-              console.log(newCount)
-              return newCount
-            })
-            // startNextExercise()
-            
-            clearInterval(interval)
-          }
-      }, 1000)
-      setTimer(interval)
-      
+  const startNextExercise = (nextExerciseIndex) => {
+    if (nextExerciseIndex >= fullWorkout.length) {
+      setWorkoutActive(false);
+      return;
     }
-   
-  }
-  useEffect(() => {
-    startNextExercise()
-  }, [exCounter])
-  // useEffect(() => {
-  //    let interval = null;
-  //    if (isActive) {
-  //      interval = setInterval(() => {
-  //        setSeconds((seconds) => {
-  //          let newSeconds = seconds - 1;
-  //          if (newSeconds < 1) {
-  //           console.log('anything')
-  //           reset();
-  //           setInProgress(false)
-  //           // clearInterval(interval)
-  //         }
-  //         return newSeconds;
-  //       });
-  //     }, 1000);
-  //   }
-  //   return () => {
-  //     clearInterval(interval);
-  //   };
-  // }, [isActive]);
+
+    setCurrentExerciseIndex(nextExerciseIndex);
+    const currentExercise = fullWorkout[nextExerciseIndex];
+
+    if (currentExercise.time) {
+      let countdown = currentExercise.time;
+      setCountdown(countdown);
+
+      let newInterval = setInterval(() => {
+        countdown--;
+        setCountdown(countdown);
+
+        if (!countdown) {
+          startNextExercise(nextExerciseIndex + 1);
+          clearInterval(newInterval);
+        }
+      }, 1000);
+
+      setCountdownInterval(newInterval);
+    }
+  };
 
   return (
     <div className="app">
-      <div className="time">{seconds}</div>
+      <p>
+        {(!workoutActive && currentExerciseIndex) >= fullWorkout.length - 1
+          ? '[WORKOUT COMPLETE]'
+          : ''}
+      </p>
+      <div className="time">
+        {workoutActive && getCurrentExercise().time ? countdown : null}
+      </div>
+      {workoutActive && (
+        <p>{`Current Exercise: ${getCurrentExercise().name}`}</p>
+      )}
       <div className="row">
-        <button
-          className={`button button-primary button-primary-${
-            isActive ? 'active' : 'inactive'
-          }`}
-          onClick={startWorkout}
-        >
-          {isActive ? 'Pause' : 'Start'}
-        </button>
-        {isActive && !inProgress ? (
-          <div>
-            {fullWorkout[exCounter ].name} : {fullWorkout[exCounter].time}
-          </div>
-        ) : null}
-        {!isActive && inProgress ? <div>START YOUR SET {fullWorkout[exCounter - 1].name}<button onClick={completeSet}>
-        Complete set
-        </button></div> : null}
-        <button onClick={startNextExercise}>Start next ex</button>
+        {!workoutActive && (
+          <button
+            onClick={() => {
+              setWorkoutActive(true);
+              startNextExercise(0);
+            }}
+          >
+            Start Workout
+          </button>
+        )}
+        {workoutActive && getCurrentExercise().time && (
+          <button
+            onClick={() => {
+              clearInterval(countdownInterval);
+              startNextExercise(currentExerciseIndex + 1);
+            }}
+          >
+            Finish Early
+          </button>
+        )}
+        {workoutActive && !getCurrentExercise().time && (
+          <button
+            onClick={() => {
+              startNextExercise(currentExerciseIndex + 1);
+            }}
+          >
+            Finish Exercise
+          </button>
+        )}
       </div>
     </div>
   );

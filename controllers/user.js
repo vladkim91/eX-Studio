@@ -1,9 +1,16 @@
-const { User, Workout } = require('../models');
-const Sequelize = require('sequelize');
+const {
+  User,
+  Routine,
+  ScheduledWorkout,
+  Journal,
+  Note,
+  Workout,
+  Exercise
+} = require('../models');
 
 const createNewUser = async (req, res) => {};
 
-const getUserById = async (req, res) => {
+const getUserInfoById = async (req, res) => {
   const { userId } = req.params;
   const user = await User.findOne({
     attributes: ['username', 'first_name', 'last_name'],
@@ -47,9 +54,66 @@ const getUserCustomWorkouts = async (req, res) => {
   res.status(200).send(customWorkouts);
 };
 
+const getUserProfileById = async (req, res) => {
+  const { userId } = req.params;
+  const userProfile = await User.findOne({
+    where: {
+      id: userId
+    },
+    nest: true,
+    attributes: ['username', 'first_name', 'last_name'],
+    include: [
+      {
+        model: Journal,
+        as: 'journal',
+        attributes: ['id'],
+        include: {
+          model: Note,
+          as: 'notes'
+        }
+      },
+      {
+        model: Routine,
+        as: 'routine',
+        attributes: ['id'],
+        include: {
+          model: ScheduledWorkout,
+          as: 'scheduled_workouts',
+          attributes: ['id', 'day'],
+          include: {
+            attributes: ['name', 'muscle_groups', 'image'],
+            model: Workout,
+            as: 'workout',
+            include: {
+              attributes: [
+                'name',
+                'muscle_group',
+                'image',
+                'sets',
+                'time',
+                'reps',
+                'weight',
+                'typeof',
+                'description'
+              ],
+              model: Exercise,
+              as: 'exercises'
+            }
+          }
+        }
+      }
+    ]
+  });
+
+  userProfile.journal.notes = userProfile.journal.notes.slice(0, 5);
+
+  res.status(200).send(userProfile);
+};
+
 module.exports = {
   createNewUser,
-  getUserById,
+  getUserInfoById,
   getUserFavoritedWorkouts,
-  getUserCustomWorkouts
+  getUserCustomWorkouts,
+  getUserProfileById
 };
