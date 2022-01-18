@@ -9,7 +9,8 @@ import {
   SET_NOTE_CREATION,
   SET_CREATING_NEW_NOTE,
   RESET_NOTE_CREATION,
-  SET_SELECTED_NOTE
+  SET_SELECTED_NOTE,
+  SHIFT_PAGE
 } from '../types';
 
 const iState = {
@@ -92,6 +93,27 @@ const ProfileReducer = (state = iState, action) => {
       };
     case SET_SELECTED_NOTE:
       return { ...state, selectedNote: action.payload };
+    case SHIFT_PAGE:
+      const direction = action.payload;
+      let newJournalPage = state.journalPage;
+
+      if (direction > 0) {
+        newJournalPage += direction * state.journalPageRange;
+      } else if (direction < 0) {
+        newJournalPage -= direction * state.journalPageRange;
+      }
+
+      const maximumJournalPage = Math.min(
+        0,
+        state.journal.length - state.journalPageRange - 1
+      );
+
+      newJournalPage = Math.max(
+        0,
+        Math.min(maximumJournalPage, newJournalPage)
+      );
+
+      return { ...state, journalPage: newJournalPage };
     default:
       return { ...state };
   }

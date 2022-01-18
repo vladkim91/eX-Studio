@@ -9,7 +9,8 @@ import {
   SET_NOTE_CREATION,
   SET_CREATING_NEW_NOTE,
   RESET_NOTE_CREATION,
-  SET_SELECTED_NOTE
+  SET_SELECTED_NOTE,
+  SHIFT_PAGE
 } from '../types';
 import {
   getUserProfile,
@@ -124,5 +125,12 @@ export const SetSelectedNote = (selectedNote) => {
   return {
     type: SET_SELECTED_NOTE,
     payload: selectedNote
+  };
+};
+
+export const ShiftPage = (direction) => {
+  return {
+    type: SHIFT_PAGE,
+    payload: direction
   };
 };

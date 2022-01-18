@@ -13,7 +13,8 @@ import {
   DeleteNoteById,
   SetCreatingNewNote,
   ResetNoteCreation,
-  SetSelectedNote
+  SetSelectedNote,
+  ShiftPage
 } from '../store/actions/ProfileActions';
 
 const mapStateToProps = (state) => {
@@ -21,7 +22,9 @@ const mapStateToProps = (state) => {
     journal: state.profileState.journal,
     noteCreation: state.profileState.noteCreation,
     creatingNewNote: state.profileState.creatingNewNote,
-    selectedNote: state.profileState.selectedNote
+    selectedNote: state.profileState.selectedNote,
+    journalPage: state.profileState.journalPage,
+    journalPageRange: state.profileState.journalPageRange
   };
 };
 
@@ -39,7 +42,8 @@ const mapActionsToProps = (dispatch) => {
     setCreatingNewNote: (creatingNewNote) =>
       dispatch(SetCreatingNewNote(creatingNewNote)),
     resetNoteCreation: () => dispatch(ResetNoteCreation()),
-    setSelectedNote: (selectedNote) => dispatch(SetSelectedNote(selectedNote))
+    setSelectedNote: (selectedNote) => dispatch(SetSelectedNote(selectedNote)),
+    shiftPage: (direction) => dispatch(ShiftPage(direction))
   };
 };
 
@@ -55,7 +59,10 @@ function Journal({
   creatingNewNote,
   resetNoteCreation,
   setSelectedNote,
-  selectedNote
+  selectedNote,
+  journalPage,
+  journalPageRange,
+  shiftPage
 }) {
   let maxLength = 1000;
   const [edit, setEdit] = useState('pophide');
@@ -108,7 +115,7 @@ function Journal({
             >
               <img src={Add} alt="" />
             </div>
-            {journal.map((note, index) => (
+            {journal.slice(journalPage, journalPageRange).map((note, index) => (
               <div
                 key={index}
                 className={`entry ${
