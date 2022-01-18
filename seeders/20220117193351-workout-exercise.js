@@ -227,7 +227,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       },
-      // Straight outta USSE
+      // Straight outta USSR
 
       {
         workout_id: 9,
@@ -247,12 +247,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       },
-      {
-        workout_id: 9,
-        exercise_id: 31,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
+
       // Vertical jump essintials
       {
         workout_id: 10,
@@ -286,24 +281,9 @@ module.exports = {
       }
     ];
     await queryInterface.bulkInsert('workout_exercises', workout_exercises);
-    /**
-     * Add seed commands here.
-     *
-     * Example:
-     * await queryInterface.bulkInsert('People', [{
-     *   name: 'John Doe',
-     *   isBetaMember: false
-     * }], {});
-     */
   },
 
   down: async (queryInterface, Sequelize) => {
     await queryInterface.bulkDelete('workout_exercises', workout_exercises);
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
   }
 };
