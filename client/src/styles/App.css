@@ -8,6 +8,7 @@
   padding: 0;
   font-family: 'Ethno';
 }
+:root{--child:5}
 
 .App,
 .home {
@@ -784,10 +785,13 @@ form {
   min-height: 80vh;
 }
 .training h1{
-  font-size: 4em;
+  font-size: 3em;
 }
 .t-timer{
   font-size: 3em;
+}
+.training > *{
+  margin: auto;
 }
 
 .training button{
@@ -810,4 +814,45 @@ form {
   min-width: 5em;
   min-height: 2em;
   border-radius: 1em
+}
+.t-list{
+  width: 60%;
+  margin: auto;
+}
+.t-l-info{
+  display: flex;
+  margin: auto;
+}
+.t-l-array{
+  
+  margin: auto;
+  box-shadow: 0 0 6px #888;
+  border-radius: 13px;
+}
+.t-l-a-child {
+  display: grid;
+  grid-template-columns: 2fr 4fr 1fr 1fr;
+  align-items: center;
+  font-size: 0.7em;
+  min-height: 2em;
+  box-shadow: 0 0 1px #888;
+  text-align: center;
+  cursor: pointer;
+  color: #fff;
+  background-color: #999;
+}
+
+.t-l-a-child:nth-child(2n) {
+  background-color: #999;
+  
+}
+
+.t-l-a-child:nth-child(1) {
+  opacity: 100%;
+  border-radius: 13px 13px 0 0;
+  background: #376ca7;
+}
+
+.t-l-a-child:last-child {
+  border-radius: 0 0 13px 13px;
 }

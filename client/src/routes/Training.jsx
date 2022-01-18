@@ -65,15 +65,71 @@ const Training = (props) => {
       <Nav />
     <div className='training'>
       <h1>Exercise Name</h1>
-      <span className="t-timer">00:27</span>
+      <span className="t-timer">00:30</span>
       <button className='t-options'>Start</button>
       <button className='t-skip'>Skip</button>
       <div className="t-list">
-      <div className="t-l-info">
-        <p>Total Exercise: 10</p>
-        <p>Exercise Left: 7</p>
-        
-      </div>
+        <div className="t-l-info">
+          <p>Total Exercise: 10</p>
+          <p>Exercise Left: 7</p>
+        </div>
+        <div className="t-l-array">
+          <div className="t-l-a-child">
+            <span className='t-l-a-c-text'>
+              1.
+            </span>
+            <span className='t-l-a-c-text'>
+              Exercise Name
+            </span>
+            <span className='t-l-a-c-text'>
+              02:00
+            </span>
+          </div>
+          <div className="t-l-a-child">
+            <span className='t-l-a-c-text'>
+              2.
+            </span>
+            <span className='t-l-a-c-text'>
+              Exercise Name
+            </span>
+            <span className='t-l-a-c-text'>
+              12
+            </span>
+          </div>
+          <div className="t-l-a-child">
+            <span className='t-l-a-c-text'>
+              2.
+            </span>
+            <span className='t-l-a-c-text'>
+              Exercise Name
+            </span>
+            <span className='t-l-a-c-text'>
+              12
+            </span>
+          </div>
+          <div className="t-l-a-child">
+            <span className='t-l-a-c-text'>
+              2.
+            </span>
+            <span className='t-l-a-c-text'>
+              Exercise Name
+            </span>
+            <span className='t-l-a-c-text'>
+              12
+            </span>
+          </div>
+          <div className="t-l-a-child">
+            <span className='t-l-a-c-text'>
+              2.
+            </span>
+            <span className='t-l-a-c-text'>
+              Exercise Name
+            </span>
+            <span className='t-l-a-c-text'>
+              12
+            </span>
+          </div>
+        </div>
       </div>
 
     </div>
