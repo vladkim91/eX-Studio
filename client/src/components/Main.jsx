@@ -6,7 +6,9 @@ function Main({ profileState }) {
   return (
     <div>
       <section className="startW">
-        <button> Start Today's Workout</button>
+        <Link to={"/training"}>
+        <button > Start Today's Workout</button>
+        </Link>
       </section>
       <section className="carrousel">
         <div className="arrow l-arrow">
@@ -34,7 +36,7 @@ function Main({ profileState }) {
         <div className="routine-container">
           <div className="blur r-blur"></div>
           <Link to="/routine" style={{ all: 'none' }}>
-            <h1 className="r-name">Lorem, ipsum.</h1>
+            <h1 className="r-name">My routine</h1>
           </Link>
         </div>
       </section>

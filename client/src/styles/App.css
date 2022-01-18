@@ -8,6 +8,7 @@
   padding: 0;
   font-family: 'Ethno';
 }
+:root{--child:5}
 
 .App,
 .home {
@@ -47,7 +48,6 @@ header {
 header a {
   margin: 0 2em;
   list-style: none;
-  text-decoration: none;
   line-height: 2em;
   padding: 1em;
   font-size: 1em;
@@ -59,9 +59,14 @@ header a:hover {
   transition: linear 0.1s;
   background: #3d51d6;
 }
+a{
+  text-decoration: none;
+  cursor: pointer;
+}
 a:visited {
   color: #fff;
 }
+button{cursor: pointer;}
 
 .banner {
   position: relative;
@@ -137,6 +142,7 @@ a:visited {
 #side-content {
   min-height: 90vh;
   color: #fff;
+
 }
 
 .hide {
@@ -145,20 +151,22 @@ a:visited {
   transition: linear 0.4s;
 }
 .show {
-  display: block;
+  display: flex;
+  flex-direction: column;
 }
 
-.sideBar li {
+.sideBar a {
   list-style: none;
   line-height: 2em;
   padding: 1em;
   font-size: 1em;
   cursor: pointer;
+  color: #fff;
+  text-decoration: none;
 }
-.sideBar li:hover {
+.sideBar a:hover {
   background: #3d51d6;
 }
-
 /* Main.jsx css */
 section {
   margin: 1em auto;
@@ -765,4 +773,86 @@ form {
 }
 .j-add-p-btn:active {
   box-shadow: none;
+}
+
+
+.training{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  text-align: center;
+  align-content: center;
+  min-height: 80vh;
+}
+.training h1{
+  font-size: 3em;
+}
+.t-timer{
+  font-size: 3em;
+}
+.training > *{
+  margin: auto;
+}
+
+.training button{
+  margin: auto;
+  border: none;
+  color: #fff;
+}
+.t-options{
+  background: #B51E1E;
+  color: #fff;
+  font-size: 3em;
+  min-width: 6em;
+  min-height: 6em;
+  border-radius: 100%
+}
+.t-skip{
+  background-color: #185488;
+  color: #fff;
+  font-size: 2em;
+  min-width: 5em;
+  min-height: 2em;
+  border-radius: 1em
+}
+.t-list{
+  width: 60%;
+  margin: auto;
+}
+.t-l-info{
+  display: flex;
+  margin: auto;
+}
+.t-l-array{
+  
+  margin: auto;
+  box-shadow: 0 0 6px #888;
+  border-radius: 13px;
+}
+.t-l-a-child {
+  display: grid;
+  grid-template-columns: 2fr 4fr 1fr 1fr;
+  align-items: center;
+  font-size: 0.7em;
+  min-height: 2em;
+  box-shadow: 0 0 1px #888;
+  text-align: center;
+  cursor: pointer;
+  color: #fff;
+  background-color: #999;
+}
+
+.t-l-a-child:nth-child(2n) {
+  background-color: #999;
+  
+}
+
+.t-l-a-child:nth-child(1) {
+  opacity: 100%;
+  border-radius: 13px 13px 0 0;
+  background: #376ca7;
+}
+
+.t-l-a-child:last-child {
+  border-radius: 0 0 13px 13px;
 }
