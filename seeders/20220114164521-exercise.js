@@ -14,14 +14,14 @@ module.exports = {
         updatedAt: new Date(),
         sets: 3,
         reps: 12,
-        weight: 135,
+        weight: 0,
         typeof: 'equipment',
         description:
           'Bench presses are an exercise that can be used to tone the muscles of the upper body, including the pectorals, arms, and shoulders. They also can be an effective strengthening exercise for sports like sprinting, hockey, and football.'
       },
       {
         name: 'Push up',
-        muscle_group: 'ch',
+        muscle_group: 'ch tr',
         image:
           'https://cdn2.coachmag.co.uk/sites/coachmag/files/2017/05/bench-press_0.jpg',
         workout_id: null,
@@ -37,7 +37,7 @@ module.exports = {
       },
       {
         name: 'Dips',
-        muscle_group: 'ch',
+        muscle_group: 'ch tr',
         image:
           'https://cdn2.coachmag.co.uk/sites/coachmag/files/2017/05/bench-press_0.jpg',
         workout_id: null,
@@ -76,7 +76,7 @@ module.exports = {
         updatedAt: new Date(),
         sets: 3,
         reps: 10,
-        weight: 60,
+        weight: 0,
         typeof: 'equipment',
         description: `With your feet shoulder width apart, face a pulley machine with an attached rope, v-bar, or solid straight bar hanging at chest height.`
       },
@@ -90,7 +90,7 @@ module.exports = {
         updatedAt: new Date(),
         sets: 3,
         reps: 10,
-        weight: 25,
+        weight: 0,
         typeof: 'equipment',
         description: `The overhead triceps extension is the fourth most effective triceps exercise, coming in at about 76% of muscle activation. 1 The key to this exercise is to keep the arms next to the ears as you lower the weight behind you. Make sure you can contract the abs to keep your back from arching.`
       },
@@ -119,7 +119,7 @@ module.exports = {
         updatedAt: new Date(),
         sets: 5,
         reps: 5,
-        weight: 155,
+        weight: 0,
         typeof: 'equipment',
         description: `If you’re at an advanced fitness level, you’ll need a heavy amount of weight to benefit from deadlifts. If that is the case, perform 1 to 6 deadlifts per set, and perform 3 to 5 sets, resting in between.
         If you are new to deadlifts and focusing on getting the correct form down with a lower weight, perform 5 to 8 deadlifts per set. Work your way up to 3 to 5 sets.`
@@ -135,7 +135,7 @@ module.exports = {
         updatedAt: new Date(),
         sets: 3,
         reps: 12,
-        weight: 52,
+        weight: 0,
         typeof: 'equipment',
         description: `These kettlebell deadlifts are one of the greatest compound exercises for the strengthening of glutes, hamstrings, quadriceps, and muscles of the lower as well as upper body. ... Kettlebells improve the overall strength of the body and improve the coordination, balance and flexibility of the body.`
       },
@@ -150,7 +150,7 @@ module.exports = {
         updatedAt: new Date(),
         sets: 3,
         reps: 10,
-        weight: 60,
+        weight: 0,
         typeof: 'equipment',
         description: `Training triceps is a must if you want big arms because tri's are two-thirds of the upper arm. The lying triceps extension is also known as the skull crusher so be careful. The lying triceps extension is a good movement to hit all three heads of the triceps`
       },
@@ -181,7 +181,7 @@ module.exports = {
         updatedAt: new Date(),
         sets: 3,
         reps: 12,
-        weight: 40,
+        weight: 0,
         typeof: 'equipment',
         description: `The lat pulldown is a fantastic exercise to strengthen the latissimus dorsi muscle, the broadest muscle in your back, which promotes good postures and spinal stability. Form is crucial when performing a lat pulldown to prevent injury and reap the best results.`
       },
@@ -196,7 +196,7 @@ module.exports = {
         updatedAt: new Date(),
         sets: 3,
         reps: 10,
-        weight: 45,
+        weight: 0,
         typeof: 'equipment',
         description: `The bent over row is a multi-jointed exercise that recruits several different muscles. It improves strength in the upper and lower back, glutes, hamstrings, lats, and shoulders.`
       },
@@ -211,7 +211,7 @@ module.exports = {
         updatedAt: new Date(),
         sets: 3,
         reps: 10,
-        weight: 30,
+        weight: 0,
         typeof: 'equipment',
         description: `Hammer curls target the long head of the bicep as well as the brachialis (another muscle in the upper arm) and the brachioradialis (one of the key forearm muscles). The hammer curl is a relatively simple exercise that beginners can quickly master.`
       },
@@ -241,7 +241,7 @@ module.exports = {
         updatedAt: new Date(),
         sets: 3,
         reps: 8,
-        weight: 35,
+        weight: 0,
         typeof: 'equipment',
         description: `The barbell curl targets your biceps brachii muscle as well as the brachialis, a muscle responsible for elbow flexion. With regular practice, barbell curls can help you build bigger biceps. Barbell curls generally allow you to lift heavier weight than dumbbell curls. Barbell curls improve your grip strength.`
       },
@@ -256,12 +256,12 @@ module.exports = {
         updatedAt: new Date(),
         sets: 3,
         reps: 12,
-        weight: 50,
+        weight: 0,
         typeof: 'equipment',
         description: `The cable curl primarily works the biceps brachii, which is the two-headed muscle on the front of your arm that merges into one muscle belly near the elbow. The exercise also engages the brachialis, which lies beneath the biceps muscle, plus the forearms and the deltoids in the shoulders.`
       },
       {
-        name: 'Crunch',
+        name: 'Crunches',
         muscle_group: 'ab',
         image: 'img',
         workout_id: null,
@@ -338,7 +338,7 @@ module.exports = {
         updatedAt: new Date(),
         sets: 3,
         reps: 10,
-        weight: 25,
+        weight: 0,
         typeof: 'equipment',
         description: `
         Dumbbell overhead presses work the delts in your shoulders—particularly the medial and anterior deltoids, increasing your shoulder mobility and size. Dumbbell overhead presses can increase your core strength and stability. Core activation is an essential part of the dumbbell overhead press.`
@@ -353,7 +353,7 @@ module.exports = {
         updatedAt: new Date(),
         sets: 3,
         reps: 10,
-        weight: 70,
+        weight: 0,
         typeof: 'equipment',
         description: `A military press, also known as an overhead press and a shoulder press, is a barbell strength training exercise that works muscle groups in the upper body like the triceps in your arms, the trapezius muscles in your upper back, and the deltoid muscles in your shoulders, including the anterior and medial delts.`
       },
@@ -367,7 +367,7 @@ module.exports = {
         updatedAt: new Date(),
         sets: 3,
         reps: 10,
-        weight: 25,
+        weight: 0,
         typeof: 'equipment',
         description: `The bottoms-up press requires the bell to stay held vertically overhead, demanding a vertical forearm and a smooth path up, led by a strong and stable shoulder. Because of this, the bottoms-up kettlebell press is one of the easiest ways to learn and teach superb pressing mechanics.`
       },
@@ -381,7 +381,7 @@ module.exports = {
         updatedAt: new Date(),
         sets: 3,
         reps: 12,
-        weight: 20,
+        weight: 0,
         typeof: 'equipment',
         description: `A lateral raise works your shoulder muscles as well as your triceps. To do this exercise: Stand or sit with your arms at your sides and a dumbbell in each hand`
       },
@@ -395,7 +395,7 @@ module.exports = {
         updatedAt: new Date(),
         sets: 3,
         reps: 8,
-        weight: 70,
+        weight: 0,
         typeof: 'equipment',
         description: `Warm up to about 90% of your max but don't squat this weight. Unrack it and hold it for 10 seconds then put it back down. Continue to add 5-10% for each set and up to 20% over your 1RM. ... It stimulates your nervous system and makes you feel more comfortable with heavy weight on your back.`
       },
@@ -439,7 +439,7 @@ module.exports = {
         reps: 20,
         weight: 0,
         typeof: 'bodyweight',
-        description: `The calf raise is an exercise you can do with dumbbells to work the calf muscles. The calf muscles are located in the back of the lower legs. Strengthening your calf muscles with the calf raise exercise will help protect your Achilles tendon and calf from injury.`
+        description: `The calf raise is an exercise you can do with or without dumbbells to work the calf muscles. The calf muscles are located in the back of the lower legs. Strengthening your calf muscles with the calf raise exercise will help protect your Achilles tendon and calf from injury.`
       },
       {
         name: 'Kettlebell swings',
@@ -451,7 +451,7 @@ module.exports = {
         updatedAt: new Date(),
         sets: 5,
         reps: 10,
-        weight: 25,
+        weight: 0,
         typeof: 'equipment',
         description: `This kettlebell exercise targets the abs, shoulders, pecs, glutes, quads, hips, hamstrings, and lats with a simple motion. Swinging the kettlebell can also have benefits on grip strength.`
       },
@@ -470,7 +470,7 @@ module.exports = {
         description: `Burpees get your whole body working and aim to build strength and endurance in your lower and upper body. When performed correctly, burpees should work the muscles in your legs, hips, abdomen, arms, chest, buttocks and shoulders.`
       },
       {
-        name: 'Jump lunges',
+        name: 'Jumping lunges',
         muscle_group: 'fb',
         image: 'img',
         workout_id: null,
