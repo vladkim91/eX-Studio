@@ -34,7 +34,23 @@ const searchForWorkouts = async (req, res) => {
   res.status(200).send(workouts);
 };
 
+const getWorkoutExercises = async (req, res) => {
+  const { workoutId } = req.params;
+  const workoutExercises = await Workout.findOne({
+    attributes: ['name', 'muscle_groups'],
+    where: { id: workoutId },
+    include: {
+      model: Exercise,
+      as: 'added_exercises',
+      through: { attributes: [] },
+      attributes: ['name']
+    }
+  });
+  res.status(200).send(workoutExercises);
+};
+
 module.exports = {
   getWorkoutById,
-  searchForWorkouts
+  searchForWorkouts,
+  getWorkoutExercises
 };

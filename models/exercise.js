@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       Exercise.belongsToMany(models.User, {
         as: 'followers',
         through: models.User_Exercise,
-        foreignKey: 'user_id'
+        foreignKey: 'exercise_id'
       });
       Exercise.belongsTo(models.User, {
         foreignKey: 'user_id'
@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
       Exercise.belongsToMany(models.Workout, {
         as: 'added_to_workout',
         through: models.Workout_Exercise,
-        foreignKey: 'workout_id'
+        foreignKey: 'exercise_id'
       });
     }
   }
