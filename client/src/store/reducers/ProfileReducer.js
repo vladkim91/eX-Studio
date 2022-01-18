@@ -2,6 +2,9 @@ import {
   GET_USER_INFO,
   GET_USER_PROFILE,
   GET_USER_JOURNAL,
+  CREATE_NEW_NOTE,
+  EDIT_NOTE,
+  DELETE_NOTE,
   GET_ROUTINE
 } from '../types';
 
@@ -36,6 +39,18 @@ const ProfileReducer = (state = iState, action) => {
         journal: userJournal,
         routine: userRoutine
       };
+    case CREATE_NEW_NOTE:
+      return { ...state, journal: [...state.journal, action.payload] };
+    case GET_USER_JOURNAL:
+      return { ...state, journal: action.payload };
+    case EDIT_NOTE:
+      const newJournal = [...state.journal];
+      newJournal[action.payload.noteIndex] = action.payload.updatedNote;
+      return { ...state, journal: newJournal };
+    case DELETE_NOTE:
+      const newJournal = [...state.journal];
+      newJournal.splice(action.payload.noteIndex, 1);
+      return { ...state, journal: newJournal };
     default:
       return { ...state };
   }
