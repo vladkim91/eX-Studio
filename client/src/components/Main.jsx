@@ -33,7 +33,7 @@ function Main({ profileState }) {
       <section className="routine">
         <div className="routine-container">
           <div className="blur r-blur"></div>
-          <Link to="/routine" state={{ profileState }} style={{ all: 'none' }}>
+          <Link to="/routine" style={{ all: 'none' }}>
             <h1 className="r-name">Lorem, ipsum.</h1>
           </Link>
         </div>
@@ -49,33 +49,13 @@ function Main({ profileState }) {
                     day: '2-digit',
                     month: '2-digit',
                     year: '2-digit'
-                  }).replace(',', ' - ')
-                  }
+                  })
+                  .replace(',', ' - ')}
               </p>
               <p className="j-title">{note.title}</p>
               <p className="set">2 hours</p>
             </div>
           ))}
-          {/* <div className="entry entry2">
-            <p className="time">Mon - 01/01/2022</p>
-            <p className="j-title">Journal Title Here...</p>
-            <p className="set">2 hours</p>
-          </div>
-          <div className="entry entry3">
-            <p className="time">Mon - 01/01/2022</p>
-            <p className="j-title">Journal Title Here...</p>
-            <p className="set">2 hours</p>
-          </div>
-          <div className="entry entry4">
-            <p className="time">Mon - 01/01/2022</p>
-            <p className="j-title">Journal Title Here...</p>
-            <p className="set">2 hours</p>
-          </div>
-          <div className="entry entry5">
-            <p className="time">Mon - 01/01/2022</p>
-            <p className="j-title">Journal Title Here...</p>
-            <p className="set">2 hours</p>
-          </div> */}
         </div>
       </section>
     </div>

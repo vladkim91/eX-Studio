@@ -10,7 +10,7 @@ const {
 
 const createNewUser = async (req, res) => {};
 
-const getUserById = async (req, res) => {
+const getUserInfoById = async (req, res) => {
   const { userId } = req.params;
   const user = await User.findOne({
     attributes: ['username', 'first_name', 'last_name'],
@@ -112,7 +112,7 @@ const getUserProfileById = async (req, res) => {
 
 module.exports = {
   createNewUser,
-  getUserById,
+  getUserInfoById,
   getUserFavoritedWorkouts,
   getUserCustomWorkouts,
   getUserProfileById
