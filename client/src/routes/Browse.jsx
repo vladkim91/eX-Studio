@@ -1,31 +1,35 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
-import { LoadWorkoutsAndExercises } from '../store/actions/BrowserActions';
+import { LoadWorkoutsAndExercises } from '../store/actions/BrowseActions';
 
-const mapStateToProps = ({ workoutAndExercisesState }) => {
-  return workoutAndExercisesState;
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchWorkoutsAndExercises: (type, name, muscleGroup) => dispatch(LoadWorkoutsAndExercises(type, name, muscleGroup))
+const mapStateToProps = (state) => {
+  return { 
+    workoutAndExercisesState: state.workoutAndExercisesState
   };
 };
 
-
-const Browse = ({workoutsAndExercisesState, fetchWorkoutsAndExercises}) => {
-  const state = {
-    type : 'exercises',
-    name : 'Kettlebell',
-    muscleGroup: 'fb'
-  }
-  useEffect(() => {
-    fetchWorkoutsAndExercises(state.type, state.name, state.muscleGroup);
-  }, [])
-  const workoutsAndExercises = workoutsAndExercisesState
-  console.log(workoutsAndExercises)
-  return <div></div>;
+const mapActionsToProps = (dispatch) => {
+  return {
+    fetchWorkoutsAndExercises: (type, name, muscleGroup) =>
+      dispatch(LoadWorkoutsAndExercises(type, name, muscleGroup))
+  };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Browse);
+const Browse = ({fetchWorkoutsAndExercises,workoutAndExercisesState}) => {
+  const state = {
+    type: 'workouts',
+    name: '',
+    muscleGroup: 'bk'
+  };
+  useEffect(() => {
+    fetchWorkoutsAndExercises(state.type, state.name, state.muscleGroup);
+    
+  }, []);
+  return (<div>{
+ 
+
+    }</div>);
+};
+
+export default connect(mapStateToProps, mapActionsToProps)(Browse);
