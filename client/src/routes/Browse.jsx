@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
-import { LoadWorkoutsAndExercises } from '../store/actions/BrowseActions';
+import { LoadWorkoutsAndExercises, setFilterParams} from '../store/actions/BrowseActions';
 
 const mapStateToProps = (state) => {
-  return { 
+  return {
     workoutAndExercisesState: state.workoutAndExercisesState
   };
 };
@@ -16,20 +16,12 @@ const mapActionsToProps = (dispatch) => {
   };
 };
 
-const Browse = ({fetchWorkoutsAndExercises,workoutAndExercisesState}) => {
-  const state = {
-    type: 'workouts',
-    name: '',
-    muscleGroup: 'bk'
-  };
-  useEffect(() => {
-    fetchWorkoutsAndExercises(state.type, state.name, state.muscleGroup);
-    
-  }, []);
-  return (<div>{
- 
+const Browse = ({ fetchWorkoutsAndExercises, workoutAndExercisesState }) => {
 
-    }</div>);
+  useEffect(() => {
+    fetchWorkoutsAndExercises(workoutAndExercisesState.type, workoutAndExercisesState.name, workoutAndExercisesState.muscleGroup);
+  }, []);
+  return <div></div>;
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(Browse);

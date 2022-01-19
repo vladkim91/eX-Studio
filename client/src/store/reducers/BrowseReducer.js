@@ -1,7 +1,11 @@
 import { GET_WORKOUTS_AND_EXERCISES } from '../types';
 
 const iState = {
-  workoutsAndExercises: []
+  workoutsAndExercises: [],
+  addingWorkout: false,
+  type: 'workouts',
+  name: '',
+  muscleGroup: ''
 };
 const BrowseReducer = (state = iState, action) => {
   switch (action.type) {
