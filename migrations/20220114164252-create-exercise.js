@@ -24,6 +24,9 @@ module.exports = {
           key: 'id'
         }
       },
+      rest: {
+        type: Sequelize.INTEGER
+      },
       name: {
         type: Sequelize.STRING,
         allowNull: false
