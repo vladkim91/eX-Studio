@@ -9,18 +9,23 @@ const mapStateToProps = ({ workoutAndExercisesState }) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchWorkoutsAndExercises: () => dispatch(LoadWorkoutsAndExercises())
+    fetchWorkoutsAndExercises: (type, name, muscleGroup) => dispatch(LoadWorkoutsAndExercises(type, name, muscleGroup))
   };
 };
 
 
 const Browse = ({workoutsAndExercisesState, fetchWorkoutsAndExercises}) => {
+  const state = {
+    type : 'exercises',
+    name : 'Kettlebell',
+    muscleGroup: 'fb'
+  }
   useEffect(() => {
-    fetchWorkoutsAndExercises();
+    fetchWorkoutsAndExercises(state.type, state.name, state.muscleGroup);
   }, [])
   const workoutsAndExercises = workoutsAndExercisesState
   console.log(workoutsAndExercises)
   return <div></div>;
 };
 
-export default connect_timeout(mapStateToProps, mapDispatchToProps)(Browse);
+export default connect(mapStateToProps, mapDispatchToProps)(Browse);

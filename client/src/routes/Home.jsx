@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import Nav from '../components/Nav';
 import Main from '../components/Main';
+import Browse from './Browse';
 import SideBar from '../components/SideBar';
 import { connect } from 'react-redux';
 import { GetUserProfile } from '../store/actions/ProfileActions';
@@ -27,7 +28,8 @@ function Home(props) {
       <SideBar />
       <div className="mainBody">
         <Nav {...props} />
-        <Main {...props} />
+        {/* <Main {...props} /> */}
+        <Browse />
       </div>
     </div>
   );
