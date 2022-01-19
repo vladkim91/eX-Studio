@@ -50,6 +50,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false
       },
+      rest: {
+        type: DataTypes.STRING,
+        defaultValue: 30
+      },
       image: DataTypes.STRING,
       sets: {
         type: DataTypes.INTEGER,
