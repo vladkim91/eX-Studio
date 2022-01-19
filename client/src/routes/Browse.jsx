@@ -1,32 +1,69 @@
-import React from 'react'
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 import Nav from '../components/Nav'
 import SideBar from '../components/SideBar'
-
-function Browse() {
-    let parts = ["All", "Back", "Chest", "Leg","Triceps"]
-    let partBox = []
-    for (let i = 0; i < parts.length; i++) {
-        partBox.push(
-            <button id={""}>{parts[i]}</button>
-        )
-        
-    }
+import {
+  LoadWorkoutsAndExercises,
+  EditFilterParams
+} from '../store/actions/BrowseActions';
 
 
+const mapStateToProps = (state) => {
+  return {
+    workoutAndExercisesState: state.workoutAndExercisesState
+  };
+};
 
-    let box2 = []
-    for (let i = 1; i <= 20; i++) {
-        box2.push(
-            <div className="b-2c-card card">
-            <img src={require('../assets/img/Saturday.jpg')} alt="" />
-            <div className="blur"></div>
-            <h1 className="b-3c-name">workout 2</h1>
-        </div>
-        )
-        
-    }
-    return (
-        <div className='home'>
+const mapActionsToProps = (dispatch) => {
+  return {
+    fetchWorkoutsAndExercises: (type, name, muscleGroup) =>
+      dispatch(LoadWorkoutsAndExercises(type, name, muscleGroup)),
+    editFilterParams: (filter, value) =>
+      dispatch(EditFilterParams(filter, value))
+  };
+};
+
+const Browse = ({
+  fetchWorkoutsAndExercises,
+  workoutAndExercisesState,
+  editFilterParams
+}) => {
+  useEffect(() => {
+    fetchWorkoutsAndExercises(
+      workoutAndExercisesState.filter.type,
+      workoutAndExercisesState.filter.name,
+      workoutAndExercisesState.filter.muscleGroup
+    );
+  }, []);
+  const clickHandler = () => {
+    editFilterParams('muscleGroup', 'ch');
+  };
+  let parts = ["All", "Back", "Chest", "Leg","Triceps"]
+  let partBox = []
+  for (let i = 0; i < parts.length; i++) {
+      partBox.push(
+          <button id={""}>{parts[i]}</button>
+      )
+      
+  }
+
+
+
+  let box2 = []
+  for (let i = 1; i <= 20; i++) {
+      box2.push(
+          <div className="b-2c-card card">
+          <img src={require('../assets/img/Saturday.jpg')} alt="" />
+          <div className="blur"></div>
+          <h1 className="b-3c-name">workout 2</h1>
+      </div>
+      )
+  }
+  return (
+    // <div>
+    //   <button onClick={clickHandler}>Update filter params state</button>
+    // </div>
+    <div className='home'>
             <SideBar />
             <div className="mainBody">
                 <Nav />
@@ -53,7 +90,9 @@ function Browse() {
             </div>
             
         </div>
-    )
-}
+  );
+};
 
-export default Browse
+
+export default connect(mapStateToProps, mapActionsToProps)(Browse);
+

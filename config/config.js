@@ -4,8 +4,6 @@ module.exports = {
   development: {
     database: 'ex_studio_development',
     host: '127.0.0.1',
-    username: "postgres",
-    password: "Luffy1999",
     dialect: 'postgres'
   },
   test: {
