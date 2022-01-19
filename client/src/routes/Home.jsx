@@ -29,8 +29,7 @@ function Home(props) {
       <SideBar />
       <div className="mainBody">
         <Nav {...props} />
-        {/* <Main {...props} /> */}
-        <Browse />
+        <Main {...props} />
       </div>
     </div>
   );
