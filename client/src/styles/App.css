@@ -856,3 +856,90 @@ form {
 .t-l-a-child:last-child {
   border-radius: 0 0 13px 13px;
 }
+
+
+
+.browse-container{
+  width: 70vw;
+  margin: 2em auto;
+}
+.b-c-seperator{
+  height: 5px;
+  width: 100%;
+  background: #000;
+}
+.b-c-cards{
+  display: flex;
+  flex-wrap: wrap;
+  margin: 2em auto;
+  width: 90%;
+}
+
+
+.b-2c-card img{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit ;
+}
+.b-2c-card{
+  min-height: 125px;
+  width: 250px;
+}
+.subnav{
+  /* width: 60vw; */
+  margin: 2em auto;
+  text-align: center;
+  border-bottom: 3px solid;
+}
+.subnav input{
+  border-radius: 1em;
+  padding: .2em .5em;
+  border: 0.2px solid;
+  width: 50%;
+  outline: none;
+}
+
+.s-filters{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 1em auto;
+}
+.s-f-seperator{
+  width:.25em;
+  max-height: 1em;
+display: flex;
+align-items: center;
+background: #000;
+}
+.s-filters button{
+  border: none;
+  background: #868686;
+  color: #fff;
+  padding: .5em ;
+  margin: .5em;
+  border-radius: 1em;
+  font-size: .7em;
+}
+#s-f1-selected, #s-f2-selected{
+  background: #395FAA;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

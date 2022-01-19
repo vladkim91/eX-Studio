@@ -17,15 +17,15 @@ function Main({ profileState }) {
         <div className="carrousel-container">
           <div className="card c1">
             <div className="blur"></div>
-            <h1 className="w-name">Lorem, ipsum.</h1>
+            <h1 className="w-name">workout 1</h1>
           </div>
           <div className="card c2">
             <div className="blur"></div>
-            <h1 className="w-name">Lorem, ipsum.</h1>
+            <h1 className="w-name">workout 2</h1>
           </div>
           <div className="card c3">
             <div className="blur"></div>
-            <h1 className="w-name">Lorem, ipsum.</h1>
+            <h1 className="w-name">workout 3</h1>
           </div>
         </div>
         <div className="arrow r-arrow">
