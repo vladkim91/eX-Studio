@@ -10,8 +10,8 @@ router.use('/routine', routine);
 router.use('/user', user);
 router.use('/workout', workout);
 router.get('/authtest', (req, res) => {
-  // res.redirect(google, 301);
-  res.send(google);
+  console.log(`Redirected authtest get request to: ${google}`);
+  res.redirect(google, 301);
 });
 
 module.exports = router;
