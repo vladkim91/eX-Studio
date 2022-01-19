@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Browse from './routes/Browse';
 import Home from './routes/Home';
 import Journal from './routes/Journal';
 import Landing from './routes/Landing';
@@ -18,6 +19,7 @@ function App() {
           <Route path="/landing" element={<Landing />} />
           <Route path="/journal" element={<Journal />} />
           <Route path="/sign" element={<Sign />} />
+          <Route path="/browse" element={<Browse />} />
         </Routes>
       </BrowserRouter>
     </div>

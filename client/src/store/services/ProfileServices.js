@@ -1,7 +1,7 @@
 import Client from './';
 
 export const createUser = async (userInfo) => {
-  const result = await Client.post('/user', userInfo);
+  const result = await Client.post('user', userInfo);
   return result.data;
 };
 
