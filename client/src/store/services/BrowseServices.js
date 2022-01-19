@@ -7,7 +7,7 @@ export const getWorkoutsAndExercises = async (type, name, muscleGroup) => {
   return result.data;
 };
 
-export const setFilterParams = async (filter) => {
-  const result = await Client.put(`filter/`, filter);
+export const editFilterParams = async (filter, value) => {
+  const result = await Client.put(`/`, filter, value);
   return result.data;
 };

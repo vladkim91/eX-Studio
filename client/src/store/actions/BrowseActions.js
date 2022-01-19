@@ -1,6 +1,9 @@
-import { GET_WORKOUTS_AND_EXERCISES } from '../types';
+import { EDIT_FILTER_PARAMS, GET_WORKOUTS_AND_EXERCISES } from '../types';
 
-import { getWorkoutsAndExercises } from '../services/BrowseServices';
+import {
+  getWorkoutsAndExercises,
+  editFilterParams
+} from '../services/BrowseServices';
 
 export const LoadWorkoutsAndExercises = (type, name, muscleGroup) => {
   return async (dispatch) => {
@@ -16,4 +19,16 @@ export const LoadWorkoutsAndExercises = (type, name, muscleGroup) => {
   };
 };
 
-// export const
+export const EditFilterParams = (filter, value) => {
+  return async (dispatch) => {
+    await editFilterParams(filter, value);
+
+    dispatch({
+      type: EDIT_FILTER_PARAMS,
+      payload: {
+        filter,
+        value
+      }
+    });
+  };
+};
