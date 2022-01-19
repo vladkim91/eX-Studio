@@ -1,7 +1,14 @@
 const { Exercise, Workout } = require('../models');
+const { Op } = require('sequelize');
+const { search } = require('../routes/exercise');
 
 const getAllExercises = async (req, res) => {
-  const result = await Exercise.findAll({});
+  const result = await Exercise.findAll({
+    where: {
+      id: [1, 2]
+    }
+  });
+
   res.status(200).send(result);
 };
 
@@ -12,42 +19,79 @@ const getExerciseById = async (req, res) => {
 };
 
 const getExercisesAndWorkoutsByMuscleGroup = async (req, res) => {
-  const searchQuery = req.query.name;
-  const muscleGroup = req.query.muscle_group.split(' ');
+  let searchQuery;
+  let muscleGroup;
+  // if no name is search query
+  if (req.query.name) {
+    searchQuery = req.query.name;
+  } else {
+    searchQuery = '';
+  }
+  if (req.query.muscle_group) {
+    muscleGroup = req.query.muscle_group.split(' ');
+    console.log(muscleGroup, 'if one or more muscles', muscleGroup.length);
+  } else {
+    muscleGroup = '';
+    console.log(muscleGroup, 'if no muscle groups');
+  }
+
+  // const muscleGroup = req.query.muscle_group.split(' ');
   const type = req.query.type;
 
   if (type === 'exercises') {
-    const result = await Exercise.findAll({
+    const exercises = await Exercise.findAll({
+      raw: true,
       where: {
-        muscle_group: muscleGroup
+        name: {
+          [Op.like]: `%${searchQuery}%`
+        }
       }
     });
-    res.status(200).send(result);
-  } else if (type === 'workouts') {
-    const workouts = await Workout.findAll({
-      raw: true
-    });
-    const arraysOfMuscleGroups = workouts.map((workout, i) => {
-      return { muscleGroups: workout.muscle_groups.split(' '), workout };
-    });
-    console.log(muscleGroup);
-    // console.log(arraysOfMuscleGroups);
+    if (req.query.muscle_group) {
+      const arraysOfMuscleGroups = exercises.map((exercise, i) => {
+        return { muscleGroup: [exercise.muscle_group], exercise };
+      });
 
-    const filteredArray = arraysOfMuscleGroups.filter((workout, i) => {
-      return workout.muscleGroups.some((muscle_group, ind) => {
-        return muscleGroup.some((muscleGroup, index) => {
-          return muscle_group === muscleGroup;
+      const filteredArray = arraysOfMuscleGroups.filter((exercise, i) => {
+        console.log(exercise);
+        return exercise.muscleGroup.some((muscle_group, ind) => {
+          return muscleGroup.some((muscleGroup, index) => {
+            return muscle_group === muscleGroup;
+          });
         });
       });
-    });
-    console.log(filteredArray);
-    // const idsArray = filteredArray.workout.map((id, i) => id.id);
-    // console.log(idsArray);
 
-    const filteredWorkouts = await Workout.findAll({
-      where: {}
+      res.status(200).send(filteredArray.map((e) => e.exercise));
+    } else {
+      res.status(200).send(exercises);
+    }
+  } else if (type === 'workouts') {
+    const workouts = await Workout.findAll({
+      raw: true,
+      where: {
+        name: {
+          [Op.like]: `%${searchQuery}%`
+        }
+      }
     });
-    res.status(200).send(filteredArray.map((e) => e.workout));
+
+    if (req.query.muscle_group) {
+      const arraysOfMuscleGroups = workouts.map((workout, i) => {
+        return { muscleGroups: workout.muscle_groups.split(' '), workout };
+      });
+
+      const filteredArray = arraysOfMuscleGroups.filter((workout, i) => {
+        return workout.muscleGroups.some((muscle_group, ind) => {
+          return muscleGroup.some((muscleGroup, index) => {
+            return muscle_group === muscleGroup;
+          });
+        });
+      });
+
+      res.status(200).send(filteredArray.map((e) => e.workout));
+    } else {
+      res.status(200).send(workouts);
+    }
   }
 };
 module.exports = {
