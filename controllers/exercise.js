@@ -29,10 +29,8 @@ const getExercisesAndWorkoutsByMuscleGroup = async (req, res) => {
   }
   if (req.query.muscle_group) {
     muscleGroup = req.query.muscle_group.split(' ');
-    console.log(muscleGroup, 'if one or more muscles', muscleGroup.length);
   } else {
     muscleGroup = '';
-    console.log(muscleGroup, 'if no muscle groups');
   }
 
   // const muscleGroup = req.query.muscle_group.split(' ');
