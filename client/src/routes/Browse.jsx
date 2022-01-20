@@ -168,7 +168,6 @@ const Browse = ({
       className="b-2c-card card"
       onClick={() => {
         popClick();
-        // setCurrentWorkout(e.id);
         editScheduleWorkout(userInfo.id, e.id, dayOfTheWeek);
       }}
     >
