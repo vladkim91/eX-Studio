@@ -8,7 +8,9 @@
   padding: 0;
   font-family: 'Ethno';
 }
-:root{--child:5}
+:root {
+  --child: 5;
+}
 
 .App,
 .home {
@@ -59,14 +61,16 @@ header a:hover {
   transition: linear 0.1s;
   background: #3d51d6;
 }
-a{
+a {
   text-decoration: none;
   cursor: pointer;
 }
 a:visited {
   color: #fff;
 }
-button{cursor: pointer;}
+button {
+  cursor: pointer;
+}
 
 .banner {
   position: relative;
@@ -142,7 +146,6 @@ button{cursor: pointer;}
 #side-content {
   min-height: 90vh;
   color: #fff;
-
 }
 
 .hide {
@@ -775,8 +778,7 @@ form {
   box-shadow: none;
 }
 
-
-.training{
+.training {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -784,47 +786,46 @@ form {
   align-content: center;
   min-height: 80vh;
 }
-.training h1{
+.training h1 {
   font-size: 3em;
 }
-.t-timer{
+.t-timer {
   font-size: 3em;
 }
-.training > *{
+.training > * {
   margin: auto;
 }
 
-.training button{
+.training button {
   margin: auto;
   border: none;
   color: #fff;
 }
-.t-options{
-  background: #B51E1E;
+.t-options {
+  background: #b51e1e;
   color: #fff;
   font-size: 3em;
   min-width: 6em;
   min-height: 6em;
-  border-radius: 100%
+  border-radius: 100%;
 }
-.t-skip{
+.t-skip {
   background-color: #185488;
   color: #fff;
   font-size: 2em;
   min-width: 5em;
   min-height: 2em;
-  border-radius: 1em
+  border-radius: 1em;
 }
-.t-list{
+.t-list {
   width: 60%;
   margin: auto;
 }
-.t-l-info{
+.t-l-info {
   display: flex;
   margin: auto;
 }
-.t-l-array{
-  
+.t-l-array {
   margin: auto;
   box-shadow: 0 0 6px #888;
   border-radius: 13px;
@@ -844,15 +845,32 @@ form {
 
 .t-l-a-child:nth-child(2n) {
   background-color: #999;
-  
 }
 
 .t-l-a-child:nth-child(1) {
   opacity: 100%;
   border-radius: 13px 13px 0 0;
   background: #376ca7;
+  color: #fff;
+  box-shadow: 0 1 2 0 rgba(0, 0, 0, 1);
+}
+
+.t-l-a-child:nth-child(2) {
+  opacity: 100%;
+  background: #fff;
+  color: #000;
 }
 
 .t-l-a-child:last-child {
   border-radius: 0 0 13px 13px;
+}
+
+.t-l-a-c-triangle {
+  --triangle-size: 7px;
+  width: 0;
+  height: 0;
+  margin: 0 auto;
+  border-top: var(--triangle-size) solid transparent;
+  border-bottom: var(--triangle-size) solid transparent;
+  border-left: var(--triangle-size) solid #000;
 }

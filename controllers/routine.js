@@ -25,11 +25,13 @@ const getRoutineByUser = async (req, res) => {
               'time',
               'reps',
               'weight',
+              'rest',
               'typeof',
               'description'
             ],
             model: Exercise,
-            as: 'exercises'
+            through: { attributes: [] },
+            as: 'added_exercises'
           }
         }
       }
