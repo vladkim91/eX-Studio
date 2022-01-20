@@ -8,7 +8,23 @@ const {
   Exercise
 } = require('../models');
 
-const createNewUser = async (req, res) => {};
+const createNewUser = async (req, res) => {
+  const user = await User.create({
+    username: req.body.username,
+    first_name: req.body.first_name,
+    last_name: req.body.last_name,
+    createdAt: new Date(),
+    updatedAt: new Date()
+  });
+
+  const newJournal = await Journal.create({
+    user_id: user.id,
+    createdAt: new Date(),
+    updatedAt: new Date()
+  });
+
+  res.status(201).send({ user, newJournal });
+};
 
 const getUserInfoById = async (req, res) => {
   const { userId } = req.params;
@@ -18,6 +34,7 @@ const getUserInfoById = async (req, res) => {
       id: userId
     }
   });
+
   res.status(200).send(user);
 };
 
