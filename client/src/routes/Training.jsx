@@ -63,6 +63,33 @@ const Training = ({
     return allExercises[currentExerciseIndex];
   };
 
+  const startCountdownTimer = (startingTime, callback) => {
+    let countdown = startingTime;
+    setCountdown(countdown);
+
+    let newInterval = setInterval(() => {
+      countdown--;
+      setCountdown(countdown);
+
+      if (!countdown) {
+        callback(newInterval);
+      }
+    }, 1000);
+
+    setCountdownInterval(newInterval);
+  };
+
+  const stopCountdownTimer = () => {
+    clearTimeout(countdownInterval);
+  };
+
+  const getCountdownFormatted = (seconds, section) => {
+    var date = new Date(0);
+    date.setSeconds(seconds);
+    var timeString = date.toISOString().substring(section, section + 2);
+    return timeString;
+  };
+
   const startNextExercise = (nextExerciseIndex) => {
     setCurrentExerciseIndex(nextExerciseIndex);
     const currentExercise = allExercises[nextExerciseIndex];
@@ -73,20 +100,10 @@ const Training = ({
     }
 
     if (currentExercise.time) {
-      let countdown = currentExercise.time;
-      setCountdown(countdown);
-
-      let newInterval = setInterval(() => {
-        countdown--;
-        setCountdown(countdown);
-
-        if (!countdown) {
-          startNextExercise(nextExerciseIndex + 1);
-          clearInterval(newInterval);
-        }
-      }, 1000);
-
-      setCountdownInterval(newInterval);
+      startCountdownTimer(currentExercise.time, (interval) => {
+        startNextExercise(nextExerciseIndex + 1);
+        clearInterval(interval);
+      });
     }
   };
 
@@ -95,12 +112,17 @@ const Training = ({
       <Nav />
       <div className="training">
         <h1>{allExercises[currentExerciseIndex]?.name || 'Workout Name'}</h1>
-        <span className="t-timer">
-          {!getCurrentExercise()
-            ? null
-            : getCurrentExercise().time
-            ? countdown
-            : `${getCurrentExercise().reps} reps`}
+        <span className={getCurrentExercise()?.time ? 't-timer' : 't-reps'}>
+          {!getCurrentExercise() ? (
+            '00:00'
+          ) : getCurrentExercise()?.time ? (
+            <>
+              <span>{getCountdownFormatted(countdown, 14)}</span>:
+              <span>{getCountdownFormatted(countdown, 17)}</span>
+            </>
+          ) : (
+            `${getCurrentExercise().reps} reps`
+          )}
         </span>
         <button
           className="t-options"
@@ -109,19 +131,32 @@ const Training = ({
               setWorkoutActive(true);
               startNextExercise(0);
             } else {
-              if (allExercises[currentExerciseIndex].time && countdown) {
-              } else if (allExercises[currentExerciseIndex].reps) {
+              if (allExercises[currentExerciseIndex]?.time && countdown) {
+                if (!countdownInterval) {
+                  startCountdownTimer(countdown, (interval) => {
+                    startNextExercise(currentExerciseIndex + 1);
+                    clearInterval(interval);
+                  });
+                } else {
+                  stopCountdownTimer();
+                  setCountdownInterval(null);
+                }
+              } else if (allExercises[currentExerciseIndex]?.reps) {
                 startNextExercise(currentExerciseIndex + 1);
               }
             }
           }}
         >
-          {!workoutActive
+          {!getCurrentExercise()
+            ? 'Finished'
+            : !workoutActive
             ? 'Start'
-            : allExercises[currentExerciseIndex].time
-            ? 'Pause'
-            : allExercises[currentExerciseIndex].reps
-            ? 'Done'
+            : allExercises[currentExerciseIndex]?.time
+            ? countdownInterval
+              ? 'Pause'
+              : 'Resume'
+            : allExercises[currentExerciseIndex]?.reps
+            ? 'Next'
             : ''}
         </button>
         <button
@@ -167,16 +202,26 @@ const Training = ({
                 </span>
                 <span className="t-l-a-c-text">
                   {allExercises[index + currentExerciseIndex]?.time
-                    ? `Time: ${
-                        allExercises[index + currentExerciseIndex]?.time
-                      }`
+                    ? `Time: ${`${getCountdownFormatted(
+                        allExercises[index + currentExerciseIndex]?.time,
+                        14
+                      )}:${getCountdownFormatted(
+                        allExercises[index + currentExerciseIndex]?.time,
+                        17
+                      )}`}`
                     : allExercises[index + currentExerciseIndex]?.reps
                     ? `Reps: ${
                         allExercises[index + currentExerciseIndex]?.reps
                       }`
                     : null}
                 </span>
-                <div className={index === 0 ? 't-l-a-c-triangle' : ''}></div>
+                <div
+                  className={
+                    index === 0 && currentExerciseIndex !== allExercises.length
+                      ? 't-l-a-c-triangle'
+                      : ''
+                  }
+                ></div>
               </div>
             ))}
           </div>

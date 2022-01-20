@@ -789,8 +789,16 @@ form {
 .training h1 {
   font-size: 3em;
 }
-.t-timer {
+.t-timer,
+.t-reps {
+  width: 6em;
   font-size: 3em;
+}
+.t-timer {
+  display: grid;
+  grid-template-columns: 1fr 20px 1fr;
+  justify-content: center;
+  width: 5em;
 }
 .training > * {
   margin: auto;
@@ -824,6 +832,10 @@ form {
 .t-l-info {
   display: flex;
   margin: auto;
+  font-size: 0.8em;
+}
+.t-l-info p:last-child {
+  margin-left: 1em;
 }
 .t-l-array {
   margin: auto;
@@ -873,4 +885,8 @@ form {
   border-top: var(--triangle-size) solid transparent;
   border-bottom: var(--triangle-size) solid transparent;
   border-left: var(--triangle-size) solid #000;
+}
+
+.t-l-a-c-text:nth-child(3) {
+  text-align: left;
 }
