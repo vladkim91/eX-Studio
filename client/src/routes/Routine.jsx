@@ -32,6 +32,7 @@ function Routine({ routine, getRoutineByUserId }) {
     'Friday',
     'Saturday'
   ];
+
   const [pop, SetPop] = useState('pophide');
   const [scheduledWorkout, setScheduledWorkout] = useState({});
 
