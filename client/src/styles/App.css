@@ -958,3 +958,6 @@ form {
 #s-f2-selected {
   background: #395faa;
 }
+.no-scroll {
+  overflow: hidden;
+}

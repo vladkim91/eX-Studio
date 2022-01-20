@@ -36,7 +36,7 @@ function Routine({ routine, getRoutineByUserId }) {
   const [scheduledWorkout, setScheduledWorkout] = useState({});
 
   const popClick = (scheduledWorkout) => {
-    if (pop == 'pophide') {
+    if (pop === 'pophide') {
       SetPop('');
       setScheduledWorkout(scheduledWorkout);
     } else {
