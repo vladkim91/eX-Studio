@@ -31,6 +31,7 @@ const Browse = ({
 }) => {
   const [pop, SetPop] = useState('pophide');
   const [body, setBody] = useState(null);
+  const [addDays, SetAddDays] = useState('date-h');
   const [showDesc, SetShowDesc] = useState(-1);
 
   useEffect(() => {
