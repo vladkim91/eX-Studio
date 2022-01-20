@@ -9,7 +9,7 @@ module.exports = {
         journal_id: 1,
         createdAt: new Date(),
         updatedAt: new Date(),
-        felt: 0
+        felt: 4
       },
       {
         title: 'WELCOME TO EX STUDIO',
@@ -19,7 +19,7 @@ module.exports = {
         journal_id: 1,
         createdAt: new Date(),
         updatedAt: new Date(),
-        felt: 0
+        felt: 4
       }
     ];
 

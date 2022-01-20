@@ -31,17 +31,17 @@ const createNewUser = async (req, res) => {
     updatedAt: new Date()
   });
 
-  // const welcomeNote = await Note.create({
-  //   journal_id: newJournal.id,
-  //   title: `WELCOME TO EX STUDIO`,
-  //   text: `It's time to unlock your potential with Ex Studio.\n
-  //   This app is created for both beginners and veterans. Every feature of Ex Studio is designed to create a perfect exercise routine that fits your athletic needs. \n
-  //   Select from a list of customized workouts and build a body you always wanted`,
-  //   createdAt: new Date(),
-  //   updatedAt: new Date()
-  // });
-  // , welcomeNote
-  res.status(201).send({ user, newJournal, tutorialNote });
+  const welcomeNote = await Note.create({
+    journal_id: newJournal.id,
+    title: `WELCOME TO EX STUDIO`,
+    text: `It's time to unlock your potential with Ex Studio.\n
+    This app is created for both beginners and veterans. Every feature of Ex Studio is designed to create a perfect exercise routine that fits your athletic needs. \n
+    Select from a list of customized workouts and build a body you always wanted`,
+    createdAt: new Date(),
+    updatedAt: new Date()
+  });
+
+  res.status(201).send({ user, newJournal, tutorialNote, welcomeNote });
 };
 
 const getUserInfoById = async (req, res) => {
