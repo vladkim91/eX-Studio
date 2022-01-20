@@ -21,7 +21,6 @@ const mapActionsToProps = (dispatch) => {
 function Home(props) {
   useEffect(() => {
     props.getUserProfile(1);
-    console.log(props.profileState)
   }, []);
 
   return (

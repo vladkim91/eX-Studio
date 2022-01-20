@@ -40,7 +40,7 @@ const getExercisesAndWorkoutsByMuscleGroup = async (req, res) => {
       raw: true,
       where: {
         name: {
-          [Op.like]: `%${searchQuery}%`
+          [Op.iLike]: `%${searchQuery}%`
         }
       }
     });
@@ -65,10 +65,16 @@ const getExercisesAndWorkoutsByMuscleGroup = async (req, res) => {
   } else if (type === 'workouts') {
     const workouts = await Workout.findAll({
       raw: true,
+      nest: true,
       where: {
         name: {
-          [Op.like]: `%${searchQuery}%`
+          [Op.iLike]: `%${searchQuery}%`
         }
+      },
+      include: {
+        model: Exercise,
+        through: { attributes: [] },
+        as: 'added_exercises'
       }
     });
 
