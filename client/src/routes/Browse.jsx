@@ -31,6 +31,8 @@ const Browse = ({
 }) => {
   const [pop, SetPop] = useState('pophide');
   const [body, setBody] = useState(null);
+  const [addDays, SetAddDays] = useState('date-h');
+  const [showDesc, SetShowDesc] = useState(-1);
 
   useEffect(() => {
     fetchWorkoutsAndExercises(
@@ -75,7 +77,7 @@ const Browse = ({
 
   const popClick = () => {
     if (pop === 'pophide') {
-      SetPop('');
+      SetPop('b-pop-show');
       if (body) {
         body.style.overflow = 'hidden';
       }
@@ -86,6 +88,15 @@ const Browse = ({
       }
     }
   };
+
+  const addRoutine = () =>{
+    if (addDays === 'date-h') {
+        SetAddDays('date-s')
+    } else {
+        SetAddDays('date-h')
+    }
+  }
+
 
   let parts = [
     { fullName: 'All', acronym: 'bk ch lg tc sh fb ab bc ' },
@@ -155,6 +166,23 @@ const Browse = ({
       <h1 className="b-3c-name">{e.name}</h1>
     </div>
   ));
+  let box = []
+  for (let i = 0; i < 20; i++) {
+      box.push(
+        <div
+        key={i}
+        className="b-2c-card card"
+        onClick={() => {
+          popClick();
+        }}
+      >
+        <img src={require('../assets/img/Saturday.jpg')} alt="" />
+        <div className="blur"></div>
+        <h1 className="b-3c-name">workout</h1>
+      </div>
+      )
+      
+  }
 
   return (
     <div className="home">
@@ -209,40 +237,59 @@ const Browse = ({
         <div className="browse-container">
           <h2>Exercise</h2>
           <div className="b-c-seperator"></div>
-          <div className="b-c-cards">{workoutsOrExercises}</div>
+          <div className="b-c-cards">{box}</div>
         </div>
       </div>
-      <section className={`popUp ${pop}`}>
-        <div className="popCard">
+      <section className={`b-pop ${pop}`}>
+      <div className="b-pop-card">
           <div className="popInfo">
-            <div className="r-l-day">
-              <h1>Tuesday</h1>
+            <div className="b-p-c-set">
+                <span className='b-p-c-add' onClick={()=>addRoutine()}>Add routine</span>
+              <h1>bicep reinforcement</h1>
             </div>
-            <>
-              <div className="r-l-title">
-                <h1>Exercise</h1>
-              </div>
-              <div className="r-l-divider"></div>
-              <div className="r-l-arr">
+            <div className={`b-p-c-days ${addDays}`}>
+                <div className='choose-days'>
+                <span className="b-p-c-d-small">Sunday</span>
+                <span className="b-p-c-d-small">Monday</span>
+                <span className="b-p-c-d-small">Tuesday</span>
+                <span className="b-p-c-d-small">Wednesday</span>
+                <span className="b-p-c-d-small">Thursday</span>
+                <span className="b-p-c-d-small">Friday</span>
+                <span className="b-p-c-d-small">Saturday</span>
+                </div>
+                <div className='confirm-routine'>Confirm</div>
+            </div>
+
+              <div className="b-l-arr">
                 {[...Array(5)].map((exercise, index) => (
-                  <div key={index} className="r-l-ex">
-                    <span className="r-l-ex-num">{index + 1}.</span>
-                    <p className="r-l-ex-name">{exercise?.name}</p>
-                    <span className="r-l-time">02:00</span>
+                  <div key={index} className="b-l-ex" onClick={
+                      ()=>{
+                    //   displayDesc()
+                      if (showDesc === index) {
+                          SetShowDesc(-1)
+                      }else{
+                          SetShowDesc(index)
+                      }
+                      
+                      }}>
+                    <div className='b-l-ex-info' >
+                    <span className="b-l-ex-num" >
+                        {index + 1}.</span>
+                    <p className="b-l-ex-name">thgerg</p>
+                    <span className="b-l-time">02:00</span>
                   </div>
+                  <div className={`b-l-ex-desc ${showDesc===index?"desc-s":"desc-h"}`}>
+                  A military press, also known as an overhead press and a shoulder press, is a barbell strength training exercise that works muscle groups in the upper body like the triceps in your arms, the trapezius muscles in your upper back, and the deltoid muscles in your shoulders, including the anterior and medial delts.
+                  </div>
+                  </div>
+                  
                 ))}
               </div>
-            </>
             <Link className="r-l-start-bttn" to="/">
               Start
             </Link>
           </div>
-          <div
-            className="close"
-            onClick={() => {
-              popClick();
-            }}
-          >
+          <div className="close" onClick={() => {popClick();}}>
             <img src={Close} alt="" />
           </div>
         </div>
