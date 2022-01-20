@@ -11,7 +11,7 @@ import {
 } from '../store/actions/BrowseActions';
 
 import { Link } from 'react-router-dom';
-import e from 'cors';
+
 
 const mapStateToProps = (state) => {
   return {
@@ -46,6 +46,7 @@ const Browse = ({
   const [showDesc, SetShowDesc] = useState(-1);
 
   const [currentWorkout, setCurrentWorkout] = useState(null);
+  const [currentExercise, setCurrentExercise] = useState(null)
   useEffect(() => {
     fetchWorkoutsAndExercises(
       workoutAndExercisesState.filter.type,
@@ -178,6 +179,8 @@ const Browse = ({
         if (workoutAndExercisesState.filter.type === 'workouts') {
           setCurrentWorkout(e);
           editScheduleWorkout(userInfo.id, e.id, dayOfTheWeek);
+        } else {
+          setCurrentExercise(e)
         }
       }}
     >
@@ -273,8 +276,8 @@ const Browse = ({
                     Add to routine
                   </span>
                 ) : null}
-                <h1>{currentWorkout.name}</h1>
-              </div>
+                {workoutAndExercisesState.filter.type === 'workouts' ? <h1>{currentWorkout.name}</h1>: <h1>{currentExercise.name}</h1>}
+                         </div>
               <div className={`b-p-c-days ${addDays}`}>
                 <div className="choose-days">
                   <span className="b-p-c-d-small">Sunday</span>
@@ -315,7 +318,7 @@ const Browse = ({
                         {exercise.time ? (
                           <span className="b-l-time">{exercise.time} sec</span>
                         ) : (
-                          <span className="b-l-time">{exercise.reps} reps</span>
+                          <span className="b-l-time">{exercise.sets} sets</span>
                         )}
                       </div>
                       <div
@@ -329,7 +332,10 @@ const Browse = ({
                   ))}
                 </div>
               ) : (
-                'something'
+                <div>
+                  <img src={currentExercise.image} alt="" />
+                  {currentExercise.description}</div>
+
               )}
               <Link className="r-l-start-bttn" to="/">
                 Start
