@@ -2,5 +2,6 @@ const router = require('express').Router();
 const controller = require('../controllers/routine');
 
 router.get('/:userId', controller.getRoutineByUser);
+router.post('/schedule_workout', controller.scheduleWorkout);
 
 module.exports = router;

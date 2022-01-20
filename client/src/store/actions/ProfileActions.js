@@ -10,7 +10,8 @@ import {
   SET_CREATING_NEW_NOTE,
   RESET_NOTE_CREATION,
   SET_SELECTED_NOTE,
-  SHIFT_PAGE
+  SHIFT_PAGE,
+  REQUEST_AUTH
 } from '../types';
 import {
   getUserProfile,
@@ -23,6 +24,7 @@ import {
   editNoteById,
   getJournalByUser
 } from '../services/JournalServices';
+import { requestGOAuth } from '../services/AuthServices';
 
 export const GetUserProfile = (userId) => {
   return async (dispatch) => {
@@ -132,5 +134,17 @@ export const ShiftPage = (direction) => {
   return {
     type: SHIFT_PAGE,
     payload: direction
+  };
+};
+
+export const RequestAuth = () => {
+  return async (dispatch) => {
+    const result = await requestGOAuth();
+    console.log(result);
+
+    dispatch({
+      type: RequestAuth,
+      payload: 'nothing'
+    });
   };
 };

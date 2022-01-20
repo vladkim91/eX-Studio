@@ -6,3 +6,8 @@ export const getWorkoutsAndExercises = async (type, name, muscleGroup) => {
   );
   return result.data;
 };
+
+export const scheduleWorkout = async (scheduleWorkout) => {
+  const result = await Client.post(`routine/schedule_workout`, scheduleWorkout);
+  return result.data;
+};
