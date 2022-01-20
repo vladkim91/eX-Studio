@@ -13,7 +13,7 @@ module.exports = {
         allowNull: false
       },
       text: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(1000)
       },
       felt: {
         type: Sequelize.INTEGER
