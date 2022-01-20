@@ -19,16 +19,11 @@ export const LoadWorkoutsAndExercises = (type, name, muscleGroup) => {
   };
 };
 
-export const EditFilterParams = (filter, value) => {
+export const EditFilterParams = (newFilter) => {
   return async (dispatch) => {
-    await editFilterParams(filter, value);
-
     dispatch({
       type: EDIT_FILTER_PARAMS,
-      payload: {
-        filter,
-        value
-      }
+      payload: newFilter
     });
   };
 };

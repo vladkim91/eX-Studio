@@ -47,9 +47,30 @@ const Browse = ({
     return () => {
       document.body.style.overflow = 'initial';
     };
-  }, []);
-  const clickHandler = () => {
-    editFilterParams('muscleGroup', 'ch');
+  }, [workoutAndExercisesState.filter]);
+
+  const addMuscleGroup = (muscleGroup) => {
+    editFilterParams({
+      ...workoutAndExercisesState.filter,
+      muscleGroup: workoutAndExercisesState.filter.muscleGroup + muscleGroup
+    });
+  };
+
+  const removeMuscleGroup = (muscleGroup) => {
+    editFilterParams({
+      ...workoutAndExercisesState.filter,
+      muscleGroup: workoutAndExercisesState.filter.muscleGroup.replace(
+        muscleGroup,
+        ''
+      )
+    });
+  };
+
+  const setFilterName = (newName) => {
+    editFilterParams({
+      ...workoutAndExercisesState.filter,
+      name: newName
+    });
   };
 
   const popClick = () => {
@@ -66,41 +87,120 @@ const Browse = ({
     }
   };
 
-  let parts = ['All', 'Back', 'Chest', 'Leg', 'Triceps'];
+  let parts = [
+    { fullName: 'All', acronym: 'bk ch lg tc sh fb ab bc ' },
+    { fullName: 'Back', acronym: 'bk ' },
+    { fullName: 'Chest', acronym: 'ch ' },
+    { fullName: 'Leg', acronym: 'lg ' },
+    { fullName: 'Tricep', acronym: 'tc ' },
+    { fullName: 'Shoulder', acronym: 'sh ' },
+    { fullName: 'FullBody', acronym: 'fb ' },
+    { fullName: 'Abs', acronym: 'ab ' },
+    { fullName: 'Bicep', acronym: 'bc ' }
+  ];
   let partBox = [];
   for (let i = 0; i < parts.length; i++) {
-    partBox.push(<button id={''}>{parts[i]}</button>);
-  }
-
-  let box2 = [];
-  for (let i = 1; i <= 20; i++) {
-    box2.push(
-      <div
-        className="b-2c-card card"
+    partBox.push(
+      <button
+        className={
+          workoutAndExercisesState.filter.muscleGroup.indexOf(
+            parts[i].acronym
+          ) !== -1 ||
+          workoutAndExercisesState.filter.muscleGroup.length ===
+            parts[0].acronym.length
+            ? 's-f1-selected'
+            : ''
+        }
+        key={i}
         onClick={() => {
-          popClick();
+          if (!i) {
+            if (workoutAndExercisesState.filter.muscleGroup.length) {
+              editFilterParams({
+                ...workoutAndExercisesState.filter,
+                muscleGroup: ''
+              });
+            } else {
+              editFilterParams({
+                ...workoutAndExercisesState.filter,
+                muscleGroup: parts[0].acronym
+              });
+            }
+          } else if (
+            workoutAndExercisesState.filter.muscleGroup.indexOf(
+              parts[i].acronym
+            ) !== -1
+          ) {
+            removeMuscleGroup(parts[i].acronym);
+          } else {
+            addMuscleGroup(parts[i].acronym);
+          }
         }}
       >
-        <img src={require('../assets/img/Saturday.jpg')} alt="" />
-        <div className="blur"></div>
-        <h1 className="b-3c-name">workout 2</h1>
-      </div>
+        {parts[i].fullName}
+      </button>
     );
   }
+
+  let workoutsOrExercises = workoutAndExercisesState.workoutsAndExercises || [];
+  workoutsOrExercises = workoutsOrExercises.map((e, index) => (
+    <div
+      key={index}
+      className="b-2c-card card"
+      onClick={() => {
+        popClick();
+      }}
+    >
+      <img src={require('../assets/img/Saturday.jpg')} alt="" />
+      <div className="blur"></div>
+      <h1 className="b-3c-name">{e.name}</h1>
+    </div>
+  ));
+
   return (
-    // <div>
-    //   <button onClick={clickHandler}>Update filter params state</button>
-    // </div>
     <div className="home">
       <SideBar />
       <div className="mainBody">
         <Nav />
         <div className="subnav">
-          <input type="text" placeholder="Search here" />
+          <input
+            type="text"
+            placeholder="Search here"
+            onChange={(e) => {
+              setFilterName(e.target.value.toLowerCase());
+            }}
+          />
           <div className="s-filters">
             <div className="s-f-types">
-              <button id="s-f1-selected">Exercise</button>
-              <button>Workout</button>
+              <button
+                className={
+                  workoutAndExercisesState.filter.type === 'workouts'
+                    ? 's-f1-selected'
+                    : ''
+                }
+                onClick={() => {
+                  editFilterParams({
+                    ...workoutAndExercisesState.filter,
+                    type: 'workouts'
+                  });
+                }}
+              >
+                Workout
+              </button>
+              <button
+                className={
+                  workoutAndExercisesState.filter.type === 'exercises'
+                    ? 's-f1-selected'
+                    : ''
+                }
+                onClick={() => {
+                  editFilterParams({
+                    ...workoutAndExercisesState.filter,
+                    type: 'exercises'
+                  });
+                }}
+              >
+                Exercise
+              </button>
             </div>
             <div className="s-f-seperator"></div>
             <div className="s-f-bodyParts">{partBox}</div>
@@ -109,7 +209,7 @@ const Browse = ({
         <div className="browse-container">
           <h2>Exercise</h2>
           <div className="b-c-seperator"></div>
-          <div className="b-c-cards">{box2}</div>
+          <div className="b-c-cards">{workoutsOrExercises}</div>
         </div>
       </div>
       <section className={`popUp ${pop}`}>
