@@ -1,4 +1,4 @@
-const { Workout, Exercise, ScheduledWorkout } = require('../models');
+const { Workout, Exercise } = require('../models');
 
 const getWorkoutById = async (req, res) => {
   const { workoutId } = req.params;
@@ -19,22 +19,6 @@ const getWorkoutById = async (req, res) => {
   res.status(200).send(workout);
 };
 
-const scheduleWorkout = async (req, res) => {
-  const routineId = req.query.routineId;
-  const dayOfTheWeek = req.query.dayOfTheWeek;
-  const workoutId = req.query.workoutId;
-
-  const scheduledWorkouts = await ScheduledWorkout.create({
-    routine_id: parseInt(routineId),
-    workout_id: parseInt(workoutId),
-    day: parseInt(dayOfTheWeek),
-    createdAt: new Date(),
-    updatedAt: new Date()
-  });
-
-  res.status(201).send(scheduledWorkouts);
-};
-
 const getWorkoutExercises = async (req, res) => {
   const { workoutId } = req.params;
   const workoutExercises = await Workout.findOne({
@@ -52,6 +36,5 @@ const getWorkoutExercises = async (req, res) => {
 
 module.exports = {
   getWorkoutById,
-  getWorkoutExercises,
-  scheduleWorkout
+  getWorkoutExercises
 };

@@ -46,7 +46,6 @@ const getExercisesAndWorkoutsByMuscleGroup = async (req, res) => {
       });
 
       const filteredArray = arraysOfMuscleGroups.filter((exercise, i) => {
-        console.log(exercise);
         return exercise.muscleGroup.some((muscle_group, ind) => {
           return muscleGroup.some((muscleGroup, index) => {
             return muscle_group === muscleGroup;
@@ -54,6 +53,7 @@ const getExercisesAndWorkoutsByMuscleGroup = async (req, res) => {
         });
       });
 
+      console.log(filteredArray.map((e) => e.exercise));
       res.status(200).send(filteredArray.map((e) => e.exercise));
     } else {
       res.status(200).send(exercises);
