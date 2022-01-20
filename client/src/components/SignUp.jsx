@@ -15,7 +15,7 @@ function SignUp({ requestAuth }) {
     <div className="signup">
       <div className="s-u-card">
         <h3>New here?</h3>
-        <h1>Join or sign in usign other services</h1>
+        <h1>Join or sign in using other services</h1>
         <div
           className="s-u-o o-google"
           onClick={() => {
