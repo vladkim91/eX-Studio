@@ -23,7 +23,23 @@ const createNewUser = async (req, res) => {
     updatedAt: new Date()
   });
 
-  res.status(201).send({ user, newJournal });
+  const welcomeNote = await Note.create({
+    journal_id: newJournal.id,
+    title: '',
+    text: '',
+    createdAt: new Date(),
+    updatedAt: new Date()
+  });
+
+  const tutorialNote = await Note.create({
+    journal_id: newJournal.id,
+    title: '',
+    text: '',
+    createdAt: new Date(),
+    updatedAt: new Date()
+  });
+
+  res.status(201).send({ user, newJournal, welcomeNote, tutorialNote });
 };
 
 const getUserInfoById = async (req, res) => {

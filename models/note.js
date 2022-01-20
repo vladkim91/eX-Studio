@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
   Note.init(
     {
       title: DataTypes.STRING,
-      text: DataTypes.STRING,
+      text: DataTypes.STRING(1000),
       felt: DataTypes.INTEGER,
       journal_id: {
         type: DataTypes.INTEGER,
