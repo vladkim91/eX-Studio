@@ -43,10 +43,9 @@ const Browse = ({
   const [body, setBody] = useState(null);
   const [addDays, SetAddDays] = useState('date-h');
   const [showDesc, SetShowDesc] = useState(-1);
-
   const [currentWorkout, setCurrentWorkout] = useState(null);
   const [currentExercise, setCurrentExercise] = useState(null);
-  const [chosenDay, setChosenDay] = useState(null)
+  const [currentDayAsInteger, setCurrentDayAsInteger] = useState(null);
   useEffect(() => {
     fetchWorkoutsAndExercises(
       workoutAndExercisesState.filter.type,
@@ -101,11 +100,11 @@ const Browse = ({
       }
     }
   };
-  const dayOfTheWeek = new Date().getDay();
 
   const addWorkoutToRoutine = () => {
-    scheduleWorkout(workoutAndExercisesState.schedule);
-
+    console.log(currentDayAsInteger);
+    editScheduleWorkout(userInfo.id, currentWorkout.id, currentDayAsInteger);
+    setTimeout(scheduleWorkout(workoutAndExercisesState.schedule), 5000)
   };
 
   const addRoutine = () => {
@@ -124,10 +123,49 @@ const Browse = ({
     'friday',
     'saturday'
   ];
-
   const chooseDay = (e) => {
-    setChosenDay(e.target.innerText)
-    console.log(e)  }
+   
+       switch (e.target.innerText) {
+      case 'sunday':
+        setCurrentDayAsInteger(0);
+        break;
+      case 'monday':
+        setCurrentDayAsInteger(1);
+        break;
+      case 'tuesday':
+        setCurrentDayAsInteger(2);
+        break;
+      case 'wednesday':
+        setCurrentDayAsInteger(3);
+        break;
+      case 'thursday':
+        setCurrentDayAsInteger(4);
+        break;
+      case 'friday':
+        setCurrentDayAsInteger(5);
+        break;
+      case 'saturday':
+        setCurrentDayAsInteger(6);
+        break;
+      default:
+        setCurrentDayAsInteger(12)
+    }
+
+  };
+
+  const daysArray = [];
+
+  for (let i = 0; i < days.length; i++) {
+    daysArray.push(
+      <span
+      
+        onClick={chooseDay}
+        key={i}
+      >
+        {days[i]}
+      </span>
+    );
+  }
 
   let parts = [
     { fullName: 'All', acronym: 'bk ch lg tc sh fb ab bc ' },
@@ -192,7 +230,6 @@ const Browse = ({
         popClick();
         if (workoutAndExercisesState.filter.type === 'workouts') {
           setCurrentWorkout(e);
-          editScheduleWorkout(userInfo.id, e.id, dayOfTheWeek);
         } else {
           setCurrentExercise(e);
         }
@@ -281,7 +318,9 @@ const Browse = ({
         </div>
       </div>
       <section className={`b-pop ${pop}`}>
-        {((workoutAndExercisesState.filter.type === 'workouts') ? currentWorkout : currentExercise) && (
+        {(workoutAndExercisesState.filter.type === 'workouts'
+          ? currentWorkout
+          : currentExercise) && (
           <div className="b-pop-card">
             <div className="popInfo">
               <div className="b-p-c-set">
@@ -297,19 +336,15 @@ const Browse = ({
                 )}
               </div>
               <div className={`b-p-c-days ${addDays}`}>
-                <div className="choose-days">
-                  {days.map((day, i) => (
-                    <span key={i}className="b-p-c-d-small" onClick={chooseDay}>{day}</span>
-                  ))}
-                </div>
-                <Link to="/routine">
+                <div className="choose-days">{daysArray}</div>
+                {/* <Link to="/routine"> */}
                   <div
                     className="confirm-routine"
                     onClick={addWorkoutToRoutine}
                   >
                     Confirm
                   </div>
-                </Link>
+                {/* </Link> */}
               </div>
               {workoutAndExercisesState.filter.type === 'workouts' ? (
                 <div className="b-l-arr">
