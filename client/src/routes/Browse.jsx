@@ -12,7 +12,6 @@ import {
 
 import { Link } from 'react-router-dom';
 
-
 const mapStateToProps = (state) => {
   return {
     workoutAndExercisesState: state.workoutAndExercisesState,
@@ -46,7 +45,8 @@ const Browse = ({
   const [showDesc, SetShowDesc] = useState(-1);
 
   const [currentWorkout, setCurrentWorkout] = useState(null);
-  const [currentExercise, setCurrentExercise] = useState(null)
+  const [currentExercise, setCurrentExercise] = useState(null);
+  const [chosenDay, setChosenDay] = useState(null)
   useEffect(() => {
     fetchWorkoutsAndExercises(
       workoutAndExercisesState.filter.type,
@@ -105,6 +105,7 @@ const Browse = ({
 
   const addWorkoutToRoutine = () => {
     scheduleWorkout(workoutAndExercisesState.schedule);
+
   };
 
   const addRoutine = () => {
@@ -114,6 +115,19 @@ const Browse = ({
       SetAddDays('date-h');
     }
   };
+  let days = [
+    'sunday',
+    'monday',
+    'tuesday',
+    'wednesday',
+    'thursday',
+    'friday',
+    'saturday'
+  ];
+
+  const chooseDay = (e) => {
+    setChosenDay(e.target.innerText)
+    console.log(e)  }
 
   let parts = [
     { fullName: 'All', acronym: 'bk ch lg tc sh fb ab bc ' },
@@ -180,7 +194,7 @@ const Browse = ({
           setCurrentWorkout(e);
           editScheduleWorkout(userInfo.id, e.id, dayOfTheWeek);
         } else {
-          setCurrentExercise(e)
+          setCurrentExercise(e);
         }
       }}
     >
@@ -267,7 +281,7 @@ const Browse = ({
         </div>
       </div>
       <section className={`b-pop ${pop}`}>
-        {currentWorkout && (
+        {((workoutAndExercisesState.filter.type === 'workouts') ? currentWorkout : currentExercise) && (
           <div className="b-pop-card">
             <div className="popInfo">
               <div className="b-p-c-set">
@@ -276,17 +290,17 @@ const Browse = ({
                     Add to routine
                   </span>
                 ) : null}
-                {workoutAndExercisesState.filter.type === 'workouts' ? <h1>{currentWorkout.name}</h1>: <h1>{currentExercise.name}</h1>}
-                         </div>
+                {workoutAndExercisesState.filter.type === 'workouts' ? (
+                  <h1>{currentWorkout.name}</h1>
+                ) : (
+                  <h1>{currentExercise.name}</h1>
+                )}
+              </div>
               <div className={`b-p-c-days ${addDays}`}>
                 <div className="choose-days">
-                  <span className="b-p-c-d-small">Sunday</span>
-                  <span className="b-p-c-d-small">Monday</span>
-                  <span className="b-p-c-d-small">Tuesday</span>
-                  <span className="b-p-c-d-small">Wednesday</span>
-                  <span className="b-p-c-d-small">Thursday</span>
-                  <span className="b-p-c-d-small">Friday</span>
-                  <span className="b-p-c-d-small">Saturday</span>
+                  {days.map((day, i) => (
+                    <span key={i}className="b-p-c-d-small" onClick={chooseDay}>{day}</span>
+                  ))}
                 </div>
                 <Link to="/routine">
                   <div
@@ -334,8 +348,8 @@ const Browse = ({
               ) : (
                 <div>
                   <img src={currentExercise.image} alt="" />
-                  {currentExercise.description}</div>
-
+                  {currentExercise.description}
+                </div>
               )}
               <Link className="r-l-start-bttn" to="/">
                 Start
