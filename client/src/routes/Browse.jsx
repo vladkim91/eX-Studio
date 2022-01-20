@@ -7,26 +7,29 @@ import {
   LoadWorkoutsAndExercises,
   EditFilterParams,
   ScheduleWorkout,
-  
+  EditScheduleWorkout,
+
 } from '../store/actions/BrowseActions';
 
 import { Link } from 'react-router-dom';
 
 const mapStateToProps = (state) => {
   return {
-    workoutAndExercisesState: state.workoutAndExercisesState, userInfo: state.profileState.userInfo
+    workoutAndExercisesState: state.workoutAndExercisesState,
+    userInfo: state.profileState.userInfo
   };
 };
 
 const mapActionsToProps = (dispatch) => {
   return {
-    scheduleWorkout: (userId, workoutId, day) => dispatch(ScheduleWorkout(userId, workoutId, day))
-    ,
+    editScheduleWorkout: (userId, workoutId, day) =>
+      dispatch(EditScheduleWorkout(userId, workoutId, day)),
     fetchWorkoutsAndExercises: (type, name, muscleGroup) =>
       dispatch(LoadWorkoutsAndExercises(type, name, muscleGroup)),
     editFilterParams: (filter, value) =>
       dispatch(EditFilterParams(filter, value)),
-      
+    scheduleWorkout: (newSchedule) =>
+      dispatch(ScheduleWorkout(newSchedule))
   };
 };
 
@@ -35,12 +38,13 @@ const Browse = ({
   workoutAndExercisesState,
   editFilterParams,
   userInfo,
-    scheduleWorkout
+  scheduleWorkout,
+  editScheduleWorkout
 }) => {
   const [pop, SetPop] = useState('pophide');
   const [body, setBody] = useState(null);
 
-  const [currentWorkout, setCurrentWorkout] = useState(null)
+  const [currentWorkout, setCurrentWorkout] = useState(null);
   useEffect(() => {
     fetchWorkoutsAndExercises(
       workoutAndExercisesState.filter.type,
@@ -57,8 +61,6 @@ const Browse = ({
       document.body.style.overflow = 'initial';
     };
   }, [workoutAndExercisesState.filter]);
-
-
 
   const addMuscleGroup = (muscleGroup) => {
     editFilterParams({
@@ -97,14 +99,14 @@ const Browse = ({
       }
     }
   };
-    const dayOfTheWeek = new Date().getDay()
-  
-    const addWorkoutToRoutine =() => {
-      scheduleWorkout(userInfo.id,currentWorkout,dayOfTheWeek)
-     
-          
-    }
+  const dayOfTheWeek = new Date().getDay();
 
+  const addWorkoutToRoutine = () => {
+ 
+
+    scheduleWorkout(workoutAndExercisesState.schedule)
+  };
+ 
   let parts = [
     { fullName: 'All', acronym: 'bk ch lg tc sh fb ab bc ' },
     { fullName: 'Back', acronym: 'bk ' },
@@ -166,7 +168,8 @@ const Browse = ({
       className="b-2c-card card"
       onClick={() => {
         popClick();
-        setCurrentWorkout(e.id)
+        // setCurrentWorkout(e.id);
+        editScheduleWorkout(userInfo.id, e.id, dayOfTheWeek);
       }}
     >
       <img src={require('../assets/img/Saturday.jpg')} alt="" />
@@ -242,7 +245,11 @@ const Browse = ({
                 <h1>Exercise</h1>
               </div>
               <div className="r-l-divider"></div>
-              {workoutAndExercisesState.filter.type === 'workouts' ? <button onClick={addWorkoutToRoutine}>add workout to routine</button>:null}
+              {workoutAndExercisesState.filter.type === 'workouts' ? (
+                <button onClick={addWorkoutToRoutine}>
+                  add workout to routine
+                </button>
+              ) : null}
               <div className="r-l-arr">
                 {[...Array(5)].map((exercise, index) => (
                   <div key={index} className="r-l-ex">

@@ -50,6 +50,7 @@ const scheduleWorkout = async (req, res) => {
       id: userId
     }
   });
+  console.log(req.body);
 
   const scheduledWorkouts = await ScheduledWorkout.create({
     routine_id: parseInt(routine.id),
