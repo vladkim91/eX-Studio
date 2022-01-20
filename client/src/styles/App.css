@@ -891,6 +891,8 @@ form {
   text-align: left;
 }
 
+/* Browse Page css */
+
 .browse-container {
   width: 70vw;
   margin: 2em auto;
@@ -907,18 +909,18 @@ form {
   width: 90%;
 }
 
+.b-2c-card {
+  min-height: 125px;
+  width: 250px;
+  cursor: pointer;
+}
 .b-2c-card img {
   position: absolute;
   width: 100%;
   height: 100%;
   border-radius: inherit;
 }
-.b-2c-card {
-  min-height: 125px;
-  width: 250px;
-}
 .subnav {
-  /* width: 60vw; */
   margin: 2em auto;
   text-align: center;
   border-bottom: 3px solid;
@@ -961,3 +963,97 @@ button.s-f1-selected,
 .no-scroll {
   overflow: hidden;
 }
+
+
+.b-pop{
+  position: fixed;
+  height: 100vh;
+  margin: 0;
+  z-index: 5;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.6);
+
+}
+.b-pop-show{
+  display: flex;
+}
+.b-pop-card{
+  width: 40vw;
+  background: #fff;
+  margin: auto;
+  position: relative;
+}
+.b-p-c-set{
+  background: #376ca7;
+  color: #fff;
+  padding: 2em;
+  display: grid;
+  grid-template-columns: .7fr 4fr;
+  align-items: center;
+}
+.b-p-c-add{
+  font-size: .6em;
+  cursor: pointer;
+  background-color: #fff;
+  color: #376ca7;
+  border-radius: 1em;
+  padding: .5em 0;
+}
+.b-p-c-days{
+  background: #eee;
+}
+.choose-days{
+  display: flex;
+  flex-wrap: wrap;
+}
+.b-p-c-d-small{
+  background: #868686;
+  color: #fff;
+  border-radius: 1em;
+  padding: .5em;
+  font-size: .8em;
+  margin: 1em;
+}
+.confirm-routine{
+  background: #376ca7;
+  color: #fff;
+  border-radius: 1em;
+  padding: .5em;
+  font-size: .8em;
+  margin: 1em auto;
+  max-width: 10em;
+}
+.date-s{display: block;}
+.date-h{display: none;}
+
+.b-l-arr {
+  max-height: 40vh;
+  overflow-y: scroll;
+}
+
+.b-l-ex{
+  margin: 2em auto;
+}
+.b-l-ex-info{
+  width: 93%;
+  margin: auto;
+  border-bottom: 1px solid #000;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  justify-content: space-around;
+  cursor: pointer;
+}
+.b-l-ex-desc{
+  font-size: .7em;
+  background: #ddd;
+  padding: .5em 1em;
+  line-height: 2em;
+  text-align: justify;
+  width: 90%;
+  margin:  auto;
+}
+.desc-s{display: block;}
+.desc-h{display: none;}
