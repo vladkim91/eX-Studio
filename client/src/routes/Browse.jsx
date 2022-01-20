@@ -45,7 +45,7 @@ const Browse = ({
   const [showDesc, SetShowDesc] = useState(-1);
   const [currentWorkout, setCurrentWorkout] = useState(null);
   const [currentExercise, setCurrentExercise] = useState(null);
-  const [currentDayAsInteger, setCurrentDayAsInteger] = useState(null);
+
   useEffect(() => {
     fetchWorkoutsAndExercises(
       workoutAndExercisesState.filter.type,
@@ -102,9 +102,7 @@ const Browse = ({
   };
 
   const addWorkoutToRoutine = () => {
-    console.log(currentDayAsInteger);
-    editScheduleWorkout(userInfo.id, currentWorkout.id, currentDayAsInteger);
-    setTimeout(scheduleWorkout(workoutAndExercisesState.schedule), 5000)
+    scheduleWorkout(workoutAndExercisesState.schedule);
   };
 
   const addRoutine = () => {
@@ -124,44 +122,40 @@ const Browse = ({
     'saturday'
   ];
   const chooseDay = (e) => {
-   
-       switch (e.target.innerText) {
+    let currentDay;
+    switch (e.target.innerText) {
       case 'sunday':
-        setCurrentDayAsInteger(0);
+        currentDay = 0;
         break;
       case 'monday':
-        setCurrentDayAsInteger(1);
+        currentDay = 1;
         break;
       case 'tuesday':
-        setCurrentDayAsInteger(2);
+        currentDay = 2;
         break;
       case 'wednesday':
-        setCurrentDayAsInteger(3);
+        currentDay = 3;
         break;
       case 'thursday':
-        setCurrentDayAsInteger(4);
+        currentDay = 4;
         break;
       case 'friday':
-        setCurrentDayAsInteger(5);
+        currentDay = 5;
         break;
       case 'saturday':
-        setCurrentDayAsInteger(6);
+        currentDay = 6;
         break;
       default:
-        setCurrentDayAsInteger(12)
+        currentDay = null;
     }
-
+    editScheduleWorkout(userInfo.id, currentWorkout.id, currentDay);
   };
 
   const daysArray = [];
 
   for (let i = 0; i < days.length; i++) {
     daysArray.push(
-      <span
-      
-        onClick={chooseDay}
-        key={i}
-      >
+      <span onClick={chooseDay} key={i}>
         {days[i]}
       </span>
     );
@@ -338,12 +332,9 @@ const Browse = ({
               <div className={`b-p-c-days ${addDays}`}>
                 <div className="choose-days">{daysArray}</div>
                 {/* <Link to="/routine"> */}
-                  <div
-                    className="confirm-routine"
-                    onClick={addWorkoutToRoutine}
-                  >
-                    Confirm
-                  </div>
+                <div className="confirm-routine" onClick={addWorkoutToRoutine}>
+                  Confirm
+                </div>
                 {/* </Link> */}
               </div>
               {workoutAndExercisesState.filter.type === 'workouts' ? (
