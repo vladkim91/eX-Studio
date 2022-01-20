@@ -1,4 +1,4 @@
-const { Workout, Exercise } = require('../models');
+const { Workout, Exercise, ScheduledWorkout } = require('../models');
 
 const getWorkoutById = async (req, res) => {
   const { workoutId } = req.params;
@@ -19,19 +19,20 @@ const getWorkoutById = async (req, res) => {
   res.status(200).send(workout);
 };
 
-const searchForWorkouts = async (req, res) => {
-  const { name, muscle_groups } = req.query;
+const scheduleWorkout = async (req, res) => {
+  const routineId = req.query.routineId;
+  const dayOfTheWeek = req.query.dayOfTheWeek;
+  const workoutId = req.query.workoutId;
 
-  const search = {};
-
-  if (name) search.name = name;
-  if (muscle_group) search.muscle_group = muscle_group;
-
-  const workouts = await Workout.findAll({
-    where: search
+  const scheduledWorkouts = await ScheduledWorkout.create({
+    routine_id: parseInt(routineId),
+    workout_id: parseInt(workoutId),
+    day: parseInt(dayOfTheWeek),
+    createdAt: new Date(),
+    updatedAt: new Date()
   });
 
-  res.status(200).send(workouts);
+  res.status(201).send(scheduledWorkouts);
 };
 
 const getWorkoutExercises = async (req, res) => {
@@ -51,6 +52,6 @@ const getWorkoutExercises = async (req, res) => {
 
 module.exports = {
   getWorkoutById,
-  searchForWorkouts,
-  getWorkoutExercises
+  getWorkoutExercises,
+  scheduleWorkout
 };
