@@ -37,7 +37,6 @@ const getExercisesAndWorkoutsByMuscleGroup = async (req, res) => {
 
   if (type === 'exercises') {
     const exercises = await Exercise.findAll({
-      raw: true,
       where: {
         name: {
           [Op.iLike]: `%${searchQuery}%`
@@ -64,7 +63,6 @@ const getExercisesAndWorkoutsByMuscleGroup = async (req, res) => {
     }
   } else if (type === 'workouts') {
     const workouts = await Workout.findAll({
-      raw: true,
       nest: true,
       where: {
         name: {
@@ -83,6 +81,8 @@ const getExercisesAndWorkoutsByMuscleGroup = async (req, res) => {
         return { muscleGroups: workout.muscle_groups.split(' '), workout };
       });
 
+      // if the muscleGroup input has the muscle group from the workout, then keep the
+      // muscle group
       const filteredArray = arraysOfMuscleGroups.filter((workout, i) => {
         return workout.muscleGroups.some((muscle_group, ind) => {
           return muscleGroup.some((muscleGroup, index) => {
@@ -90,7 +90,6 @@ const getExercisesAndWorkoutsByMuscleGroup = async (req, res) => {
           });
         });
       });
-
       res.status(200).send(filteredArray.map((e) => e.workout));
     } else {
       res.status(200).send(workouts);
