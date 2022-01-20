@@ -19,7 +19,6 @@ const mapActionsToProps = (dispatch) => {
 };
 
 function Routine({ routine, getRoutineByUserId }) {
-  console.log('working');
   useEffect(() => {
     getRoutineByUserId(1);
   }, []);
