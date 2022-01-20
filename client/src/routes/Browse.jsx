@@ -5,18 +5,21 @@ import Nav from '../components/Nav';
 import SideBar from '../components/SideBar';
 import {
   LoadWorkoutsAndExercises,
-  EditFilterParams
+  EditFilterParams,
+  ScheduleWorkout
 } from '../store/actions/BrowseActions';
 import { Link } from 'react-router-dom';
 
 const mapStateToProps = (state) => {
   return {
-    workoutAndExercisesState: state.workoutAndExercisesState
+    workoutAndExercisesState: state.workoutAndExercisesState, userInfo: state.profileState.userInfo
   };
 };
 
 const mapActionsToProps = (dispatch) => {
   return {
+    scheduleWorkout: (userId, routineIn, day) => dispatch(ScheduleWorkout(userId, routineIn, day))
+    ,
     fetchWorkoutsAndExercises: (type, name, muscleGroup) =>
       dispatch(LoadWorkoutsAndExercises(type, name, muscleGroup)),
     editFilterParams: (filter, value) =>
@@ -27,7 +30,9 @@ const mapActionsToProps = (dispatch) => {
 const Browse = ({
   fetchWorkoutsAndExercises,
   workoutAndExercisesState,
-  editFilterParams
+  editFilterParams,
+  userInfo,
+  scheduleWorkout
 }) => {
   const [pop, SetPop] = useState('pophide');
   const [body, setBody] = useState(null);
@@ -48,6 +53,8 @@ const Browse = ({
       document.body.style.overflow = 'initial';
     };
   }, [workoutAndExercisesState.filter]);
+
+
 
   const addMuscleGroup = (muscleGroup) => {
     editFilterParams({
@@ -86,6 +93,16 @@ const Browse = ({
       }
     }
   };
+    const dayOfTheWeek = new Date().getDay()
+    const user = 1;
+    const routineId = user;
+
+    const addWorkoutToRoutine =() => {
+      scheduleWorkout(user, workoutId, dayOfTheWeek)
+      console.log(userInfo);
+      // create data table with current workout id as routine id and 
+      
+    }
 
   let parts = [
     { fullName: 'All', acronym: 'bk ch lg tc sh fb ab bc ' },
@@ -148,6 +165,7 @@ const Browse = ({
       className="b-2c-card card"
       onClick={() => {
         popClick();
+        
       }}
     >
       <img src={require('../assets/img/Saturday.jpg')} alt="" />
@@ -223,6 +241,9 @@ const Browse = ({
                 <h1>Exercise</h1>
               </div>
               <div className="r-l-divider"></div>
+              <button onClick={() => {
+                addWorkoutToRoutine()
+              }}>Button</button>
               <div className="r-l-arr">
                 {[...Array(5)].map((exercise, index) => (
                   <div key={index} className="r-l-ex">

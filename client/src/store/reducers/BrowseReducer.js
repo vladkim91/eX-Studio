@@ -1,9 +1,14 @@
-import { GET_WORKOUTS_AND_EXERCISES, EDIT_FILTER_PARAMS } from '../types';
+import {
+  SCHEDULE_WORKOUT,
+  GET_WORKOUTS_AND_EXERCISES,
+  EDIT_FILTER_PARAMS
+} from '../types';
 
 const iState = {
   workoutsAndExercises: [],
   filter: { type: 'workouts', name: '', muscleGroup: '' },
-  addingWorkout: false
+  addingWorkout: false,
+  schedule: { userId: null, routine_id: null, day: null }
 };
 const BrowseReducer = (state = iState, action) => {
   switch (action.type) {
@@ -13,6 +18,11 @@ const BrowseReducer = (state = iState, action) => {
       return {
         ...state,
         filter: action.payload
+      };
+    case SCHEDULE_WORKOUT:
+      return {
+        ...state,
+        schedule: action.payload
       };
     default:
       return { ...state };

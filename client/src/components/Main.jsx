@@ -6,8 +6,18 @@ function Main({ profileState }) {
   return (
     <div>
       <section className="startW">
-        <Link to={"/training"}>
-        <button > Start Today's Workout</button>
+        <Link
+          to="/training"
+          state={{
+            workout: profileState?.routine?.scheduled_workouts?.find(
+              (scheduled_workout) => {
+                return scheduled_workout.day === new Date(Date.now()).getDay();
+              }
+            ).workout || { added_exercises: [] },
+            something: 'foo'
+          }}
+        >
+          <button> Start Today's Workout</button>
         </Link>
       </section>
       <section className="carrousel">

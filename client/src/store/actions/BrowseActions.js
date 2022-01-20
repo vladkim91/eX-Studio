@@ -1,4 +1,8 @@
-import { EDIT_FILTER_PARAMS, GET_WORKOUTS_AND_EXERCISES } from '../types';
+import {
+  EDIT_FILTER_PARAMS,
+  SCHEDULE_WORKOUT,
+  GET_WORKOUTS_AND_EXERCISES
+} from '../types';
 
 import {
   getWorkoutsAndExercises,
@@ -24,6 +28,15 @@ export const EditFilterParams = (newFilter) => {
     dispatch({
       type: EDIT_FILTER_PARAMS,
       payload: newFilter
+    });
+  };
+};
+
+export const ScheduleWorkout = (userId, workoutId, day) => {
+  return async (dispatch) => {
+    dispatch({
+      type: SCHEDULE_WORKOUT,
+      payload: { userId, workoutId, day }
     });
   };
 };

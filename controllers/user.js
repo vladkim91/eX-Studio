@@ -113,7 +113,7 @@ const getUserProfileById = async (req, res) => {
       id: userId
     },
     nest: true,
-    attributes: ['username', 'first_name', 'last_name'],
+    attributes: ['username', 'first_name', 'last_name', 'id'],
     include: [
       {
         model: Journal,
@@ -156,7 +156,7 @@ const getUserProfileById = async (req, res) => {
       }
     ]
   });
-
+  console.log(userProfile);
   userProfile.journal.notes = userProfile.journal.notes.slice(0, 5);
 
   res.status(200).send(userProfile);

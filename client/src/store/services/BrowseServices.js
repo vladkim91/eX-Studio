@@ -6,3 +6,8 @@ export const getWorkoutsAndExercises = async (type, name, muscleGroup) => {
   );
   return result.data;
 };
+
+export const getUserId = async (userId, workoutId, day) => {
+  const result = await Client.get(`user/${userId}/profile/${workoutId}/${day}`);
+  return result.data;
+};
