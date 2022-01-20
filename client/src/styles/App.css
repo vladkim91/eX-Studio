@@ -954,7 +954,10 @@ form {
   border-radius: 1em;
   font-size: 0.7em;
 }
-#s-f1-selected,
-#s-f2-selected {
+button.s-f1-selected,
+.s-f2-selected {
   background: #395faa;
+}
+.no-scroll {
+  overflow: hidden;
 }

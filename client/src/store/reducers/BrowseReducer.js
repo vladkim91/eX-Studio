@@ -2,7 +2,7 @@ import { GET_WORKOUTS_AND_EXERCISES, EDIT_FILTER_PARAMS } from '../types';
 
 const iState = {
   workoutsAndExercises: [],
-  filter: { type: 'workouts', name: '', muscleGroup: 'ch tr' },
+  filter: { type: 'workouts', name: '', muscleGroup: '' },
   addingWorkout: false
 };
 const BrowseReducer = (state = iState, action) => {
@@ -12,10 +12,7 @@ const BrowseReducer = (state = iState, action) => {
     case EDIT_FILTER_PARAMS:
       return {
         ...state,
-        filter: {
-          ...state.filter,
-          [action.payload.filter]: action.payload.value
-        }
+        filter: action.payload
       };
     default:
       return { ...state };
