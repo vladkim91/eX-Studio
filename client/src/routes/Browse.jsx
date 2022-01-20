@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Children } from 'react';
 import { connect } from 'react-redux';
 import Close from '../assets/close.svg';
 import Nav from '../components/Nav';
@@ -6,8 +6,10 @@ import SideBar from '../components/SideBar';
 import {
   LoadWorkoutsAndExercises,
   EditFilterParams,
-  ScheduleWorkout
+  ScheduleWorkout,
+  
 } from '../store/actions/BrowseActions';
+
 import { Link } from 'react-router-dom';
 
 const mapStateToProps = (state) => {
@@ -18,12 +20,13 @@ const mapStateToProps = (state) => {
 
 const mapActionsToProps = (dispatch) => {
   return {
-    scheduleWorkout: (userId, routineIn, day) => dispatch(ScheduleWorkout(userId, routineIn, day))
+    scheduleWorkout: (userId, workoutId, day) => dispatch(ScheduleWorkout(userId, workoutId, day))
     ,
     fetchWorkoutsAndExercises: (type, name, muscleGroup) =>
       dispatch(LoadWorkoutsAndExercises(type, name, muscleGroup)),
     editFilterParams: (filter, value) =>
-      dispatch(EditFilterParams(filter, value))
+      dispatch(EditFilterParams(filter, value)),
+      
   };
 };
 
@@ -32,11 +35,12 @@ const Browse = ({
   workoutAndExercisesState,
   editFilterParams,
   userInfo,
-  scheduleWorkout
+    scheduleWorkout
 }) => {
   const [pop, SetPop] = useState('pophide');
   const [body, setBody] = useState(null);
 
+  const [currentWorkout, setCurrentWorkout] = useState(null)
   useEffect(() => {
     fetchWorkoutsAndExercises(
       workoutAndExercisesState.filter.type,
@@ -94,14 +98,11 @@ const Browse = ({
     }
   };
     const dayOfTheWeek = new Date().getDay()
-    const user = 1;
-    const routineId = user;
-
+  
     const addWorkoutToRoutine =() => {
-      scheduleWorkout(user, workoutId, dayOfTheWeek)
-      console.log(userInfo);
-      // create data table with current workout id as routine id and 
-      
+      scheduleWorkout(userInfo.id,currentWorkout,dayOfTheWeek)
+     
+          
     }
 
   let parts = [
@@ -165,7 +166,7 @@ const Browse = ({
       className="b-2c-card card"
       onClick={() => {
         popClick();
-        
+        setCurrentWorkout(e.id)
       }}
     >
       <img src={require('../assets/img/Saturday.jpg')} alt="" />
@@ -241,9 +242,7 @@ const Browse = ({
                 <h1>Exercise</h1>
               </div>
               <div className="r-l-divider"></div>
-              <button onClick={() => {
-                addWorkoutToRoutine()
-              }}>Button</button>
+              {workoutAndExercisesState.filter.type === 'workouts' ? <button onClick={addWorkoutToRoutine}>add workout to routine</button>:null}
               <div className="r-l-arr">
                 {[...Array(5)].map((exercise, index) => (
                   <div key={index} className="r-l-ex">

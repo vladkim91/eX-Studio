@@ -47,7 +47,7 @@ const createNewUser = async (req, res) => {
 const getUserInfoById = async (req, res) => {
   const { userId } = req.params;
   const user = await User.findOne({
-    attributes: ['username', 'first_name', 'last_name'],
+    attributes: ['username', 'first_name', 'last_name', 'id'],
     where: {
       id: userId
     }

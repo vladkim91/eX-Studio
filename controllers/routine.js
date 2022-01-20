@@ -42,14 +42,19 @@ const getRoutineByUser = async (req, res) => {
 };
 
 const scheduleWorkout = async (req, res) => {
-  const routineId = req.query.routineId;
-  const dayOfTheWeek = req.query.dayOfTheWeek;
-  const workoutId = req.query.workoutId;
+  const userId = req.body.userId;
+  const workoutId = req.body.workoutId;
+  const day = req.body.day;
+  const routine = await Routine.findOne({
+    where: {
+      id: userId
+    }
+  });
 
   const scheduledWorkouts = await ScheduledWorkout.create({
-    routine_id: parseInt(routineId),
+    routine_id: parseInt(routine.id),
     workout_id: parseInt(workoutId),
-    day: parseInt(dayOfTheWeek),
+    day: parseInt(day),
     createdAt: new Date(),
     updatedAt: new Date()
   });

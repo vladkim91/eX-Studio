@@ -8,7 +8,7 @@ const iState = {
   workoutsAndExercises: [],
   filter: { type: 'workouts', name: '', muscleGroup: '' },
   addingWorkout: false,
-  schedule: { userId: null, routine_id: null, day: null }
+  schedule: { userId: null, workoutId: null, day: null }
 };
 const BrowseReducer = (state = iState, action) => {
   switch (action.type) {
