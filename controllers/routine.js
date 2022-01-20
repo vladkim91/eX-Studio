@@ -41,6 +41,29 @@ const getRoutineByUser = async (req, res) => {
   res.status(200).send(routine);
 };
 
+const scheduleWorkout = async (req, res) => {
+  const userId = req.body.userId;
+  const workoutId = req.body.workoutId;
+  const day = req.body.day;
+  const routine = await Routine.findOne({
+    where: {
+      id: userId
+    }
+  });
+  console.log(req.body);
+
+  const scheduledWorkouts = await ScheduledWorkout.create({
+    routine_id: parseInt(routine.id),
+    workout_id: parseInt(workoutId),
+    day: parseInt(day),
+    createdAt: new Date(),
+    updatedAt: new Date()
+  });
+
+  res.status(201).send(scheduledWorkouts);
+};
+
 module.exports = {
-  getRoutineByUser
+  getRoutineByUser,
+  scheduleWorkout
 };
