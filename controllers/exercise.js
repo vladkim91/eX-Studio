@@ -1,13 +1,8 @@
 const { Exercise, Workout } = require('../models');
 const { Op } = require('sequelize');
-const { search } = require('../routes/exercise');
 
 const getAllExercises = async (req, res) => {
-  const result = await Exercise.findAll({
-    where: {
-      id: [1, 2]
-    }
-  });
+  const result = await Exercise.findAll({});
 
   res.status(200).send(result);
 };
