@@ -50,7 +50,7 @@ function Main({ profileState, loadWorkoutsAndExercises, workoutAndExercises }) {
               (scheduled_workout) => {
                 return scheduled_workout.day === new Date(Date.now()).getDay();
               }
-            ).workout || { added_exercises: [] },
+            )?.workout || { added_exercises: [] },
             something: 'foo'
           }}
         >
