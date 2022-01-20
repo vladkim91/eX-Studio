@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Timer from '../components/Timer';
 import { connect } from 'react-redux';
 import {
@@ -10,6 +10,7 @@ import {
 } from '../store/actions/TrainingActions';
 import { useLocation } from 'react-router-dom';
 import Nav from '../components/Nav';
+import { Link } from 'react-router-dom';
 
 const mapStateToProps = (state) => {
   return {
@@ -47,6 +48,7 @@ const Training = ({
   const workout = location.state.workout;
   const exercises = workout.added_exercises;
   const allExercises = [];
+  const [decison, SetDecision] = useState("show-t-d")
 
   allExercises.push({ name: 'Warmup', time: 5 });
   exercises.forEach((exercise, index) => {
@@ -108,8 +110,17 @@ const Training = ({
   };
 
   return (
-    <div>
+    <div className='training-container'>
       <Nav />
+      <div className={`training-decision ${decison}`}>
+        <div className={`t-d-popCard ${decison}`}>
+          <h2>Do you want to add your experience to your journal?</h2>
+          <div className="t-d-p-button">
+            <Link to={'/journal'}><button className='btn-journal'>Add to Journal</button></Link>
+            <Link to={'/'}><button className='btn-home'>Return Home</button></Link>
+          </div>
+        </div>
+      </div>
       <div className="training">
         <h1>{allExercises[currentExerciseIndex]?.name || 'Workout Name'}</h1>
         <span className={getCurrentExercise()?.time ? 't-timer' : 't-reps'}>
