@@ -32,11 +32,12 @@ function Routine({ routine, getRoutineByUserId }) {
     'Friday',
     'Saturday'
   ];
+
   const [pop, SetPop] = useState('pophide');
   const [scheduledWorkout, setScheduledWorkout] = useState({});
 
   const popClick = (scheduledWorkout) => {
-    if (pop == 'pophide') {
+    if (pop === 'pophide') {
       SetPop('');
       setScheduledWorkout(scheduledWorkout);
     } else {
@@ -95,13 +96,15 @@ function Routine({ routine, getRoutineByUserId }) {
                 </div>
                 <div className="r-l-divider"></div>
                 <div className="r-l-arr">
-                  {scheduledWorkout.workout.exercises.map((exercise, index) => (
-                    <div key={index} className="r-l-ex">
-                      <span className="r-l-ex-num">{index + 1}.</span>
-                      <p className="r-l-ex-name">{exercise.name}</p>
-                      <span className="r-l-time">02:00</span>
-                    </div>
-                  ))}
+                  {scheduledWorkout.workout.added_exercises.map(
+                    (exercise, index) => (
+                      <div key={index} className="r-l-ex">
+                        <span className="r-l-ex-num">{index + 1}.</span>
+                        <p className="r-l-ex-name">{exercise.name}</p>
+                        <span className="r-l-time">02:00</span>
+                      </div>
+                    )
+                  )}
                 </div>
               </>
             )}
