@@ -252,7 +252,7 @@ const Browse = ({
         <div className="browse-container">
           <h2>Exercise</h2>
           <div className="b-c-seperator"></div>
-          <div className="b-c-cards">{box}</div>
+          <div className="b-c-cards">{workoutsOrExercises}</div>
         </div>
       </div>
       <section className={`b-pop ${pop}`}>
