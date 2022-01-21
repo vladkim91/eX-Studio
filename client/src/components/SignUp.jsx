@@ -1,17 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import GoogleIcon from '../assets/google.png';
 import FacebookIcon from '../assets/facebook.png';
-import { connect } from 'react-redux';
-import { RequestAuth } from '../store/actions/ProfileActions';
+import { BASE_API_URI } from '../globals';
 
-const mapActionsToProps = (dispatch) => {
-  return {
-    requestAuth: () => dispatch(RequestAuth())
-  };
-};
-
-function SignUp({ requestAuth }) {
-   return (
+function SignUp() {
+  return (
     <div className="signup">
       <div className="s-u-card">
         <h3>New here?</h3>
@@ -30,7 +23,7 @@ function SignUp({ requestAuth }) {
           data-client_id="51263313881-7oolcs1ckh8ovfn6fuqql2du7f11c37u.apps.googleusercontent.com"
           data-context="signin"
           data-ux_mode="redirect"
-          data-login_uri="http://localhost:3001/api/sign"
+          data-login_uri={`${BASE_API_URI}account/googleSignIn`}
           data-auto_prompt="false"
         ></div>
 
@@ -43,10 +36,9 @@ function SignUp({ requestAuth }) {
           data-size="large"
           data-logo_alignment="left"
         ></div>
-        {/* <div className="g_id_signout">Sign Out</div> */}
       </div>
     </div>
   );
 }
 
-export default connect(null, mapActionsToProps)(SignUp);
+export default SignUp;

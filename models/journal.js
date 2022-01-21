@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
   Journal.init(
     {
       user_id: {
-        type: DataTypes.UUID,
+        type: DataTypes.STRING,
         onDelete: 'CASCADE',
         references: {
           model: 'users',

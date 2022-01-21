@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
   User_Exercise.init(
     {
       user_id: {
-        type: DataTypes.UUID,
+        type: DataTypes.STRING,
         onDelete: 'CASCADE',
         references: {
           model: 'users',
