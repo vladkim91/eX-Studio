@@ -507,6 +507,20 @@ section {
   height: 100vh;
   display: flex;
 }
+.signin a {
+  color: #000;
+}
+.redirect-sign {
+  padding: 0.5em 1em;
+  border: 3px solid #000;
+  min-width: 6em;
+  max-width: 10em;
+  margin: 1em auto;
+}
+.signin-r-bts {
+  display: flex;
+  flex-wrap: wrap;
+}
 .s-i-card {
   margin: auto;
 }
@@ -1251,4 +1265,23 @@ button.s-f1-selected,
     width: -webkit-fill-available; /* For Chrome users */
     width: fill-available;
   }
+}
+
+.custom-shape-divider-top-1642728710 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  z-index: -1;
+}
+.custom-shape-divider-top-1642728710 svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 147px;
+}
+.custom-shape-divider-top-1642728710 .shape-fill {
+  fill: #376ca7;
 }

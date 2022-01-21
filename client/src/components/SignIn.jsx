@@ -1,63 +1,31 @@
 import React, { useState } from 'react';
 import Client from '../store/services';
+import { Link } from 'react-router-dom';
 
 function SignIn() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [formSubError, setFormSubError] = useState('');
 
-  const hasUpperCaseChar = () => {
-    return password.search(/.*[A-Z].*/g) !== -1;
-  };
-
-  const hasLowerCaseChar = () => {
-    return password.search(/.*[a-z].*/g) !== -1;
-  };
-
-  const hasSpecialChar = () => {
-    return password.search(/.*[^\c\w].*/g) !== -1;
-  };
-
-  const isAtLeast8Chars = () => {
-    return password.length >= 8;
-  };
-
-  const passwordsMatch = () => {
-    return password === confirmPassword;
-  };
-
-  const isPasswordStrongEnough = () => {
-    return (
-      passwordsMatch() &&
-      hasUpperCaseChar() &&
-      hasLowerCaseChar() &&
-      hasSpecialChar() &&
-      isAtLeast8Chars()
-    );
-  };
-
-  const handleSubmit = () => {
-    // if (!isPasswordStrongEnough()) {
-    //   if (!hasUpperCaseChar()) {
-    //     setFormSubError('Password must have at least 1 uppercase character!');
-    //   } else if (!hasLowerCaseChar()) {
-    //     setFormSubError('Password must have at least 1 lowercase character!');
-    //   } else if (!hasSpecialChar()) {
-    //     setFormSubError('Password must have special character');
-    //   } else if (!isAtLeast8Chars()) {
-    //     setFormSubError('Password must be at least 8 characters long');
-    //   } else if (!passwordsMatch()) {
-    //     setFormSubError('Passwords must match!');
-    //   }
-    // } else {
-    //   setFormSubError('');
-    // }
+  const handleSubmit = async () => {
+    const result = await Client.post('user/sign_in_manual', {
+      username,
+      password
+    });
   };
 
   return (
     <div className="signin">
       <div className="s-i-card">
+        <h3>Not registered yet?</h3>
+        <div className="signin-r-bts">
+          <div className="redirect-sign">
+            <Link to="/landing">Home</Link>
+          </div>
+          <div className="redirect-sign">
+            <Link to="/register">Register</Link>
+          </div>
+        </div>
+
         <h3>Already have an account?</h3>
         <h1>Sign In</h1>
         <div className="separate-s-i-card"></div>
@@ -70,13 +38,7 @@ function SignIn() {
         >
           <div className="s-i-f-input">
             <label htmlFor="username">Username</label>
-            <input
-              name="username"
-              id="username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              required
-            />
+            <input name="username" id="username" required maxLength={1000} />
           </div>
           <div className="s-i-f-input">
             <label htmlFor="password">Password</label>
@@ -84,27 +46,10 @@ function SignIn() {
               type="password"
               name="password"
               id="p-word"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
               required
+              maxLength={1000}
             />
           </div>
-          {(password || confirmPassword) && (
-            <div className="s-i-f-input">
-              <label htmlFor="confirm-password">Confirm Password</label>
-              <input
-                type="password"
-                name="confirm-password"
-                id="c-p-word"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                required
-              />
-            </div>
-          )}
-          <p style={{ margin: '1em', fontSize: '0.8em', color: 'red' }}>
-            {formSubError}
-          </p>
           <button>Sign in</button>
         </form>
       </div>

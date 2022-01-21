@@ -9,6 +9,7 @@ const {
 } = require('../models');
 const { createHash } = require('crypto');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 
 const getUserMain = async (req, res) => {
   const user = req.user;
@@ -73,7 +74,7 @@ const createNewUser = async (req, res) => {
       await User.create(
         {
           uuid,
-          username: userAuthInfo.given_name,
+          username: userAuthInfo.given_name || 'no username',
           sessionToken,
           createdAt: new Date(),
           updatedAt: new Date()
@@ -116,6 +117,103 @@ const createNewUser = async (req, res) => {
     });
 
     return res.redirect('/');
+  }
+};
+
+const createNewUserManual = async (req, res) => {
+  const { username, password } = req.body;
+
+  const uuid = createHash('sha256', process.env.HASHSEC)
+    .update(username)
+    .digest('hex');
+
+  const sessionToken = jwt.sign(uuid, process.env.JWTSEC);
+  req.session.gulid = sessionToken;
+
+  const existingUser = await User.findOne({
+    where: {
+      uuid
+    }
+  });
+
+  if (existingUser) {
+    return res.send({ message: 'Username taken' });
+  } else {
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const newUser = (
+      await User.create(
+        {
+          uuid,
+          username,
+          password: hashedPassword,
+          sessionToken,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          raw: true,
+          nest: true
+        }
+      )
+    ).dataValues;
+
+    const newJournal = await Journal.create({
+      user_id: newUser.uuid,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    });
+
+    const routine = await Routine.create({
+      user_id: newUser.uuid,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    });
+
+    const tutorialNote = await Note.create({
+      journal_id: newJournal.id,
+      title: `Tutorial`,
+      text: `Browse the list of available workouts and add them to your routine or jump into the workout immediately. Use our browse training page to learn more about exercises and their benefits. Use filter and search bar to find specific workouts and exercises based on the name or targeted muscle groups. Have fun and don't stop grinding!`,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    });
+
+    const welcomeNote = await Note.create({
+      journal_id: newJournal.id,
+      title: `WELCOME TO EX STUDIO`,
+      text: `It's time to unlock your potential with Ex Studio.\n
+      This app is created for both beginners and veterans. Every feature of Ex Studio is designed to create a perfect exercise routine that fits your athletic needs. \n
+      Select from a list of customized workouts and build a body you always wanted`,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    });
+
+    return res.redirect('/');
+  }
+};
+
+const userSignInManual = async (req, res) => {
+  const { username, password } = req.body;
+
+  const uuid = createHash('sha256', process.env.HASHSEC)
+    .update(username)
+    .digest('hex');
+
+  const existingUser = await User.findOne({
+    where: {
+      uuid
+    }
+  });
+
+  if (
+    !existingUser ||
+    !(await bcrypt.compare(password, existingUser.dataValues.password))
+  ) {
+    res.status(401).send({ message: 'Login failed' });
+  } else {
+    const sessionToken = jwt.sign(uuid, process.env.JWTSEC);
+    req.session.gulid = sessionToken;
+    res.redirect('/');
   }
 };
 
@@ -239,9 +337,11 @@ const getUserProfileById = async (req, res) => {
 module.exports = {
   getUserMain,
   createNewUser,
+  createNewUserManual,
   getUserInfoById,
   getUserFavoritedWorkouts,
   getUserCustomWorkouts,
   getUserProfileById,
-  getUserExercises
+  getUserExercises,
+  userSignInManual
 };

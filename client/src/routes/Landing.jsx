@@ -20,7 +20,7 @@ function Landing() {
             <h1 className="l-t-bottom">STUDIO</h1>
           </div>
         </div>
-        <img className="curve" src={Curve} alt="" />
+        {/* <img className="curve" src={Curve} alt="" /> */}
       </section>
     </div>
   );
