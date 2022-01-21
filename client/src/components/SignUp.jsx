@@ -9,7 +9,7 @@ function SignUp() {
       <div className="s-u-card">
         <h3>New here?</h3>
         <h1>Join or sign in using other services</h1>
-        <div className="s-u-o o-google" onClick={() => {}}>
+        <div className="s-u-o o-google">
           <img src={GoogleIcon} alt="" />
           <h4>Continue with Google</h4>
         </div>
