@@ -21,7 +21,7 @@ const authenticationMiddleware = async (req, res, next) => {
 const authorizationMiddleware = async (req, res, next) => {
   const { session } = req;
 
-  if (!session.gulid) return res.redirect('/landing', 401);
+  if (!session.gulid) return res.redirect('/landing');
 
   const uuid = jwt.verify(session.gulid, process.env.JWTSEC, {
     complete: false
@@ -38,7 +38,7 @@ const authorizationMiddleware = async (req, res, next) => {
   req.user = user;
 
   if (!user) {
-    return res.redirect('/landing', 401);
+    return res.redirect('/landing');
   }
 
   next();
