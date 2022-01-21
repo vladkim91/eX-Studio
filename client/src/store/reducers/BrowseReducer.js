@@ -3,7 +3,8 @@ import {
   GET_WORKOUTS_AND_EXERCISES,
   EDIT_FILTER_PARAMS,
   SCHEDULE_WORKOUT,
-  DELETE_SCHEDULED_WORKOUT
+  DELETE_SCHEDULED_WORKOUT,
+  GET_WORKOUT_BY_ID
 } from '../types';
 
 const iState = {
@@ -30,6 +31,8 @@ const BrowseReducer = (state = iState, action) => {
       return { ...state };
     case DELETE_SCHEDULED_WORKOUT:
       return { ...state };
+    case GET_WORKOUT_BY_ID:
+      return { ...state, workout: action.payload };
     default:
       return { ...state };
   }

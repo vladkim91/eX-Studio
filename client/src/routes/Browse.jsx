@@ -8,7 +8,8 @@ import {
   EditFilterParams,
   ScheduleWorkout,
   EditScheduleWorkout,
-  DeleteScheduledWorkout
+  DeleteScheduledWorkout,
+  GetWorkoutById
 } from '../store/actions/BrowseActions';
 import { GetRoutineByUserId } from '../store/actions/ProfileActions';
 
@@ -18,7 +19,8 @@ const mapStateToProps = (state) => {
   return {
     workoutAndExercisesState: state.workoutAndExercisesState,
     userInfo: state.profileState.userInfo,
-    routine: state.profileState.routine
+    routine: state.profileState.routine,
+    workout: state.workoutAndExercisesState.workout
   };
 };
 
@@ -32,7 +34,8 @@ const mapActionsToProps = (dispatch) => {
       dispatch(EditFilterParams(filter, value)),
     scheduleWorkout: (newSchedule) => dispatch(ScheduleWorkout(newSchedule)),
     getRoutineByUserId: (userId) => dispatch(GetRoutineByUserId(userId)),
-    deleteScheduledWorkout: (userId, day) => dispatch(DeleteScheduledWorkout(userId, day))
+    deleteScheduledWorkout: (userId, day) => dispatch(DeleteScheduledWorkout(userId, day)),
+    getWorkoutById: (id) => dispatch(GetWorkoutById(id))
   };
 };
 
@@ -45,7 +48,8 @@ const Browse = ({
   editScheduleWorkout,
   getRoutineByUserId,
   routine,
-  deleteScheduledWorkout
+  deleteScheduledWorkout,
+  getWorkoutById
 }) => {
   const [pop, SetPop] = useState('pophide');
   const [body, setBody] = useState(null);
@@ -245,6 +249,8 @@ const Browse = ({
         } else {
           setCurrentExercise(e);
         }
+        getWorkoutById(e.id)
+        
       }}
     >
       <img src={require('../assets/img/Saturday.jpg')} alt="" />
@@ -395,7 +401,7 @@ const Browse = ({
                   {currentExercise.description}
                 </div>
               )}
-              <Link className="r-l-start-bttn" to="/">
+              <Link className="r-l-start-bttn" to="/training" state={workoutAndExercisesState}>
                 Start
               </Link>
             </div>

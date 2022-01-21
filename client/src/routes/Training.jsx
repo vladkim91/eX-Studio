@@ -50,7 +50,7 @@ const Training = ({
   const allExercises = [];
   const [decison, SetDecision] = useState("show-t-d")
 
-  allExercises.push({ name: 'Warmup', time: 5 });
+  allExercises.push({ name: 'Warmup', time: 60 });
   exercises.forEach((exercise, index) => {
     for (let i = 0; i < exercise.sets; i++) {
       allExercises.push(exercise);
@@ -59,7 +59,7 @@ const Training = ({
         allExercises.push({ name: 'Rest', time: exercise.rest });
     }
   });
-  allExercises.push({ name: 'Cooldown', time: 5 });
+  allExercises.push({ name: 'Cooldown', time: 60 });
 
   const getCurrentExercise = () => {
     return allExercises[currentExerciseIndex];
