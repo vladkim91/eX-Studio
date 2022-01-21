@@ -34,7 +34,7 @@ app.use(
         // database: 'ex_studio_development',
         // port: 5432,
         // host: 'ex-studio.herokuapp.com',
-        ssl: true
+        ssl: false
       }
     }),
     resave: true,
