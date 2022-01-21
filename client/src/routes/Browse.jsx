@@ -19,8 +19,7 @@ const mapStateToProps = (state) => {
   return {
     workoutAndExercisesState: state.workoutAndExercisesState,
     userInfo: state.profileState.userInfo,
-    routine: state.profileState.routine,
-    workout: state.workoutAndExercisesState.workout
+    routine: state.profileState.routine
   };
 };
 
@@ -34,7 +33,8 @@ const mapActionsToProps = (dispatch) => {
       dispatch(EditFilterParams(filter, value)),
     scheduleWorkout: (newSchedule) => dispatch(ScheduleWorkout(newSchedule)),
     getRoutineByUserId: (userId) => dispatch(GetRoutineByUserId(userId)),
-    deleteScheduledWorkout: (userId, day) => dispatch(DeleteScheduledWorkout(userId, day)),
+    deleteScheduledWorkout: (userId, day) =>
+      dispatch(DeleteScheduledWorkout(userId, day)),
     getWorkoutById: (id) => dispatch(GetWorkoutById(id))
   };
 };
@@ -58,6 +58,7 @@ const Browse = ({
   const [currentWorkout, setCurrentWorkout] = useState(null);
   const [currentExercise, setCurrentExercise] = useState(null);
   const [daySelected, setDaySelected] = useState(false);
+  const [currentWorkoutWithExercises, SetCurrentWorkoutWithExercises] = useState({})
 
   useEffect(() => {
     fetchWorkoutsAndExercises(
@@ -118,8 +119,13 @@ const Browse = ({
     const scheduledWorkouts = routine.scheduled_workouts;
     scheduledWorkouts.forEach((scheduledWorkout, i) => {
       if (scheduledWorkout.day === workoutAndExercisesState.schedule.day) {
-        alert(`workout already scheduled for ${workoutAndExercisesState.schedule.day}`)
-        deleteScheduledWorkout(userInfo.id, workoutAndExercisesState.schedule.day)
+        alert(
+          `workout already scheduled for ${workoutAndExercisesState.schedule.day}`
+        );
+        deleteScheduledWorkout(
+          userInfo.id,
+          workoutAndExercisesState.schedule.day
+        );
       }
     });
     scheduleWorkout(workoutAndExercisesState.schedule);
@@ -144,6 +150,7 @@ const Browse = ({
   const chooseDay = (e) => {
     let currentDay;
     switch (e.target.innerText) {
+      
       case 'sunday':
         currentDay = 0;
         break;
@@ -249,8 +256,7 @@ const Browse = ({
         } else {
           setCurrentExercise(e);
         }
-        getWorkoutById(e.id)
-        
+        getWorkoutById(e.id);
       }}
     >
       <img src={require('../assets/img/Saturday.jpg')} alt="" />
@@ -401,9 +407,13 @@ const Browse = ({
                   {currentExercise.description}
                 </div>
               )}
-              <Link className="r-l-start-bttn" to="/training" state={workoutAndExercisesState}>
+              {workoutAndExercisesState.workout.added_exercises ? <Link
+                className="r-l-start-bttn"
+                to="/training"
+                state={workoutAndExercisesState.workout.added_exercises}
+              >
                 Start
-              </Link>
+              </Link> : null};
             </div>
             <div
               className="close"
