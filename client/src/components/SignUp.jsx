@@ -23,7 +23,7 @@ function SignUp() {
           data-client_id="51263313881-7oolcs1ckh8ovfn6fuqql2du7f11c37u.apps.googleusercontent.com"
           data-context="signin"
           data-ux_mode="redirect"
-          data-login_uri={`${BASE_API_URI}/account/googleSignIn`}
+          data-login_uri={`${BASE_API_URI}account/googleSignIn`}
           data-auto_prompt="false"
         ></div>
 
