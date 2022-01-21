@@ -11,7 +11,7 @@ const mapActionsToProps = (dispatch) => {
 };
 
 function SignUp({ requestAuth }) {
-   return (
+  return (
     <div className="signup">
       <div className="s-u-card">
         <h3>New here?</h3>
@@ -30,7 +30,7 @@ function SignUp({ requestAuth }) {
           data-client_id="51263313881-7oolcs1ckh8ovfn6fuqql2du7f11c37u.apps.googleusercontent.com"
           data-context="signin"
           data-ux_mode="redirect"
-          data-login_uri="http://localhost:3001/api/sign"
+          data-login_uri="http://localhost:3001/api/googleOAuth"
           data-auto_prompt="false"
         ></div>
 
@@ -43,7 +43,6 @@ function SignUp({ requestAuth }) {
           data-size="large"
           data-logo_alignment="left"
         ></div>
-        {/* <div className="g_id_signout">Sign Out</div> */}
       </div>
     </div>
   );
