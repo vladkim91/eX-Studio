@@ -11,50 +11,7 @@ const mapActionsToProps = (dispatch) => {
 };
 
 function SignUp({ requestAuth }) {
-  // const [gsiScriptLoaded, setGsiScriptLoaded] = useState(false);
-  // const [user, setUser] = useState(undefined);
-
-  // const handleGoogleSignIn = (res) => {
-  //   console.log(res);
-  //   if (!res.clientId || !res.credential) return;
-
-  //   // Implement your login mutations and logic here.
-  //   // Set cookies, call your backend, etc.
-  //   console.log('Working!');
-  //   // setUser(val.data?.login.user);
-  // };
-
-  // const initializeGsi = () => {
-  //   if (!window.google || gsiScriptLoaded) return;
-
-  //   setGsiScriptLoaded(true);
-  //   window.google.accounts.id.initialize({
-  //     client_id:
-  //       '51263313881-7oolcs1ckh8ovfn6fuqql2du7f11c37u.apps.googleusercontent.com',
-  //     callback: handleGoogleSignIn
-  //   });
-  //   window.google.accounts.id.prompt();
-  // };
-
-  // useEffect(() => {
-  //   if (user?._id || gsiScriptLoaded) return;
-
-  //   const script = document.createElement('script');
-  //   script.src = 'https://accounts.google.com/gsi/client';
-  //   script.onload = initializeGsi;
-  //   // script.defer = true;
-  //   script.async = true;
-  //   script.id = 'google-client-script';
-  //   document.querySelector('body')?.appendChild(script);
-
-  //   return () => {
-  //     // Cleanup function that runs when component unmounts
-  //     window.google?.accounts.id.cancel();
-  //     // document.getElementById('google-client-script')?.remove();
-  //   };
-  // }, [handleGoogleSignIn, initializeGsi, user?._id]);
-
-  return (
+   return (
     <div className="signup">
       <div className="s-u-card">
         <h3>New here?</h3>
