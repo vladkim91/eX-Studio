@@ -1,13 +1,60 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Arrow from '../assets/arrow.svg';
+import { connect } from 'react-redux';
+import { LoadWorkoutsAndExercises } from '../store/actions/BrowseActions';
 
-function Main({ profileState }) {
+const mapStateToProps = (state) => {
+  return {
+    workoutAndExercises: state.workoutAndExercisesState
+  };
+};
+
+const mapActionsToProps = (dispatch) => {
+  return {
+    loadWorkoutsAndExercises: () =>
+      dispatch(LoadWorkoutsAndExercises('workouts', '', ''))
+  };
+};
+
+function Main({ profileState, loadWorkoutsAndExercises, workoutAndExercises }) {
+  useEffect(() => {
+    loadWorkoutsAndExercises();
+  }, []);
+
+  const getRandom3Workouts = () => {
+    let maxAttempts = 50;
+    const random3Workouts = new Set();
+    while (random3Workouts.size < 3 && maxAttempts) {
+      random3Workouts.add(
+        workoutAndExercises.workoutsAndExercises[
+          Math.floor(
+            Math.random() * workoutAndExercises.workoutsAndExercises.length
+          )
+        ]
+      );
+      maxAttempts--;
+    }
+    return Array.from(random3Workouts.values());
+  };
+
+  const random3Workouts = getRandom3Workouts() || [];
+
   return (
     <div>
       <section className="startW">
-        <Link to={"/training"}>
-        <button > Start Today's Workout</button>
+        <Link
+          to="/training"
+          state={{
+            workout: profileState?.routine?.scheduled_workouts?.find(
+              (scheduled_workout) => {
+                return scheduled_workout.day === new Date(Date.now()).getDay();
+              }
+            )?.workout || { added_exercises: [] },
+            something: 'foo'
+          }}
+        >
+          <button> Start Today's Workout</button>
         </Link>
       </section>
       <section className="carrousel">
@@ -15,18 +62,12 @@ function Main({ profileState }) {
           <img src={Arrow} alt="" />
         </div>
         <div className="carrousel-container">
-          <div className="card c1">
-            <div className="blur"></div>
-            <h1 className="w-name">workout 1</h1>
-          </div>
-          <div className="card c2">
-            <div className="blur"></div>
-            <h1 className="w-name">workout 2</h1>
-          </div>
-          <div className="card c3">
-            <div className="blur"></div>
-            <h1 className="w-name">workout 3</h1>
-          </div>
+          {random3Workouts.map((workout, index) => (
+            <div key={index} className={`card c${index + 1}`}>
+              <div className="blur"></div>
+              <h1 className="w-name">{workout?.name}</h1>
+            </div>
+          ))}
         </div>
         <div className="arrow r-arrow">
           <img src={Arrow} alt="" />
@@ -64,4 +105,4 @@ function Main({ profileState }) {
   );
 }
 
-export default Main;
+export default connect(mapStateToProps, mapActionsToProps)(Main);

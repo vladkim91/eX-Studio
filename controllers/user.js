@@ -8,16 +8,57 @@ const {
   Exercise
 } = require('../models');
 
-const createNewUser = async (req, res) => {};
+const createNewUser = async (req, res) => {
+  const user = await User.create({
+    username: req.body.username,
+    createdAt: new Date(),
+    updatedAt: new Date()
+  });
+
+  const newJournal = await Journal.create({
+    user_id: user.id,
+    createdAt: new Date(),
+    updatedAt: new Date()
+  });
+
+  const tutorialNote = await Note.create({
+    journal_id: newJournal.id,
+    title: `Tutorial`,
+    text: `Browse the list of available workouts and add them to your routine or jump into the workout immediately. Use our browse training page to learn more about exercises and their benefits. Use filter and search bar to find specific workouts and exercises based on the name or targeted muscle groups. Have fun and don't stop grinding!`,
+    createdAt: new Date(),
+    updatedAt: new Date()
+  });
+
+  const routine = await Routine.create({
+    user_id: user.id,
+    createdAt: new Date(),
+    updatedAt: new Date()
+  });
+
+  const welcomeNote = await Note.create({
+    journal_id: newJournal.id,
+    title: `WELCOME TO EX STUDIO`,
+    text: `It's time to unlock your potential with Ex Studio.\n
+    This app is created for both beginners and veterans. Every feature of Ex Studio is designed to create a perfect exercise routine that fits your athletic needs. \n
+    Select from a list of customized workouts and build a body you always wanted`,
+    createdAt: new Date(),
+    updatedAt: new Date()
+  });
+
+  res
+    .status(201)
+    .send({ user, newJournal, tutorialNote, routine, welcomeNote });
+};
 
 const getUserInfoById = async (req, res) => {
   const { userId } = req.params;
   const user = await User.findOne({
-    attributes: ['username', 'first_name', 'last_name'],
+    attributes: ['username', 'first_name', 'last_name', 'id'],
     where: {
       id: userId
     }
   });
+
   res.status(200).send(user);
 };
 
@@ -78,7 +119,7 @@ const getUserProfileById = async (req, res) => {
       id: userId
     },
     nest: true,
-    attributes: ['username', 'first_name', 'last_name'],
+    attributes: ['username', 'first_name', 'last_name', 'id'],
     include: [
       {
         model: Journal,
@@ -121,7 +162,7 @@ const getUserProfileById = async (req, res) => {
       }
     ]
   });
-
+  console.log(userProfile);
   userProfile.journal.notes = userProfile.journal.notes.slice(0, 5);
 
   res.status(200).send(userProfile);
