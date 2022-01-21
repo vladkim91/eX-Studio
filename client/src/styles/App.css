@@ -1252,3 +1252,22 @@ button.s-f1-selected,
     width: fill-available;
   }
 }
+
+.custom-shape-divider-top-1642728710 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  z-index: -1;
+}
+.custom-shape-divider-top-1642728710 svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 147px;
+}
+.custom-shape-divider-top-1642728710 .shape-fill {
+  fill: #376ca7;
+}

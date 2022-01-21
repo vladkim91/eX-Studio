@@ -32,13 +32,19 @@ app.use(
         connectionString:
           process.env.NODE_ENV === 'production'
             ? process.env.DATABASE_URL
-            : 'http://localhost:5432',
-        // database: 'ex_studio_development',
-        // port: 5432,
-        // host: 'ex-studio.herokuapp.com',
-        ssl: {
-          rejectUnauthorized: false
-        }
+            : null,
+        database:
+          process.env.NODE_ENV === 'production'
+            ? null
+            : 'ex_studio_development',
+        port: process.env.NODE_ENV === 'production' ? null : 5432,
+        host: process.env.NODE_ENV === 'production' ? null : 'localhost',
+        ssl:
+          process.env.NODE_ENV === 'production'
+            ? {
+                rejectUnauthorized: false
+              }
+            : false
       }
     }),
     resave: true,

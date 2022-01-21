@@ -6,6 +6,7 @@ const {
 } = require('../middleware/auth');
 
 router.post('/', authenticationMiddleware, controller.createNewUser);
+router.post('/manual', controller.createNewUserManual);
 router.get('/info', authorizationMiddleware, controller.getUserInfoById);
 router.get('/', authorizationMiddleware, controller.getUserMain);
 router.get('/:userId/profile', controller.getUserProfileById);
