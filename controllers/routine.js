@@ -1,4 +1,10 @@
-const { Routine, ScheduledWorkout, Workout, Exercise } = require('../models');
+const {
+  Routine,
+  ScheduledWorkout,
+  Workout,
+  Exercise,
+  User
+} = require('../models');
 
 const getRoutineByUser = async (req, res) => {
   const { userId } = req.params;
@@ -63,7 +69,15 @@ const scheduleWorkout = async (req, res) => {
   res.status(201).send(scheduledWorkouts);
 };
 
+const deleteScheduledWorkoutByUserId = async (req, res) => {
+  await ScheduledWorkout.destroy({
+    where: { routine_id: req.params.userId, day: req.params.day }
+  });
+  res.sendStatus(200);
+};
+
 module.exports = {
   getRoutineByUser,
-  scheduleWorkout
+  scheduleWorkout,
+  deleteScheduledWorkoutByUserId
 };
