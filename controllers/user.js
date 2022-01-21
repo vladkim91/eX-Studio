@@ -11,8 +11,6 @@ const {
 const createNewUser = async (req, res) => {
   const user = await User.create({
     username: req.body.username,
-    first_name: req.body.first_name,
-    last_name: req.body.last_name,
     createdAt: new Date(),
     updatedAt: new Date()
   });
