@@ -5,11 +5,14 @@ const user = require('./user');
 const workout = require('./workout');
 const exercise = require('./exercise');
 const account = require('./account');
-const { authorizationMiddleware } = require('../middleware/auth');
+const {
+  authorizationMiddleware,
+  authenticationMiddleware
+} = require('../middleware/auth');
 
 router.use('/journal', authorizationMiddleware, journal);
 router.use('/routine', authorizationMiddleware, routine);
-router.use('/user', authorizationMiddleware, user);
+router.use('/user', user);
 router.use('/workout', workout);
 router.use('/account', account);
 router.use('/exercise', exercise);

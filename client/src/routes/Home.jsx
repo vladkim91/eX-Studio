@@ -3,7 +3,7 @@ import Nav from '../components/Nav';
 import Main from '../components/Main';
 import SideBar from '../components/SideBar';
 import { connect } from 'react-redux';
-import { GetUserProfile } from '../store/actions/ProfileActions';
+import { GetUserMain } from '../store/actions/ProfileActions';
 
 const mapStateToProps = (state) => {
   return {
@@ -13,13 +13,13 @@ const mapStateToProps = (state) => {
 
 const mapActionsToProps = (dispatch) => {
   return {
-    getUserProfile: (userId) => dispatch(GetUserProfile(userId))
+    getUserMain: () => dispatch(GetUserMain())
   };
 };
 
 function Home(props) {
   useEffect(() => {
-    props.getUserProfile(`cbdf9649-2c95-48c1-b761-ae5c71c3a0cc`);
+    props.getUserMain();
   }, []);
 
   return (

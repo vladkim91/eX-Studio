@@ -27,13 +27,17 @@ const authorizationMiddleware = async (req, res, next) => {
     complete: false
   });
 
-  const userInfo = await User.findOne({
+  const user = await User.findOne({
+    nest: true,
+    raw: true,
     where: {
       uuid
     }
   });
 
-  if (!userInfo) {
+  req.user = user;
+
+  if (!user) {
     return res.redirect('/landing', 401);
   }
 

@@ -6,7 +6,7 @@ export const createUser = async (userInfo) => {
 };
 
 export const getUserInfoById = async (userId) => {
-  const result = await Client.get(`user/${userId}`);
+  const result = await Client.get(`user/info`);
   return result.data;
 };
 
@@ -17,6 +17,11 @@ export const getUserFavoriteWorkouts = async (userId) => {
 
 export const getUserCustomWorkouts = async (userId) => {
   const result = await Client.get(`user/${userId}`);
+  return result.data;
+};
+
+export const getUserMain = async () => {
+  const result = await Client.get(`user/`);
   return result.data;
 };
 

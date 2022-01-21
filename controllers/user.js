@@ -7,42 +7,37 @@ const {
   Workout,
   Exercise
 } = require('../models');
+const { createHash } = require('crypto');
+const jwt = require('jsonwebtoken');
 
-const createNewUser = async (req, res) => {
-  const user = await User.create({
-    username: req.body.username,
-    createdAt: new Date(),
-    updatedAt: new Date()
+const getUserMain = async (req, res) => {
+  const user = req.user;
+
+  const newJournal = await Journal.findOne({
+    raw: true,
+    nest: true,
+    where: {
+      user_id: user.uuid
+    }
   });
 
-  const newJournal = await Journal.create({
-    user_id: user.id,
-    createdAt: new Date(),
-    updatedAt: new Date()
+  const tutorialNote = await Note.findOne({
+    where: {
+      journal_id: newJournal.id
+    }
   });
 
-  const tutorialNote = await Note.create({
-    journal_id: newJournal.id,
-    title: `Tutorial`,
-    text: `Browse the list of available workouts and add them to your routine or jump into the workout immediately. Use our browse training page to learn more about exercises and their benefits. Use filter and search bar to find specific workouts and exercises based on the name or targeted muscle groups. Have fun and don't stop grinding!`,
-    createdAt: new Date(),
-    updatedAt: new Date()
+  const welcomeNote = await Note.findOne({
+    where: {
+      journal_id: newJournal.id
+    },
+    offset: 1
   });
 
-  const routine = await Routine.create({
-    user_id: user.id,
-    createdAt: new Date(),
-    updatedAt: new Date()
-  });
-
-  const welcomeNote = await Note.create({
-    journal_id: newJournal.id,
-    title: `WELCOME TO EX STUDIO`,
-    text: `It's time to unlock your potential with Ex Studio.\n
-    This app is created for both beginners and veterans. Every feature of Ex Studio is designed to create a perfect exercise routine that fits your athletic needs. \n
-    Select from a list of customized workouts and build a body you always wanted`,
-    createdAt: new Date(),
-    updatedAt: new Date()
+  const routine = await Routine.findOne({
+    where: {
+      user_id: user.uuid
+    }
   });
 
   res
@@ -50,12 +45,84 @@ const createNewUser = async (req, res) => {
     .send({ user, newJournal, tutorialNote, routine, welcomeNote });
 };
 
+const createNewUser = async (req, res) => {
+  const { userAuthInfo } = req;
+
+  if (!userAuthInfo) {
+    return res.status(401).send({ message: 'Failed Authentication!' });
+  }
+
+  const uuid = createHash('sha256', process.env.HASHSEC)
+    .update(userAuthInfo.sub + userAuthInfo.given_name)
+    .digest('hex');
+
+  const sessionToken = jwt.sign(uuid, process.env.JWTSEC);
+  req.session.gulid = sessionToken;
+
+  const existingUser = await User.findOne({
+    where: {
+      uuid
+    }
+  });
+
+  if (existingUser) {
+    return res.redirect('/');
+  } else {
+    const newUser = (
+      await User.create(
+        {
+          uuid,
+          username: userAuthInfo.given_name,
+          sessionToken,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          raw: true,
+          nest: true
+        }
+      )
+    ).dataValues;
+
+    const newJournal = await Journal.create({
+      user_id: newUser.uuid,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    });
+
+    const routine = await Routine.create({
+      user_id: newUser.uuid,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    });
+
+    const tutorialNote = await Note.create({
+      journal_id: newJournal.id,
+      title: `Tutorial`,
+      text: `Browse the list of available workouts and add them to your routine or jump into the workout immediately. Use our browse training page to learn more about exercises and their benefits. Use filter and search bar to find specific workouts and exercises based on the name or targeted muscle groups. Have fun and don't stop grinding!`,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    });
+
+    const welcomeNote = await Note.create({
+      journal_id: newJournal.id,
+      title: `WELCOME TO EX STUDIO`,
+      text: `It's time to unlock your potential with Ex Studio.\n
+      This app is created for both beginners and veterans. Every feature of Ex Studio is designed to create a perfect exercise routine that fits your athletic needs. \n
+      Select from a list of customized workouts and build a body you always wanted`,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    });
+
+    return res.redirect('/');
+  }
+};
+
 const getUserInfoById = async (req, res) => {
-  const { userId } = req.params;
   const user = await User.findOne({
     attributes: ['username', 'uuid'],
     where: {
-      uuid: userId
+      uuid: req.user.uuid
     }
   });
 
@@ -162,13 +229,14 @@ const getUserProfileById = async (req, res) => {
       }
     ]
   });
-  console.log(userProfile);
+
   userProfile.journal.notes = userProfile.journal.notes.slice(0, 5);
 
   res.status(200).send(userProfile);
 };
 
 module.exports = {
+  getUserMain,
   createNewUser,
   getUserInfoById,
   getUserFavoritedWorkouts,
