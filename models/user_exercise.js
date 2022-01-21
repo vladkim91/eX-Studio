@@ -14,11 +14,11 @@ module.exports = (sequelize, DataTypes) => {
   User_Exercise.init(
     {
       user_id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
         onDelete: 'CASCADE',
         references: {
           model: 'users',
-          key: 'id'
+          key: 'uuid'
         }
       },
       exercise_id: {

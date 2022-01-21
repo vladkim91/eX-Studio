@@ -14,10 +14,10 @@ module.exports = (sequelize, DataTypes) => {
   User_Workout.init(
     {
       user_id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
         references: {
           model: 'users',
-          key: 'id'
+          key: 'uuid'
         }
       },
       workout_id: {
