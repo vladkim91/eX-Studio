@@ -1317,6 +1317,9 @@ button.s-f1-selected,
 }
 
 @media screen and (max-width: 720px) {
+  .l-title h1 {
+    font-size: 2em;
+  }
   .popUp{
     position: fixed;
   }
@@ -1327,6 +1330,12 @@ button.s-f1-selected,
 }
 
 @media screen and (max-width: 421px) {
+  header{
+    padding: 0;
+  }
+  header a {
+    margin:0;
+  }
   .s-u-o{
     width: 90vw;
     text-align: center;
@@ -1336,7 +1345,13 @@ button.s-f1-selected,
   }
   .s-i-f-input input{
     width: 90%;
-    margin: auto
+    margin: auto;
+  }
+  .j-page input{
+    width: 100%;
+    width: -moz-available;          /* For Mozila users */
+    width: -webkit-fill-available;  /* For Chrome users */
+    width: fill-available;
   }
 }
 

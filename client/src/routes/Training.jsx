@@ -48,7 +48,8 @@ const Training = ({
   const workout = location.state.workout;
   const exercises = workout.added_exercises;
   const allExercises = [];
-  const [decison, SetDecision] = useState("show-t-d")
+  const [decison, SetDecision] = useState("hide-t-d")
+  
 
   allExercises.push({ name: 'Warmup', time: 60 });
   exercises.forEach((exercise, index) => {
@@ -98,6 +99,7 @@ const Training = ({
 
     if (nextExerciseIndex >= allExercises.length) {
       setWorkoutActive(false);
+      SetDecision('show-t-d')
       return;
     }
 
@@ -159,7 +161,7 @@ const Training = ({
           }}
         >
           {!getCurrentExercise()
-            ? 'Finished'
+            ? 'Restart'
             : !workoutActive
             ? 'Start'
             : allExercises[currentExerciseIndex]?.time
@@ -211,6 +213,7 @@ const Training = ({
                       ? 'end'
                       : null)}
                 </span>
+                
                 <span className="t-l-a-c-text">
                   {allExercises[index + currentExerciseIndex]?.time
                     ? `Time: ${`${getCountdownFormatted(
