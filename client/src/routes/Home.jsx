@@ -19,7 +19,7 @@ const mapActionsToProps = (dispatch) => {
 
 function Home(props) {
   useEffect(() => {
-    props.getUserProfile(1);
+    props.getUserProfile(`cbdf9649-2c95-48c1-b761-ae5c71c3a0cc`);
   }, []);
 
   return (

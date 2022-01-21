@@ -7,10 +7,10 @@ const {
 } = require('../models');
 
 const getRoutineByUser = async (req, res) => {
-  const { userId } = req.params;
+  const { uuid } = req.params;
   const routine = await Routine.findOne({
     where: {
-      user_id: userId
+      user_id: uuid
     },
     nest: true,
     include: [

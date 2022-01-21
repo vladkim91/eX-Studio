@@ -6,6 +6,9 @@ import '../styles/Nav.css';
 import { connect } from 'react-redux';
 import { GetUserInfo } from '../store/actions/ProfileActions';
 import { Link } from 'react-router-dom';
+import Burger from '../assets/burger.svg';
+import Closer from '../assets/close.svg';
+import { useState } from 'react';
 
 const mapStateToProps = (state) => {
   return {
@@ -21,8 +24,11 @@ const mapActionsToProps = (dispatch) => {
 
 function Nav({ userInfo, getUserInfoById }) {
   useEffect(() => {
-    getUserInfoById(1);
+    getUserInfoById(`cbdf9649-2c95-48c1-b761-ae5c71c3a0cc`);
   }, []);
+
+  const [openNav, SetOpenNav] = useState('sb2-ul-close')
+
 
   return (
     <div className="header">
@@ -50,6 +56,16 @@ function Nav({ userInfo, getUserInfoById }) {
         </Link>
         <div className="toggle">
           <img src={Toggle} alt="" />
+        </div>
+        <div className="sideBar2">
+          <div className='sb2-ul'>
+            <img src={Burger} alt="" onClick={()=>openNav==="sb2-ul-close"?SetOpenNav("sb2-ul-open"):SetOpenNav("sb2-ul-close")} />
+          <div className={openNav}>
+            <Link to={'/'}>Home</Link>
+            <Link to={'/browse'}>Browse</Link>
+            <Link to={'/journal'}>Journal</Link>
+          </div>
+          </div>
         </div>
       </nav>
     </div>

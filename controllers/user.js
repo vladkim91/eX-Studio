@@ -53,9 +53,9 @@ const createNewUser = async (req, res) => {
 const getUserInfoById = async (req, res) => {
   const { userId } = req.params;
   const user = await User.findOne({
-    attributes: ['username', 'first_name', 'last_name', 'id'],
+    attributes: ['username', 'uuid'],
     where: {
-      id: userId
+      uuid: userId
     }
   });
 
@@ -67,7 +67,7 @@ const getUserFavoritedWorkouts = async (req, res) => {
   const favoritedWorkouts = await User.findOne({
     attributes: [],
     where: {
-      id: userId
+      uuid: userId
     },
     include: {
       model: Workout,
@@ -84,7 +84,7 @@ const getUserCustomWorkouts = async (req, res) => {
   const customWorkouts = await User.findOne({
     attributes: [],
     where: {
-      id: userId
+      uuid: userId
     },
     include: {
       model: Workout,
@@ -100,7 +100,7 @@ const getUserExercises = async (req, res) => {
   const userExercises = await User.findOne({
     attributes: ['username'],
     where: {
-      id: userId
+      uuid: userId
     },
     include: {
       model: Exercise,
@@ -116,10 +116,10 @@ const getUserProfileById = async (req, res) => {
   const { userId } = req.params;
   const userProfile = await User.findOne({
     where: {
-      id: userId
+      uuid: userId
     },
     nest: true,
-    attributes: ['username', 'first_name', 'last_name', 'id'],
+    attributes: ['username', 'uuid'],
     include: [
       {
         model: Journal,
