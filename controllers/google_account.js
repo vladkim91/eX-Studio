@@ -8,6 +8,8 @@ const signIn = async (req, res) => {
     return res.status(401).send({ message: 'Failed Authentication!' });
   }
 
+  const uuid = await bcrypt.hash(userGOAuthInfo.sub + userGOAuthInfo.email, 10);
+
   const existingUser = await User.findOne({
     where: {}
   });
