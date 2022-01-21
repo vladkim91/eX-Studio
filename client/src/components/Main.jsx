@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Arrow from '../assets/arrow.svg';
 
 function Main({ profileState }) {
   return (
@@ -10,11 +9,7 @@ function Main({ profileState }) {
         <button > Start Today's Workout</button>
         </Link>
       </section>
-      <section className="carrousel">
-        <div className="arrow l-arrow">
-          <img src={Arrow} alt="" />
-        </div>
-        <div className="carrousel-container">
+        <section className="carrousel-container">
           <div className="card c1">
             <div className="blur"></div>
             <h1 className="w-name">workout 1</h1>
@@ -27,10 +22,6 @@ function Main({ profileState }) {
             <div className="blur"></div>
             <h1 className="w-name">workout 3</h1>
           </div>
-        </div>
-        <div className="arrow r-arrow">
-          <img src={Arrow} alt="" />
-        </div>
       </section>
       <section className="routine">
         <div className="routine-container">
