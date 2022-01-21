@@ -269,7 +269,16 @@ const Browse = ({
         getWorkoutById(e.id);
       }}
     >
-      <img src={require('../assets/img/Saturday.jpg')} alt="" />
+      <img
+        src={require(`../assets/${
+          workoutAndExercisesState.filter.type === 'workouts' ? 'w' : 'x'
+        }${
+          workoutAndExercisesState.filter.type === 'workouts'
+            ? Math.min(10, index + 1)
+            : Math.min(34, index + 1)
+        }.jpg`)}
+        alt=""
+      />
       <div className="blur"></div>
       <h1 className="b-3c-name">{e.name}</h1>
     </div>

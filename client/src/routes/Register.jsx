@@ -70,7 +70,7 @@ function Register() {
       if (result.data.message === 'Success') {
         setTimeout(() => {
           navigator('/sign');
-        }, 1000);
+        }, 400);
       }
     }
   };

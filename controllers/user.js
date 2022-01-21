@@ -209,11 +209,11 @@ const userSignInManual = async (req, res) => {
     !existingUser ||
     !(await bcrypt.compare(password, existingUser.dataValues.password))
   ) {
-    res.status(401).send({ message: 'Login failed' });
+    res.send({ message: 'Login failed' });
   } else {
     const sessionToken = jwt.sign(uuid, process.env.JWTSEC);
     req.session.gulid = sessionToken;
-    return res.status(200).send({ message: 'Success' });
+    return res.send({ message: 'Success' });
   }
 };
 
