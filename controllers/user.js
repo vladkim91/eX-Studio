@@ -29,6 +29,12 @@ const createNewUser = async (req, res) => {
     updatedAt: new Date()
   });
 
+  const routine = await Routine.create({
+    user_id: user.id,
+    createdAt: new Date(),
+    updatedAt: new Date()
+  });
+
   const welcomeNote = await Note.create({
     journal_id: newJournal.id,
     title: `WELCOME TO EX STUDIO`,
@@ -39,7 +45,9 @@ const createNewUser = async (req, res) => {
     updatedAt: new Date()
   });
 
-  res.status(201).send({ user, newJournal, tutorialNote, welcomeNote });
+  res
+    .status(201)
+    .send({ user, newJournal, tutorialNote, routine, welcomeNote });
 };
 
 const getUserInfoById = async (req, res) => {
