@@ -44,10 +44,10 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false
       },
       user_id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
         references: {
           model: 'users',
-          key: 'id'
+          key: 'uuid'
         }
       },
       image: DataTypes.STRING
