@@ -7,7 +7,7 @@ function SignIn() {
   const [password, setPassword] = useState('');
 
   const handleSubmit = async () => {
-    const result = await Client.post('user/manual', {
+    const result = await Client.post('user/sign_in_manual', {
       username,
       password
     });

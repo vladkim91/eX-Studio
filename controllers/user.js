@@ -199,7 +199,7 @@ const userSignInManual = async (req, res) => {
     .update(username)
     .digest('hex');
 
-  const existingUser = await User.find({
+  const existingUser = await User.findOne({
     where: {
       uuid
     }
@@ -211,6 +211,7 @@ const userSignInManual = async (req, res) => {
   ) {
     res.status(401).send({ message: 'Login failed' });
   } else {
+    const sessionToken = jwt.sign(uuid, process.env.JWTSEC);
     req.session.gulid = sessionToken;
     res.redirect('/');
   }
@@ -341,5 +342,6 @@ module.exports = {
   getUserFavoritedWorkouts,
   getUserCustomWorkouts,
   getUserProfileById,
-  getUserExercises
+  getUserExercises,
+  userSignInManual
 };

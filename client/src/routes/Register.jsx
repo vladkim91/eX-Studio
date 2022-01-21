@@ -64,8 +64,6 @@ function Register() {
         username,
         password
       });
-      console.log('Result');
-      console.log(result);
     }
   };
 
