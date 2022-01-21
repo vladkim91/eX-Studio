@@ -20,7 +20,7 @@ const mapActionsToProps = (dispatch) => {
 
 function Routine({ routine, getRoutineByUserId }) {
   useEffect(() => {
-    getRoutineByUserId(1);
+    getRoutineByUserId(`cbdf9649-2c95-48c1-b761-ae5c71c3a0cc`);
   }, []);
 
   const days = [

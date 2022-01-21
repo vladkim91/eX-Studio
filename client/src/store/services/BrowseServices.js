@@ -18,3 +18,8 @@ export const deleteScheduledWorkoutByUserIdAndDay = async (userId, day) => {
   );
   return result.data;
 };
+
+export const getWorkoutById = async (id) => {
+  const result = await Client.get(`workout/${id}`);
+  return result.data;
+};
