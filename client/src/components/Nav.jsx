@@ -24,7 +24,7 @@ const mapActionsToProps = (dispatch) => {
 
 function Nav({ userInfo, getUserInfoById }) {
   useEffect(() => {
-    getUserInfoById(1);
+    getUserInfoById(`cbdf9649-2c95-48c1-b761-ae5c71c3a0cc`);
   }, []);
 
   const [openNav, SetOpenNav] = useState('sb2-ul-close')

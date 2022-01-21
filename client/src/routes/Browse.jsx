@@ -8,7 +8,8 @@ import {
   EditFilterParams,
   ScheduleWorkout,
   EditScheduleWorkout,
-  DeleteScheduledWorkout
+  DeleteScheduledWorkout,
+  GetWorkoutById
 } from '../store/actions/BrowseActions';
 import { GetRoutineByUserId } from '../store/actions/ProfileActions';
 
@@ -32,7 +33,9 @@ const mapActionsToProps = (dispatch) => {
       dispatch(EditFilterParams(filter, value)),
     scheduleWorkout: (newSchedule) => dispatch(ScheduleWorkout(newSchedule)),
     getRoutineByUserId: (userId) => dispatch(GetRoutineByUserId(userId)),
-    deleteScheduledWorkout: (userId, day) => dispatch(DeleteScheduledWorkout(userId, day))
+    deleteScheduledWorkout: (userId, day) =>
+      dispatch(DeleteScheduledWorkout(userId, day)),
+    getWorkoutById: (id) => dispatch(GetWorkoutById(id))
   };
 };
 
@@ -45,7 +48,8 @@ const Browse = ({
   editScheduleWorkout,
   getRoutineByUserId,
   routine,
-  deleteScheduledWorkout
+  deleteScheduledWorkout,
+  getWorkoutById
 }) => {
   const [pop, SetPop] = useState('pophide');
   const [body, setBody] = useState(null);
@@ -114,8 +118,13 @@ const Browse = ({
     const scheduledWorkouts = routine.scheduled_workouts;
     scheduledWorkouts.forEach((scheduledWorkout, i) => {
       if (scheduledWorkout.day === workoutAndExercisesState.schedule.day) {
-        alert(`workout already scheduled for ${workoutAndExercisesState.schedule.day}`)
-        deleteScheduledWorkout(userInfo.id, workoutAndExercisesState.schedule.day)
+        alert(
+          `workout already scheduled for ${workoutAndExercisesState.schedule.day}`
+        );
+        deleteScheduledWorkout(
+          userInfo.id,
+          workoutAndExercisesState.schedule.day
+        );
       }
     });
     scheduleWorkout(workoutAndExercisesState.schedule);
@@ -142,6 +151,7 @@ const chooseDay = (e) => {
     console.log(e.target.id)
     console.log(e.target.className)
     switch (e.target.innerText) {
+      
       case 'sunday':
         currentDay = 0;
         break;
@@ -197,7 +207,7 @@ const chooseDay = (e) => {
     { fullName: 'Back', acronym: 'bk ' },
     { fullName: 'Chest', acronym: 'ch ' },
     { fullName: 'Leg', acronym: 'lg ' },
-    { fullName: 'Tricep', acronym: 'tc ' },
+    { fullName: 'Tricep', acronym: 'tr ' },
     { fullName: 'Shoulder', acronym: 'sh ' },
     { fullName: 'FullBody', acronym: 'fb ' },
     { fullName: 'Abs', acronym: 'ab ' },
@@ -259,6 +269,7 @@ const chooseDay = (e) => {
         } else {
           setCurrentExercise(e);
         }
+        getWorkoutById(e.id);
       }}
     >
       <img src={require('../assets/img/Saturday.jpg')} alt="" />
@@ -412,7 +423,11 @@ const chooseDay = (e) => {
                   </div>
                 </div>
               )}
-              <Link className="r-l-start-bttn" to="/">
+            <Link
+                className="r-l-start-bttn"
+                to="/training"
+                
+              >
                 Start
               </Link>
             </div>

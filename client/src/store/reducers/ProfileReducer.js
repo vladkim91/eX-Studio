@@ -15,9 +15,7 @@ import {
 
 const iState = {
   userInfo: {
-    username: '',
-    first_name: '',
-    last_name: ''
+    username: ''
   },
   journal: [],
   journalPage: 0,
@@ -40,9 +38,7 @@ const ProfileReducer = (state = iState, action) => {
       return { ...state, routine: action.payload };
     case GET_USER_PROFILE:
       const userInfo = {
-        username: action.payload.username,
-        first_name: action.payload.first_name,
-        last_name: action.payload.last_name
+        username: action.payload.username
       };
       const userJournal = action.payload.journal.notes;
       const userRoutine = action.payload.routine.scheduled_workouts;

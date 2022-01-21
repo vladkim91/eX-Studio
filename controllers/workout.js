@@ -10,9 +10,10 @@ const getWorkoutById = async (req, res) => {
     where: {
       id: workoutId
     },
+    through: { attributes: [] },
     include: {
       model: Exercise,
-      as: 'exercises',
+      as: 'added_exercises',
       attributes: atts
     }
   });
