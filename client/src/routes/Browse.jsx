@@ -53,7 +53,7 @@ const Browse = ({
   const [showDesc, SetShowDesc] = useState(-1);
   const [currentWorkout, setCurrentWorkout] = useState(null);
   const [currentExercise, setCurrentExercise] = useState(null);
-  const [daySelected, setDaySelected] = useState(false);
+  const [daySelected, setDaySelected] = useState(-1);
 
   useEffect(() => {
     fetchWorkoutsAndExercises(
@@ -136,9 +136,11 @@ const Browse = ({
     'thursday',
     'friday',
     'saturday'
-  ];
-  const chooseDay = (e) => {
-    let currentDay;
+];
+let currentDay;
+const chooseDay = (e) => {
+    console.log(e.target.id)
+    console.log(e.target.className)
     switch (e.target.innerText) {
       case 'sunday':
         currentDay = 0;
@@ -155,24 +157,36 @@ const Browse = ({
       case 'thursday':
         currentDay = 4;
         break;
-      case 'friday':
-        currentDay = 5;
-        break;
-      case 'saturday':
-        currentDay = 6;
+        case 'friday':
+            currentDay = 5;
+            break;
+            case 'saturday':
+          currentDay = 6;
+          console.log(e.target.id)
+          console.log(e.target.className)
         break;
       default:
         currentDay = null;
     }
-    currentDay && setDaySelected(true);
+    console.log(currentDay)
     editScheduleWorkout(userInfo.id, currentWorkout.id, currentDay);
   };
 
   const daysArray = [];
 
   for (let i = 0; i < days.length; i++) {
+
     daysArray.push(
-      <span onClick={chooseDay} key={i}>
+      <span id={i} className={`b-p-c-d-small ${daySelected === i?'small1':""}`} onClick={
+          (e)=>{
+          chooseDay(e);
+          if (daySelected === i) {
+              setDaySelected(-1)
+            }else{
+              setDaySelected(i)
+
+          }
+      }} key={i}>
         {days[i]}
       </span>
     );
@@ -340,13 +354,14 @@ const Browse = ({
                   <span className="b-p-c-add" onClick={() => addRoutine()}>
                     Add to routine
                   </span>
-                ) : null}
+                ) : <span></span>}
                 {workoutAndExercisesState.filter.type === 'workouts' ? (
                   <h1>{currentWorkout.name}</h1>
                 ) : (
                   <h1>{currentExercise.name}</h1>
                 )}
               </div>
+              {workoutAndExercisesState.filter.type === 'workouts' ? (
               <div className={`b-p-c-days ${addDays}`}>
                 <div className="choose-days">{daysArray}</div>
                 {/* <Link to="/routine"> */}
@@ -354,7 +369,7 @@ const Browse = ({
                   Confirm
                 </div>
                 {/* </Link> */}
-              </div>
+              </div>):(<div></div>)}
               {workoutAndExercisesState.filter.type === 'workouts' ? (
                 <div className="b-l-arr">
                   {currentWorkout.added_exercises.map((exercise, index) => (
@@ -390,9 +405,11 @@ const Browse = ({
                   ))}
                 </div>
               ) : (
-                <div>
-                  <img src={currentExercise.image} alt="" />
+                <div className='b-l-ex-desc2'>
+                  <img className='b-l-ex-desc2-img' src={currentExercise.image} alt="" />
+                  <div className="b-l-ex-desc2-info">
                   {currentExercise.description}
+                  </div>
                 </div>
               )}
               <Link className="r-l-start-bttn" to="/">
