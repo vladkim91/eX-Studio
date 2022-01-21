@@ -1,11 +1,11 @@
 const { Journal, Note, sequelize } = require('../models');
 
 const createNewNote = async (req, res) => {
-  const { userId } = req.params;
+  const { user } = req;
 
   const journal = await Journal.findOne({
     where: {
-      user_id: userId
+      user_id: user.uuid
     }
   });
 
@@ -21,7 +21,7 @@ const createNewNote = async (req, res) => {
 };
 
 const getJournalByUser = async (req, res) => {
-  const { userId } = req.params;
+  const { user } = req;
   const noteLimit = parseInt(req.query.noteLimit);
   const requestedPage = parseInt(req.query.page);
   const page = (requestedPage ? requestedPage : 0) * noteLimit;
@@ -31,7 +31,7 @@ const getJournalByUser = async (req, res) => {
     attributes: [],
     nest: true,
     where: {
-      user_id: userId
+      user_id: user.uuid
     },
     include: {
       model: Note,

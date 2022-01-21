@@ -11,12 +11,14 @@ import {
   RESET_NOTE_CREATION,
   SET_SELECTED_NOTE,
   SHIFT_PAGE,
-  REQUEST_AUTH
+  REQUEST_AUTH,
+  GET_USER_MAIN
 } from '../types';
 import {
   getUserProfile,
   getUserInfoById,
-  getRoutineByUserId
+  getRoutineByUserId,
+  getUserMain
 } from '../services/ProfileServices';
 import {
   createNewNote,
@@ -25,6 +27,16 @@ import {
   getJournalByUser
 } from '../services/JournalServices';
 import { requestGOAuth } from '../services/AuthServices';
+
+export const GetUserMain = () => {
+  return async (dispatch) => {
+    const userMain = await getUserMain();
+    dispatch({
+      type: GET_USER_MAIN,
+      payload: userMain
+    });
+  };
+};
 
 export const GetUserProfile = (userId) => {
   return async (dispatch) => {

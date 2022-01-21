@@ -9,7 +9,7 @@ function SignUp() {
       <div className="s-u-card">
         <h3>New here?</h3>
         <h1>Join or sign in using other services</h1>
-        <div className="s-u-o o-google" onClick={() => {}}>
+        <div className="s-u-o o-google">
           <img src={GoogleIcon} alt="" />
           <h4>Continue with Google</h4>
         </div>
@@ -23,7 +23,7 @@ function SignUp() {
           data-client_id="51263313881-7oolcs1ckh8ovfn6fuqql2du7f11c37u.apps.googleusercontent.com"
           data-context="signin"
           data-ux_mode="redirect"
-          data-login_uri={`${BASE_API_URI}account/googleSignIn`}
+          data-login_uri={`${BASE_API_URI}user/`}
           data-auto_prompt="false"
         ></div>
 

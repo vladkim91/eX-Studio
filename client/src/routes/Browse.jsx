@@ -122,7 +122,7 @@ const Browse = ({
           `workout already scheduled for ${workoutAndExercisesState.schedule.day}`
         );
         deleteScheduledWorkout(
-          userInfo.id,
+          userInfo.uuid,
           workoutAndExercisesState.schedule.day
         );
       }
@@ -145,13 +145,10 @@ const Browse = ({
     'thursday',
     'friday',
     'saturday'
-];
-let currentDay;
-const chooseDay = (e) => {
-    console.log(e.target.id)
-    console.log(e.target.className)
+  ];
+  let currentDay;
+  const chooseDay = (e) => {
     switch (e.target.innerText) {
-      
       case 'sunday':
         currentDay = 0;
         break;
@@ -167,36 +164,36 @@ const chooseDay = (e) => {
       case 'thursday':
         currentDay = 4;
         break;
-        case 'friday':
-            currentDay = 5;
-            break;
-            case 'saturday':
-          currentDay = 6;
-          console.log(e.target.id)
-          console.log(e.target.className)
+      case 'friday':
+        currentDay = 5;
+        break;
+      case 'saturday':
+        currentDay = 6;
         break;
       default:
         currentDay = null;
     }
-    console.log(currentDay)
-    editScheduleWorkout(userInfo.id, currentWorkout.id, currentDay);
+
+    editScheduleWorkout(userInfo.uuid, currentWorkout.id, currentDay);
   };
 
   const daysArray = [];
 
   for (let i = 0; i < days.length; i++) {
-
     daysArray.push(
-      <span id={i} className={`b-p-c-d-small ${daySelected === i?'small1':""}`} onClick={
-          (e)=>{
+      <span
+        id={i}
+        className={`b-p-c-d-small ${daySelected === i ? 'small1' : ''}`}
+        onClick={(e) => {
           chooseDay(e);
           if (daySelected === i) {
-              setDaySelected(-1)
-            }else{
-              setDaySelected(i)
-
+            setDaySelected(-1);
+          } else {
+            setDaySelected(i);
           }
-      }} key={i}>
+        }}
+        key={i}
+      >
         {days[i]}
       </span>
     );
@@ -365,7 +362,9 @@ const chooseDay = (e) => {
                   <span className="b-p-c-add" onClick={() => addRoutine()}>
                     Add to routine
                   </span>
-                ) : <span></span>}
+                ) : (
+                  <span></span>
+                )}
                 {workoutAndExercisesState.filter.type === 'workouts' ? (
                   <h1>{currentWorkout.name}</h1>
                 ) : (
@@ -373,14 +372,20 @@ const chooseDay = (e) => {
                 )}
               </div>
               {workoutAndExercisesState.filter.type === 'workouts' ? (
-              <div className={`b-p-c-days ${addDays}`}>
-                <div className="choose-days">{daysArray}</div>
-                {/* <Link to="/routine"> */}
-                <div className="confirm-routine" onClick={addWorkoutToRoutine}>
-                  Confirm
+                <div className={`b-p-c-days ${addDays}`}>
+                  <div className="choose-days">{daysArray}</div>
+                  <Link to="/routine">
+                    <div
+                      className="confirm-routine"
+                      onClick={addWorkoutToRoutine}
+                    >
+                      Confirm
+                    </div>
+                  </Link>
                 </div>
-                {/* </Link> */}
-              </div>):(<div></div>)}
+              ) : (
+                <div></div>
+              )}
               {workoutAndExercisesState.filter.type === 'workouts' ? (
                 <div className="b-l-arr">
                   {currentWorkout.added_exercises.map((exercise, index) => (
@@ -416,17 +421,25 @@ const chooseDay = (e) => {
                   ))}
                 </div>
               ) : (
-                <div className='b-l-ex-desc2'>
-                  <img className='b-l-ex-desc2-img' src={currentExercise.image} alt="" />
+                <div className="b-l-ex-desc2">
+                  <img
+                    className="b-l-ex-desc2-img"
+                    src={currentExercise.image}
+                    alt=""
+                  />
                   <div className="b-l-ex-desc2-info">
-                  {currentExercise.description}
+                    {currentExercise.description}
                   </div>
                 </div>
               )}
-            <Link
+              <Link
                 className="r-l-start-bttn"
                 to="/training"
-                
+                state={{
+                  workout: currentWorkout || {
+                    added_exercises: []
+                  }
+                }}
               >
                 Start
               </Link>

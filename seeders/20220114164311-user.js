@@ -8,12 +8,14 @@ module.exports = {
       {
         uuid: uuidv4().toString(),
         username: 'johndoe1',
+        password: 'ioguierfdw',
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         uuid: uuidv4().toString(),
         username: 'robsmith',
+        password: 'opji5r4rnr4fe',
         createdAt: new Date(),
         updatedAt: new Date()
       }

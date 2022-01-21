@@ -21,20 +21,28 @@ const authenticationMiddleware = async (req, res, next) => {
 const authorizationMiddleware = async (req, res, next) => {
   const { session } = req;
 
-  if (!session.gulid) return res.redirect('/landing', 401);
+  if (!session.gulid) {
+    res.redirect('/landing');
+    return;
+  }
 
   const uuid = jwt.verify(session.gulid, process.env.JWTSEC, {
     complete: false
   });
 
-  const userInfo = await User.findOne({
+  const user = await User.findOne({
+    nest: true,
+    raw: true,
     where: {
       uuid
     }
   });
 
-  if (!userInfo) {
-    return res.redirect('/landing', 401);
+  req.user = user;
+
+  if (!user) {
+    res.redirect('/landing');
+    return;
   }
 
   next();

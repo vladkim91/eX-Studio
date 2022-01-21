@@ -7,10 +7,10 @@ const {
 } = require('../models');
 
 const getRoutineByUser = async (req, res) => {
-  const { uuid } = req.params;
+  const { user } = req;
   const routine = await Routine.findOne({
     where: {
-      user_id: uuid
+      user_id: user.uuid
     },
     nest: true,
     include: [
@@ -44,22 +44,29 @@ const getRoutineByUser = async (req, res) => {
     ]
   });
 
+  // console.log(routine);
   res.status(200).send(routine);
 };
 
 const scheduleWorkout = async (req, res) => {
-  const userId = req.body.userId;
+  const { user } = req;
+  // console.log('User');
+  // console.log(user);
   const workoutId = req.body.workoutId;
   const day = req.body.day;
   const routine = await Routine.findOne({
+    raw: true,
+    nest: true,
     where: {
-      id: userId
+      user_id: user.uuid
     }
   });
-  console.log(req.body);
+
+  // console.log('Routine');
+  // console.log(routine);
 
   const scheduledWorkouts = await ScheduledWorkout.create({
-    routine_id: parseInt(routine.id),
+    routine_id: routine.id,
     workout_id: parseInt(workoutId),
     day: parseInt(day),
     createdAt: new Date(),
@@ -70,8 +77,21 @@ const scheduleWorkout = async (req, res) => {
 };
 
 const deleteScheduledWorkoutByUserId = async (req, res) => {
-  await ScheduledWorkout.destroy({
-    where: { routine_id: req.params.userId, day: req.params.day }
+  const { user } = req;
+
+  const routine = await Routine.findOne({
+    where: {
+      user_id: user.uuid
+    }
+  });
+
+  console.log('Routine');
+  console.log(routine.id);
+  console.log('Day');
+  console.log(parseInt(req.params.day));
+
+  const scheduledWorkout = await ScheduledWorkout.destroy({
+    where: { routine_id: routine.id, day: parseInt(req.params.day) }
   });
   res.sendStatus(200);
 };

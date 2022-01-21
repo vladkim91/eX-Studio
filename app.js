@@ -14,7 +14,7 @@ app.use(
     credentials: true
   })
 );
-app.use(logger('dev'));
+// app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
@@ -29,10 +29,16 @@ app.use(
       pruneSessionInterval: false,
       createTableIfMissing: true,
       conObject: {
-        database: 'ex_studio_development',
-        port: 5432,
-        host: 'localhost',
-        ssl: false
+        connectionString:
+          process.env.NODE_ENV === 'production'
+            ? process.env.DATABASE_URL
+            : 'http://localhost:5432',
+        // database: 'ex_studio_development',
+        // port: 5432,
+        // host: 'ex-studio.herokuapp.com',
+        ssl: {
+          rejectUnauthorized: false
+        }
       }
     }),
     resave: true,
