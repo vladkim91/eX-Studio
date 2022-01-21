@@ -1147,6 +1147,16 @@ button.s-f1-selected,
   }
 }
 
+@media screen and (max-width: 720px) {
+  .popUp{
+    position: fixed;
+  }
+  .popCard{
+    width: 80vw;
+  
+  }
+}
+
 @media screen and (max-width: 421px) {
   .s-u-o{
     width: 90vw;
