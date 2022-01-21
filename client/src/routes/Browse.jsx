@@ -9,13 +9,15 @@ import {
   ScheduleWorkout,
   EditScheduleWorkout
 } from '../store/actions/BrowseActions';
+import { GetRoutineByUserId } from '../store/actions/ProfileActions';
 
 import { Link } from 'react-router-dom';
 
 const mapStateToProps = (state) => {
   return {
     workoutAndExercisesState: state.workoutAndExercisesState,
-    userInfo: state.profileState.userInfo
+    userInfo: state.profileState.userInfo,
+    routine: state.profileState.routine
   };
 };
 
@@ -27,7 +29,8 @@ const mapActionsToProps = (dispatch) => {
       dispatch(LoadWorkoutsAndExercises(type, name, muscleGroup)),
     editFilterParams: (filter, value) =>
       dispatch(EditFilterParams(filter, value)),
-    scheduleWorkout: (newSchedule) => dispatch(ScheduleWorkout(newSchedule))
+    scheduleWorkout: (newSchedule) => dispatch(ScheduleWorkout(newSchedule)),
+    getRoutineByUserId: (userId) => dispatch(GetRoutineByUserId(userId))
   };
 };
 
@@ -37,7 +40,9 @@ const Browse = ({
   editFilterParams,
   userInfo,
   scheduleWorkout,
-  editScheduleWorkout
+  editScheduleWorkout,
+  getRoutineByUserId,
+  routine
 }) => {
   const [pop, SetPop] = useState('pophide');
   const [body, setBody] = useState(null);
@@ -45,7 +50,7 @@ const Browse = ({
   const [showDesc, SetShowDesc] = useState(-1);
   const [currentWorkout, setCurrentWorkout] = useState(null);
   const [currentExercise, setCurrentExercise] = useState(null);
-  const [daySelected, setDaySelected] = useState(false)
+  const [daySelected, setDaySelected] = useState(false);
 
   useEffect(() => {
     fetchWorkoutsAndExercises(
@@ -103,6 +108,12 @@ const Browse = ({
   };
 
   const addWorkoutToRoutine = () => {
+    const scheduledWorkouts = routine.scheduled_workouts;
+    scheduledWorkouts.forEach((scheduledWorkout, i) => {
+      if (scheduledWorkout.day === workoutAndExercisesState.schedule.day) {
+        alert(`workout already scheduled for ${workoutAndExercisesState.schedule.day}`)
+      }
+    });
     scheduleWorkout(workoutAndExercisesState.schedule);
   };
 
@@ -149,7 +160,7 @@ const Browse = ({
       default:
         currentDay = null;
     }
-    currentDay && setDaySelected(true)
+    currentDay && setDaySelected(true);
     editScheduleWorkout(userInfo.id, currentWorkout.id, currentDay);
   };
 
@@ -224,6 +235,7 @@ const Browse = ({
       className="b-2c-card card"
       onClick={() => {
         popClick();
+        getRoutineByUserId(userInfo.id);
         if (workoutAndExercisesState.filter.type === 'workouts') {
           setCurrentWorkout(e);
         } else {
