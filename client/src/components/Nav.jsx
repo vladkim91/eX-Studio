@@ -54,9 +54,7 @@ function Nav({ userInfo, getUserInfoById }) {
             <h2 className="t-bottom">STUDIO</h2>
           </div>
         </Link>
-        <div className="toggle">
-          <img src={Toggle} alt="" />
-        </div>
+
         <div className="sideBar2">
           <div className='sb2-ul'>
             <img src={Burger} alt="" onClick={()=>openNav==="sb2-ul-close"?SetOpenNav("sb2-ul-open"):SetOpenNav("sb2-ul-close")} />
