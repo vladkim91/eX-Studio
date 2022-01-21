@@ -45,6 +45,7 @@ const Browse = ({
   const [showDesc, SetShowDesc] = useState(-1);
   const [currentWorkout, setCurrentWorkout] = useState(null);
   const [currentExercise, setCurrentExercise] = useState(null);
+  const [daySelected, setDaySelected] = useState(false)
 
   useEffect(() => {
     fetchWorkoutsAndExercises(
@@ -148,6 +149,7 @@ const Browse = ({
       default:
         currentDay = null;
     }
+    currentDay && setDaySelected(true)
     editScheduleWorkout(userInfo.id, currentWorkout.id, currentDay);
   };
 
