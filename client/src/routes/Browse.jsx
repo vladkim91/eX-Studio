@@ -7,15 +7,18 @@ import {
   LoadWorkoutsAndExercises,
   EditFilterParams,
   ScheduleWorkout,
-  EditScheduleWorkout
+  EditScheduleWorkout,
+  DeleteScheduledWorkout
 } from '../store/actions/BrowseActions';
+import { GetRoutineByUserId } from '../store/actions/ProfileActions';
 
 import { Link } from 'react-router-dom';
 
 const mapStateToProps = (state) => {
   return {
     workoutAndExercisesState: state.workoutAndExercisesState,
-    userInfo: state.profileState.userInfo
+    userInfo: state.profileState.userInfo,
+    routine: state.profileState.routine
   };
 };
 
@@ -27,7 +30,9 @@ const mapActionsToProps = (dispatch) => {
       dispatch(LoadWorkoutsAndExercises(type, name, muscleGroup)),
     editFilterParams: (filter, value) =>
       dispatch(EditFilterParams(filter, value)),
-    scheduleWorkout: (newSchedule) => dispatch(ScheduleWorkout(newSchedule))
+    scheduleWorkout: (newSchedule) => dispatch(ScheduleWorkout(newSchedule)),
+    getRoutineByUserId: (userId) => dispatch(GetRoutineByUserId(userId)),
+    deleteScheduledWorkout: (userId, day) => dispatch(DeleteScheduledWorkout(userId, day))
   };
 };
 
@@ -37,14 +42,19 @@ const Browse = ({
   editFilterParams,
   userInfo,
   scheduleWorkout,
-  editScheduleWorkout
+  editScheduleWorkout,
+  getRoutineByUserId,
+  routine,
+  deleteScheduledWorkout
 }) => {
   const [pop, SetPop] = useState('pophide');
   const [body, setBody] = useState(null);
   const [addDays, SetAddDays] = useState('date-h');
   const [showDesc, SetShowDesc] = useState(-1);
-
   const [currentWorkout, setCurrentWorkout] = useState(null);
+  const [currentExercise, setCurrentExercise] = useState(null);
+  const [daySelected, setDaySelected] = useState(false);
+
   useEffect(() => {
     fetchWorkoutsAndExercises(
       workoutAndExercisesState.filter.type,
@@ -99,9 +109,15 @@ const Browse = ({
       }
     }
   };
-  const dayOfTheWeek = new Date().getDay();
 
   const addWorkoutToRoutine = () => {
+    const scheduledWorkouts = routine.scheduled_workouts;
+    scheduledWorkouts.forEach((scheduledWorkout, i) => {
+      if (scheduledWorkout.day === workoutAndExercisesState.schedule.day) {
+        alert(`workout already scheduled for ${workoutAndExercisesState.schedule.day}`)
+        deleteScheduledWorkout(userInfo.id, workoutAndExercisesState.schedule.day)
+      }
+    });
     scheduleWorkout(workoutAndExercisesState.schedule);
   };
 
@@ -112,6 +128,55 @@ const Browse = ({
       SetAddDays('date-h');
     }
   };
+  let days = [
+    'sunday',
+    'monday',
+    'tuesday',
+    'wednesday',
+    'thursday',
+    'friday',
+    'saturday'
+  ];
+  const chooseDay = (e) => {
+    let currentDay;
+    switch (e.target.innerText) {
+      case 'sunday':
+        currentDay = 0;
+        break;
+      case 'monday':
+        currentDay = 1;
+        break;
+      case 'tuesday':
+        currentDay = 2;
+        break;
+      case 'wednesday':
+        currentDay = 3;
+        break;
+      case 'thursday':
+        currentDay = 4;
+        break;
+      case 'friday':
+        currentDay = 5;
+        break;
+      case 'saturday':
+        currentDay = 6;
+        break;
+      default:
+        currentDay = null;
+    }
+    currentDay && setDaySelected(true);
+    editScheduleWorkout(userInfo.id, currentWorkout.id, currentDay);
+  };
+
+  const daysArray = [];
+
+  for (let i = 0; i < days.length; i++) {
+    daysArray.push(
+      <span onClick={chooseDay} key={i}>
+        {days[i]}
+      </span>
+    );
+  }
 
   let parts = [
     { fullName: 'All', acronym: 'bk ch lg tc sh fb ab bc ' },
@@ -174,7 +239,12 @@ const Browse = ({
       className="b-2c-card card"
       onClick={() => {
         popClick();
-        editScheduleWorkout(userInfo.id, e.id, dayOfTheWeek);
+        getRoutineByUserId(userInfo.id);
+        if (workoutAndExercisesState.filter.type === 'workouts') {
+          setCurrentWorkout(e);
+        } else {
+          setCurrentExercise(e);
+        }
       }}
     >
       <img src={require('../assets/img/Saturday.jpg')} alt="" />
@@ -250,84 +320,95 @@ const Browse = ({
           </div>
         </div>
         <div className="browse-container">
-          <h2>Exercise</h2>
+          {workoutAndExercisesState.filter.type === 'workouts' ? (
+            <h2>Workouts</h2>
+          ) : (
+            <h2>Exercises</h2>
+          )}
           <div className="b-c-seperator"></div>
           <div className="b-c-cards">{workoutsOrExercises}</div>
         </div>
       </div>
       <section className={`b-pop ${pop}`}>
-        <div className="b-pop-card">
-          <div className="popInfo">
-            <div className="b-p-c-set">
-              <span className="b-p-c-add" onClick={() => addRoutine()}>
-                Add routine
-              </span>
-              <h1>bicep reinforcement</h1>
-            </div>
-            <div className={`b-p-c-days ${addDays}`}>
-              <div className="choose-days">
-                <span className="b-p-c-d-small">Sunday</span>
-                <span className="b-p-c-d-small">Monday</span>
-                <span className="b-p-c-d-small">Tuesday</span>
-                <span className="b-p-c-d-small">Wednesday</span>
-                <span className="b-p-c-d-small">Thursday</span>
-                <span className="b-p-c-d-small">Friday</span>
-                <span className="b-p-c-d-small">Saturday</span>
+        {(workoutAndExercisesState.filter.type === 'workouts'
+          ? currentWorkout
+          : currentExercise) && (
+          <div className="b-pop-card">
+            <div className="popInfo">
+              <div className="b-p-c-set">
+                {workoutAndExercisesState.filter.type === 'workouts' ? (
+                  <span className="b-p-c-add" onClick={() => addRoutine()}>
+                    Add to routine
+                  </span>
+                ) : null}
+                {workoutAndExercisesState.filter.type === 'workouts' ? (
+                  <h1>{currentWorkout.name}</h1>
+                ) : (
+                  <h1>{currentExercise.name}</h1>
+                )}
               </div>
-              <Link to="/routine">
+              <div className={`b-p-c-days ${addDays}`}>
+                <div className="choose-days">{daysArray}</div>
+                {/* <Link to="/routine"> */}
                 <div className="confirm-routine" onClick={addWorkoutToRoutine}>
                   Confirm
                 </div>
+                {/* </Link> */}
+              </div>
+              {workoutAndExercisesState.filter.type === 'workouts' ? (
+                <div className="b-l-arr">
+                  {currentWorkout.added_exercises.map((exercise, index) => (
+                    <div
+                      key={index}
+                      className="b-l-ex"
+                      onClick={() => {
+                        //   displayDesc()
+                        if (showDesc === index) {
+                          SetShowDesc(-1);
+                        } else {
+                          SetShowDesc(index);
+                        }
+                      }}
+                    >
+                      <div className="b-l-ex-info">
+                        <span className="b-l-ex-num">{index + 1}.</span>
+                        <p className="b-l-ex-name">{exercise.name}</p>
+                        {exercise.time ? (
+                          <span className="b-l-time">{exercise.time} sec</span>
+                        ) : (
+                          <span className="b-l-time">{exercise.sets} sets</span>
+                        )}
+                      </div>
+                      <div
+                        className={`b-l-ex-desc ${
+                          showDesc === index ? 'desc-s' : 'desc-h'
+                        }`}
+                      >
+                        {exercise.description}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div>
+                  <img src={currentExercise.image} alt="" />
+                  {currentExercise.description}
+                </div>
+              )}
+              <Link className="r-l-start-bttn" to="/">
+                Start
               </Link>
             </div>
-
-            <div className="b-l-arr">
-              {[...Array(5)].map((exercise, index) => (
-                <div
-                  key={index}
-                  className="b-l-ex"
-                  onClick={() => {
-                    //   displayDesc()
-                    if (showDesc === index) {
-                      SetShowDesc(-1);
-                    } else {
-                      SetShowDesc(index);
-                    }
-                  }}
-                >
-                  <div className="b-l-ex-info">
-                    <span className="b-l-ex-num">{index + 1}.</span>
-                    <p className="b-l-ex-name">thgerg</p>
-                    <span className="b-l-time">02:00</span>
-                  </div>
-                  <div
-                    className={`b-l-ex-desc ${
-                      showDesc === index ? 'desc-s' : 'desc-h'
-                    }`}
-                  >
-                    A military press, also known as an overhead press and a
-                    shoulder press, is a barbell strength training exercise that
-                    works muscle groups in the upper body like the triceps in
-                    your arms, the trapezius muscles in your upper back, and the
-                    deltoid muscles in your shoulders, including the anterior
-                    and medial delts.
-                  </div>
-                </div>
-              ))}
+            <div
+              className="close"
+              onClick={() => {
+                popClick();
+              }}
+            >
+              <img src={Close} alt="" />
             </div>
-            <Link className="r-l-start-bttn" to="/">
-              Start
-            </Link>
           </div>
-          <div
-            className="close"
-            onClick={() => {
-              popClick();
-            }}
-          >
-            <img src={Close} alt="" />
-          </div>
-        </div>
+        )}
       </section>
     </div>
   );
