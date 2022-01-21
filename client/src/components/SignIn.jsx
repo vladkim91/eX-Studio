@@ -38,21 +38,21 @@ function SignIn() {
   };
 
   const handleSubmit = () => {
-    if (!isPasswordStrongEnough()) {
-      if (!hasUpperCaseChar()) {
-        setFormSubError('Password must have at least 1 uppercase character!');
-      } else if (!hasLowerCaseChar()) {
-        setFormSubError('Password must have at least 1 lowercase character!');
-      } else if (!hasSpecialChar()) {
-        setFormSubError('Password must have special character');
-      } else if (!isAtLeast8Chars()) {
-        setFormSubError('Password must be at least 8 characters long');
-      } else if (!passwordsMatch()) {
-        setFormSubError('Passwords must match!');
-      }
-    } else {
-      setFormSubError('');
-    }
+    // if (!isPasswordStrongEnough()) {
+    //   if (!hasUpperCaseChar()) {
+    //     setFormSubError('Password must have at least 1 uppercase character!');
+    //   } else if (!hasLowerCaseChar()) {
+    //     setFormSubError('Password must have at least 1 lowercase character!');
+    //   } else if (!hasSpecialChar()) {
+    //     setFormSubError('Password must have special character');
+    //   } else if (!isAtLeast8Chars()) {
+    //     setFormSubError('Password must be at least 8 characters long');
+    //   } else if (!passwordsMatch()) {
+    //     setFormSubError('Passwords must match!');
+    //   }
+    // } else {
+    //   setFormSubError('');
+    // }
   };
 
   return (
