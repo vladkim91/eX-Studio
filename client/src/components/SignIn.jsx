@@ -38,7 +38,16 @@ function SignIn() {
         >
           <div className="s-i-f-input">
             <label htmlFor="username">Username</label>
-            <input name="username" id="username" required maxLength={1000} />
+            <input
+              name="username"
+              id="username"
+              required
+              maxLength={1000}
+              value={username}
+              onChange={(e) => {
+                setUsername(e.target.value);
+              }}
+            />
           </div>
           <div className="s-i-f-input">
             <label htmlFor="password">Password</label>
@@ -48,6 +57,10 @@ function SignIn() {
               id="p-word"
               required
               maxLength={1000}
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
             />
           </div>
           <button>Sign in</button>
