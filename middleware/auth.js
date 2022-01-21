@@ -5,7 +5,7 @@ const { User } = require('../models');
 const authenticationMiddleware = async (req, res, next) => {
   const { credential } = req.body;
 
-  if (!credential) return res.status(400).send({ message: 'Auth Failed!' });
+  if (!credential) return res.send({ message: 'Auth Failed' });
 
   const token = await google.verifyIdToken({
     idToken: credential,
@@ -22,7 +22,7 @@ const authorizationMiddleware = async (req, res, next) => {
   const { session } = req;
 
   if (!session.gulid) {
-    res.redirect('/landing');
+    res.send({ message: 'Failed Authorization' });
     return;
   }
 
@@ -41,7 +41,7 @@ const authorizationMiddleware = async (req, res, next) => {
   req.user = user;
 
   if (!user) {
-    res.redirect('/landing');
+    res.send({ message: 'Failed Authorization' });
     return;
   }
 

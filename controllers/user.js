@@ -188,7 +188,7 @@ const createNewUserManual = async (req, res) => {
       updatedAt: new Date()
     });
 
-    return res.redirect('/');
+    return res.status(200).send({ message: 'Success' });
   }
 };
 
@@ -209,11 +209,11 @@ const userSignInManual = async (req, res) => {
     !existingUser ||
     !(await bcrypt.compare(password, existingUser.dataValues.password))
   ) {
-    res.status(401).send({ message: 'Login failed' });
+    res.send({ message: 'Login failed' });
   } else {
     const sessionToken = jwt.sign(uuid, process.env.JWTSEC);
     req.session.gulid = sessionToken;
-    res.redirect('/');
+    return res.send({ message: 'Success' });
   }
 };
 

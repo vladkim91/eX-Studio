@@ -1,16 +1,21 @@
 import React, { useState } from 'react';
 import Client from '../store/services';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function SignIn() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const navigator = useNavigate();
 
   const handleSubmit = async () => {
     const result = await Client.post('user/sign_in_manual', {
       username,
       password
     });
+
+    if (result.data.message === 'Success') {
+      navigator('/');
+    }
   };
 
   return (
@@ -38,7 +43,16 @@ function SignIn() {
         >
           <div className="s-i-f-input">
             <label htmlFor="username">Username</label>
-            <input name="username" id="username" required maxLength={1000} />
+            <input
+              name="username"
+              id="username"
+              required
+              maxLength={1000}
+              value={username}
+              onChange={(e) => {
+                setUsername(e.target.value);
+              }}
+            />
           </div>
           <div className="s-i-f-input">
             <label htmlFor="password">Password</label>
@@ -48,6 +62,10 @@ function SignIn() {
               id="p-word"
               required
               maxLength={1000}
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
             />
           </div>
           <button>Sign in</button>

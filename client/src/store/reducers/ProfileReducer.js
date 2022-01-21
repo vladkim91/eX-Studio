@@ -28,7 +28,8 @@ const iState = {
     felt: 0
   },
   creatingNewNote: false,
-  selectedNote: 0
+  selectedNote: 0,
+  requestMessage: 'None'
 };
 
 const ProfileReducer = (state = iState, action) => {
@@ -36,8 +37,9 @@ const ProfileReducer = (state = iState, action) => {
     case GET_USER_MAIN:
       return {
         ...state,
-        userInfo: action.payload.user,
-        journal: action.payload.newJournal.notes
+        userInfo: action?.payload?.user || state.userInfo,
+        journal: action?.payload?.newJournal?.notes || state.journal,
+        requestMessage: action.payload.message
       };
     case GET_USER_INFO:
       return { ...state, userInfo: action.payload };

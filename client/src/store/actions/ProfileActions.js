@@ -31,6 +31,7 @@ import { requestGOAuth } from '../services/AuthServices';
 export const GetUserMain = () => {
   return async (dispatch) => {
     const userMain = await getUserMain();
+
     dispatch({
       type: GET_USER_MAIN,
       payload: userMain
