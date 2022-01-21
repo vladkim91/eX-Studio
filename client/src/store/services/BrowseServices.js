@@ -7,7 +7,14 @@ export const getWorkoutsAndExercises = async (type, name, muscleGroup) => {
   return result.data;
 };
 
-export const editFilterParams = async (filter, value) => {
-  const result = await Client.put(`/`, filter, value);
+export const scheduleWorkout = async (scheduleWorkout) => {
+  const result = await Client.post(`routine/schedule_workout`, scheduleWorkout);
+  return result.data;
+};
+
+export const deleteScheduledWorkoutByUserIdAndDay = async (userId, day) => {
+  const result = await Client.delete(
+    `routine/schedule_workout/${userId}/${day}`
+  );
   return result.data;
 };

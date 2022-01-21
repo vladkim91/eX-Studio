@@ -1,8 +1,14 @@
-import { EDIT_FILTER_PARAMS, GET_WORKOUTS_AND_EXERCISES } from '../types';
+import {
+  EDIT_FILTER_PARAMS,
+  EDIT_SCHEDULE_WORKOUT,
+  GET_WORKOUTS_AND_EXERCISES,
+  DELETE_SCHEDULED_WORKOUT
+} from '../types';
 
 import {
   getWorkoutsAndExercises,
-  editFilterParams
+  scheduleWorkout,
+  deleteScheduledWorkoutByUserIdAndDay
 } from '../services/BrowseServices';
 
 export const LoadWorkoutsAndExercises = (type, name, muscleGroup) => {
@@ -19,16 +25,33 @@ export const LoadWorkoutsAndExercises = (type, name, muscleGroup) => {
   };
 };
 
-export const EditFilterParams = (filter, value) => {
+export const EditFilterParams = (newFilter) => {
+  return {
+    type: EDIT_FILTER_PARAMS,
+    payload: newFilter
+  };
+};
+
+export const EditScheduleWorkout = (userId, workoutId, day) => {
+  return {
+    type: EDIT_SCHEDULE_WORKOUT,
+    payload: { userId, workoutId, day }
+  };
+};
+
+export const ScheduleWorkout = (newSchedule) => {
+  return async () => {
+    await scheduleWorkout(newSchedule);
+  };
+};
+
+export const DeleteScheduledWorkout = (userId, day) => {
   return async (dispatch) => {
-    await editFilterParams(filter, value);
+    await deleteScheduledWorkoutByUserIdAndDay(userId, day);
 
     dispatch({
-      type: EDIT_FILTER_PARAMS,
-      payload: {
-        filter,
-        value
-      }
+      type: DELETE_SCHEDULED_WORKOUT,
+      payload: { userId, day }
     });
   };
 };

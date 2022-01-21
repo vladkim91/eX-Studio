@@ -1,4 +1,10 @@
-const { Routine, ScheduledWorkout, Workout, Exercise } = require('../models');
+const {
+  Routine,
+  ScheduledWorkout,
+  Workout,
+  Exercise,
+  User
+} = require('../models');
 
 const getRoutineByUser = async (req, res) => {
   const { userId } = req.params;
@@ -25,11 +31,13 @@ const getRoutineByUser = async (req, res) => {
               'time',
               'reps',
               'weight',
+              'rest',
               'typeof',
               'description'
             ],
             model: Exercise,
-            as: 'exercises'
+            through: { attributes: [] },
+            as: 'added_exercises'
           }
         }
       }
@@ -39,6 +47,37 @@ const getRoutineByUser = async (req, res) => {
   res.status(200).send(routine);
 };
 
+const scheduleWorkout = async (req, res) => {
+  const userId = req.body.userId;
+  const workoutId = req.body.workoutId;
+  const day = req.body.day;
+  const routine = await Routine.findOne({
+    where: {
+      id: userId
+    }
+  });
+  console.log(req.body);
+
+  const scheduledWorkouts = await ScheduledWorkout.create({
+    routine_id: parseInt(routine.id),
+    workout_id: parseInt(workoutId),
+    day: parseInt(day),
+    createdAt: new Date(),
+    updatedAt: new Date()
+  });
+
+  res.status(201).send(scheduledWorkouts);
+};
+
+const deleteScheduledWorkoutByUserId = async (req, res) => {
+  await ScheduledWorkout.destroy({
+    where: { routine_id: req.params.userId, day: req.params.day }
+  });
+  res.sendStatus(200);
+};
+
 module.exports = {
-  getRoutineByUser
+  getRoutineByUser,
+  scheduleWorkout,
+  deleteScheduledWorkoutByUserId
 };

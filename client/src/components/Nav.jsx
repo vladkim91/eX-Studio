@@ -47,13 +47,13 @@ function Nav({ userInfo, getUserInfoById }) {
             </div>
           </div>
         </div>
-        <Link to={"/"}>
-        <div className="title">
-          <h2 className="t-top">EX</h2>
-          <span className="t-mid">/</span>
-          <h2 className="t-bottom">STUDIO</h2>
-        </div>
-          </Link>
+        <Link to="/">
+          <div className="title">
+            <h2 className="t-top">EX</h2>
+            <span className="t-mid">/</span>
+            <h2 className="t-bottom">STUDIO</h2>
+          </div>
+        </Link>
         <div className="toggle">
           <img src={Toggle} alt="" />
         </div>
