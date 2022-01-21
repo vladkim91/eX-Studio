@@ -32,11 +32,11 @@ module.exports = (sequelize, DataTypes) => {
     {
       name: DataTypes.STRING,
       user_id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
         onDelete: 'CASCADE',
         references: {
           model: 'users',
-          key: 'id'
+          key: 'uuid'
         }
       },
       workout_id: {

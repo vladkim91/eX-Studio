@@ -1,13 +1,14 @@
 import {
   EDIT_FILTER_PARAMS,
-  SCHEDULE_WORKOUT,
   EDIT_SCHEDULE_WORKOUT,
-  GET_WORKOUTS_AND_EXERCISES
+  GET_WORKOUTS_AND_EXERCISES,
+  DELETE_SCHEDULED_WORKOUT
 } from '../types';
 
 import {
   getWorkoutsAndExercises,
-  scheduleWorkout
+  scheduleWorkout,
+  deleteScheduledWorkoutByUserIdAndDay
 } from '../services/BrowseServices';
 
 export const LoadWorkoutsAndExercises = (type, name, muscleGroup) => {
@@ -41,5 +42,16 @@ export const EditScheduleWorkout = (userId, workoutId, day) => {
 export const ScheduleWorkout = (newSchedule) => {
   return async () => {
     await scheduleWorkout(newSchedule);
+  };
+};
+
+export const DeleteScheduledWorkout = (userId, day) => {
+  return async (dispatch) => {
+    await deleteScheduledWorkoutByUserIdAndDay(userId, day);
+
+    dispatch({
+      type: DELETE_SCHEDULED_WORKOUT,
+      payload: { userId, day }
+    });
   };
 };

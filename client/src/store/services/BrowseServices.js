@@ -11,3 +11,10 @@ export const scheduleWorkout = async (scheduleWorkout) => {
   const result = await Client.post(`routine/schedule_workout`, scheduleWorkout);
   return result.data;
 };
+
+export const deleteScheduledWorkoutByUserIdAndDay = async (userId, day) => {
+  const result = await Client.delete(
+    `routine/schedule_workout/${userId}/${day}`
+  );
+  return result.data;
+};

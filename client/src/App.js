@@ -3,6 +3,7 @@ import Browse from './routes/Browse';
 import Home from './routes/Home';
 import Journal from './routes/Journal';
 import Landing from './routes/Landing';
+import Register from './routes/Register';
 import Routine from './routes/Routine';
 import Sign from './routes/Sign';
 import Training from './routes/Training';
@@ -20,6 +21,7 @@ function App() {
           <Route path="/journal" element={<Journal />} />
           <Route path="/sign" element={<Sign />} />
           <Route path="/browse" element={<Browse />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
       </BrowserRouter>
     </div>

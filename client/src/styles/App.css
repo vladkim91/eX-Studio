@@ -421,6 +421,72 @@ section {
   border-radius: 100%;
 }
 
+
+/* Register css */
+.rg-card{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  text-align: center;
+align-items: center;
+justify-content: center;
+}
+.rg-card h3{
+  color: #fff;
+  background: #000;
+  padding: .5em 1em;
+}
+.rg-redirect{
+  display: flex;
+}
+
+.rg-link{
+padding: .2em 1em;
+border:3px solid #185488;
+width: 6em;
+text-align: center;
+margin: 1em 1em;
+background: #fff;
+}
+.rg-card a{
+  color: #185488;
+  margin: auto;
+}
+.separate-rg-card{
+  background: #000;
+  width: 60%;
+  min-height: 0.2em;
+  margin: .5em auto;
+}
+.rg-card form{
+  margin: .5em auto ;
+}
+
+.s-rg-f-input{
+  display: flex;
+  flex-direction: column;
+  margin: .5em auto;
+  
+}
+.s-rg-f-input input{
+  border: 1px solid #999;
+  border-radius: 2px;
+  box-shadow: 0px 3px 5px #000;
+  outline: none;
+  padding: 0.3em;
+  font-weight: bold;
+  margin:  auto;
+}
+
+.rg-card button{
+  background: #376ca7;
+  color: #fff;
+  border: none;
+  padding: 1em;
+  font-size: 1.2em;
+  margin: 1em auto;
+}
+
 /* Sign Page css */
 .si-su {
   min-height: 100vh;
@@ -473,6 +539,8 @@ section {
   border: none;
   border-radius: 1em;
 }
+
+
 
 /* Sign in component css*/
 .signup {
@@ -1085,6 +1153,42 @@ button.s-f1-selected,
 }
 .date-s{display: block;}
 .date-h{display: none;}
+
+@media only screen and(max-width: 1023px) {
+  
+}
+
+
+
+
+
+
+
+
+
+
+
+.custom-shape-divider-top-1642728710 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  z-index: -1;
+}
+
+.custom-shape-divider-top-1642728710 svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 147px;
+}
+
+.custom-shape-divider-top-1642728710 .shape-fill {
+  fill: #376ca7;
+  
+}
 
 .b-l-arr {
   max-height: 40vh;
