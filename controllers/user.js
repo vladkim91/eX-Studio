@@ -14,12 +14,17 @@ const getUserMain = async (req, res) => {
   const user = req.user;
 
   const newJournal = await Journal.findOne({
-    raw: true,
     nest: true,
     where: {
       user_id: user.uuid
+    },
+    include: {
+      model: Note,
+      as: 'notes'
     }
   });
+
+  console.log(newJournal);
 
   const tutorialNote = await Note.findOne({
     where: {

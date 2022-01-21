@@ -32,7 +32,7 @@ app.use(
         connectionString:
           process.env.NODE_ENV === 'production'
             ? process.env.DATABASE_URL
-            : 'http://localhost:3001:5432',
+            : 'http://localhost:5432',
         // database: 'ex_studio_development',
         // port: 5432,
         // host: 'ex-studio.herokuapp.com',
