@@ -778,6 +778,63 @@ form {
   box-shadow: none;
 }
 
+
+
+
+/* Training css */
+.training-container{
+  position: relative;
+}
+
+
+.training-decision{
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.8);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 5;
+}
+
+.show-t-d{
+  display: flex
+}
+.hide-t-d{
+  display: none;
+}
+.t-d-popCard{
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.t-d-p-button button{
+  border: none;
+  padding: 1em;
+  color: #fff;
+  border-radius: 1em;
+  margin: 1em;
+}
+
+.btn-journal{
+  background: #376ca7;
+}
+.btn-home{
+  background: #c92626;
+}
+
+
+
+
+
+
+
+
+
 .training {
   display: flex;
   flex-direction: column;
