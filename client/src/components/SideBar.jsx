@@ -32,6 +32,7 @@ function SideBar() {
         <img src={Menu == 'Burger' ? Burger : Closer} alt="" />
       </div>
       <div id="side-content" className={display}>
+        <Link to="/">Home</Link>
         <Link to="/browse">Browse Trainings</Link>
         <Link to="/journal">Journal</Link>
       </div>

@@ -22,6 +22,9 @@ nav > * {
   display: flex;
   align-items: center;
 }
+.sideBar2{
+    display: none;
+  }
 .p-pic {
   border: 1px solid #fff;
   border-radius: 30%;
@@ -72,5 +75,34 @@ nav > * {
   .user {
     grid-row: 2;
   }
+  .title{
+      display: flex;
+  }
   
+}
+@media screen and (max-width: 862px) {
+    .sideBar2{
+      display: block;
+      width: 100%;
+      text-align: center;
+    }
+    .sb2-ul-close{
+      display: none
+    }
+    .sb2-ul img{
+      margin-bottom: .55em;
+      height: 2em;
+      cursor: pointer;
+    }
+    .sb2-ul a{
+      width: 100%;
+      padding: 1em 0;
+    }
+    .sb2-ul a:hover{
+      background: #4a5ba8;
+    }
+    .sb2-ul-open{
+        display: flex;
+        flex-direction: column; ;
+    }
 }
