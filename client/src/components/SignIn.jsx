@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Client from '../store/services';
+import { Link } from 'react-router-dom';
 
 function SignIn() {
   const [username, setUsername] = useState('');
@@ -15,6 +16,16 @@ function SignIn() {
   return (
     <div className="signin">
       <div className="s-i-card">
+        <h3>Not registered yet?</h3>
+        <div className="signin-r-bts">
+          <div className="redirect-sign">
+            <Link to="/landing">Home</Link>
+          </div>
+          <div className="redirect-sign">
+            <Link to="/register">Register</Link>
+          </div>
+        </div>
+
         <h3>Already have an account?</h3>
         <h1>Sign In</h1>
         <div className="separate-s-i-card"></div>

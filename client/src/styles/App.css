@@ -507,6 +507,20 @@ section {
   height: 100vh;
   display: flex;
 }
+.signin a {
+  color: #000;
+}
+.redirect-sign {
+  padding: 0.5em 1em;
+  border: 3px solid #000;
+  min-width: 6em;
+  max-width: 10em;
+  margin: 1em auto;
+}
+.signin-r-bts {
+  display: flex;
+  flex-wrap: wrap;
+}
 .s-i-card {
   margin: auto;
 }
