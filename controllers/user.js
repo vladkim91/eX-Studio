@@ -11,8 +11,6 @@ const {
 const createNewUser = async (req, res) => {
   const user = await User.create({
     username: req.body.username,
-    first_name: req.body.first_name,
-    last_name: req.body.last_name,
     createdAt: new Date(),
     updatedAt: new Date()
   });
@@ -31,6 +29,12 @@ const createNewUser = async (req, res) => {
     updatedAt: new Date()
   });
 
+  const routine = await Routine.create({
+    user_id: user.id,
+    createdAt: new Date(),
+    updatedAt: new Date()
+  });
+
   const welcomeNote = await Note.create({
     journal_id: newJournal.id,
     title: `WELCOME TO EX STUDIO`,
@@ -41,7 +45,9 @@ const createNewUser = async (req, res) => {
     updatedAt: new Date()
   });
 
-  res.status(201).send({ user, newJournal, tutorialNote, welcomeNote });
+  res
+    .status(201)
+    .send({ user, newJournal, tutorialNote, routine, welcomeNote });
 };
 
 const getUserInfoById = async (req, res) => {

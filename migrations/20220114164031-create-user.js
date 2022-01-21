@@ -12,13 +12,8 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      first_name: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      last_name: {
-        type: Sequelize.STRING,
-        allowNull: false
+      token: {
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
