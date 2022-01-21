@@ -10,9 +10,13 @@ router.use('/journal', journal);
 router.use('/routine', routine);
 router.use('/user', user);
 router.use('/workout', workout);
-router.get('/authtest', (req, res) => {
-  console.log(`Redirected authtest get request to: ${google}`);
-  res.redirect(google, 301);
+router.post('/sign', async (req, res) => {
+  const ticket = await google.verifyIdToken({
+    idToken: req.body.credential,
+    audience: process.env.GCID
+  });
+  console.log(ticket.getPayload());
+  res.send({ message: 'working!' });
 });
 router.use('/exercise', exercise);
 
