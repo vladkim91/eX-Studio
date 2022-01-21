@@ -192,6 +192,30 @@ const createNewUserManual = async (req, res) => {
   }
 };
 
+const userSignInManual = async (req, res) => {
+  const { username, password } = req.body;
+
+  const uuid = createHash('sha256', process.env.HASHSEC)
+    .update(username)
+    .digest('hex');
+
+  const existingUser = await User.find({
+    where: {
+      uuid
+    }
+  });
+
+  if (
+    !existingUser ||
+    !(await bcrypt.compare(password, existingUser.dataValues.password))
+  ) {
+    res.status(401).send({ message: 'Login failed' });
+  } else {
+    req.session.gulid = sessionToken;
+    res.redirect('/');
+  }
+};
+
 const getUserInfoById = async (req, res) => {
   const user = await User.findOne({
     attributes: ['username', 'uuid'],

@@ -1,6 +1,17 @@
 import React, { useState } from 'react';
+import Client from '../store/services';
 
 function SignIn() {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSubmit = async () => {
+    const result = await Client.post('user/manual', {
+      username,
+      password
+    });
+  };
+
   return (
     <div className="signin">
       <div className="s-i-card">
@@ -11,15 +22,22 @@ function SignIn() {
           method="post"
           onSubmit={(e) => {
             e.preventDefault();
+            handleSubmit();
           }}
         >
           <div className="s-i-f-input">
             <label htmlFor="username">Username</label>
-            <input name="username" id="username" required />
+            <input name="username" id="username" required maxLength={1000} />
           </div>
           <div className="s-i-f-input">
             <label htmlFor="password">Password</label>
-            <input type="password" name="password" id="p-word" required />
+            <input
+              type="password"
+              name="password"
+              id="p-word"
+              required
+              maxLength={1000}
+            />
           </div>
           <button>Sign in</button>
         </form>
