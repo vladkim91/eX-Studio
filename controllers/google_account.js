@@ -3,18 +3,19 @@ const { createHash } = require('crypto');
 const jwt = require('jsonwebtoken');
 
 const signIn = async (req, res) => {
-  const { userGOAuthInfo } = req;
+  const { userAuthInfo } = req;
 
-  if (!userGOAuthInfo) {
+  if (!userAuthInfo) {
     return res.status(401).send({ message: 'Failed Authentication!' });
   }
 
   const uuid = createHash('sha256', process.env.HASHSEC)
-    .update(userGOAuthInfo.sub + userGOAuthInfo.given_name)
+    .update(userAuthInfo.sub + userAuthInfo.given_name)
     .digest('hex');
 
   const sessionToken = jwt.sign(uuid, process.env.JWTSEC);
   req.session.gulid = sessionToken;
+
   const existingUser = await User.findOne({
     where: {
       uuid
@@ -22,11 +23,11 @@ const signIn = async (req, res) => {
   });
 
   if (existingUser) {
-    return res.redirect('/');
+    return res.send({ message: 'Working' });
   } else {
     const newUser = await User.create({
       uuid,
-      username: userGOAuthInfo.given_name,
+      username: userAuthInfo.given_name,
       sessionToken
     });
 

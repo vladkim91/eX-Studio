@@ -14,10 +14,33 @@ const authenticationMiddleware = async (req, res, next) => {
 
   const payload = token.getPayload();
 
-  req.userGOAuthInfo = payload;
+  req.userAuthInfo = payload;
+  next();
+};
+
+const authorizationMiddleware = async (req, res, next) => {
+  const { session } = req;
+
+  if (!session.gulid) return res.redirect('/landing', 401);
+
+  const uuid = jwt.verify(session.gulid, process.env.JWTSEC, {
+    complete: false
+  });
+
+  const userInfo = await User.findOne({
+    where: {
+      uuid
+    }
+  });
+
+  if (!userInfo) {
+    return res.redirect('/landing', 401);
+  }
+
   next();
 };
 
 module.exports = {
-  authenticationMiddleware
+  authenticationMiddleware,
+  authorizationMiddleware
 };
