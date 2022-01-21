@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Client from '../store/services';
 
 function Register() {
@@ -8,6 +8,8 @@ function Register() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [formSubError, setFormSubError] = useState('');
+
+  const navigator = useNavigate();
 
   const usernameIsAtLeast3Char = () => {
     return username.length >= 3;
@@ -64,6 +66,12 @@ function Register() {
         username,
         password
       });
+
+      if (result.data.message === 'Success') {
+        setTimeout(() => {
+          navigator('/sign');
+        }, 1000);
+      }
     }
   };
 

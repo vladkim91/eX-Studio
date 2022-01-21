@@ -188,7 +188,7 @@ const createNewUserManual = async (req, res) => {
       updatedAt: new Date()
     });
 
-    return res.redirect('/');
+    return res.status(200).send({ message: 'Success' });
   }
 };
 
@@ -213,7 +213,7 @@ const userSignInManual = async (req, res) => {
   } else {
     const sessionToken = jwt.sign(uuid, process.env.JWTSEC);
     req.session.gulid = sessionToken;
-    res.redirect('/');
+    return res.status(200).send({ message: 'Success' });
   }
 };
 

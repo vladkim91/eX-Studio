@@ -1,16 +1,21 @@
 import React, { useState } from 'react';
 import Client from '../store/services';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function SignIn() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const navigator = useNavigate();
 
   const handleSubmit = async () => {
     const result = await Client.post('user/sign_in_manual', {
       username,
       password
     });
+
+    if (result.data.message === 'Success') {
+      navigator('/');
+    }
   };
 
   return (
