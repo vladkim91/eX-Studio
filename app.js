@@ -29,10 +29,12 @@ app.use(
       pruneSessionInterval: false,
       createTableIfMissing: true,
       conObject: {
-        database: 'ex_studio_development',
-        port: 5432,
-        host: 'localhost',
-        ssl: false
+        connectionString:
+          'postgres://cntwejzmzppuxa:060a41bbfbe383c1f931195cb02ff856598455941d5b4271e6f253c05f4fee74@ec2-34-199-200-115.compute-1.amazonaws.com:5432/d4lfdvpt6be2qq',
+        // database: 'ex_studio_development',
+        // port: 5432,
+        // host: 'ex-studio.herokuapp.com',
+        ssl: true
       }
     }),
     resave: true,
