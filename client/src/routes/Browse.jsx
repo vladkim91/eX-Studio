@@ -7,7 +7,8 @@ import {
   LoadWorkoutsAndExercises,
   EditFilterParams,
   ScheduleWorkout,
-  EditScheduleWorkout
+  EditScheduleWorkout,
+  DeleteScheduledWorkout
 } from '../store/actions/BrowseActions';
 import { GetRoutineByUserId } from '../store/actions/ProfileActions';
 
@@ -30,7 +31,8 @@ const mapActionsToProps = (dispatch) => {
     editFilterParams: (filter, value) =>
       dispatch(EditFilterParams(filter, value)),
     scheduleWorkout: (newSchedule) => dispatch(ScheduleWorkout(newSchedule)),
-    getRoutineByUserId: (userId) => dispatch(GetRoutineByUserId(userId))
+    getRoutineByUserId: (userId) => dispatch(GetRoutineByUserId(userId)),
+    deleteScheduledWorkout: (userId, day) => dispatch(DeleteScheduledWorkout(userId, day))
   };
 };
 
@@ -42,7 +44,8 @@ const Browse = ({
   scheduleWorkout,
   editScheduleWorkout,
   getRoutineByUserId,
-  routine
+  routine,
+  deleteScheduledWorkout
 }) => {
   const [pop, SetPop] = useState('pophide');
   const [body, setBody] = useState(null);
@@ -112,6 +115,7 @@ const Browse = ({
     scheduledWorkouts.forEach((scheduledWorkout, i) => {
       if (scheduledWorkout.day === workoutAndExercisesState.schedule.day) {
         alert(`workout already scheduled for ${workoutAndExercisesState.schedule.day}`)
+        deleteScheduledWorkout(userInfo.id, workoutAndExercisesState.schedule.day)
       }
     });
     scheduleWorkout(workoutAndExercisesState.schedule);

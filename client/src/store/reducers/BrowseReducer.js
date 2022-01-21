@@ -2,7 +2,8 @@ import {
   EDIT_SCHEDULE_WORKOUT,
   GET_WORKOUTS_AND_EXERCISES,
   EDIT_FILTER_PARAMS,
-  SCHEDULE_WORKOUT
+  SCHEDULE_WORKOUT,
+  DELETE_SCHEDULED_WORKOUT
 } from '../types';
 
 const iState = {
@@ -26,6 +27,8 @@ const BrowseReducer = (state = iState, action) => {
         schedule: action.payload
       };
     case SCHEDULE_WORKOUT:
+      return { ...state };
+    case DELETE_SCHEDULED_WORKOUT:
       return { ...state };
     default:
       return { ...state };
