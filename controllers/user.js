@@ -24,8 +24,6 @@ const getUserMain = async (req, res) => {
     }
   });
 
-  console.log(newJournal);
-
   const tutorialNote = await Note.findOne({
     where: {
       journal_id: newJournal.id
@@ -45,9 +43,7 @@ const getUserMain = async (req, res) => {
     }
   });
 
-  res
-    .status(201)
-    .send({ user, newJournal, tutorialNote, routine, welcomeNote });
+  res.status(201).send({ user, newJournal, routine });
 };
 
 const createNewUser = async (req, res) => {
