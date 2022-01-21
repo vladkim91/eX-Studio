@@ -20,7 +20,7 @@ app.use(
     saveUninitialized: false,
     cookie: {
       secure: process.env.NODE_ENV === 'production',
-      maxAge: 1000 * 10
+      maxAge: 1000 * 60 * 5
     }
   })
 );

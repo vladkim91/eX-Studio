@@ -1,5 +1,6 @@
 const { User } = require('../models');
-const bcrypt = require('bcrypt');
+const { createHash } = require('crypto');
+const jwt = require('jsonwebtoken');
 
 const signIn = async (req, res) => {
   const { userGOAuthInfo } = req;
@@ -8,13 +9,29 @@ const signIn = async (req, res) => {
     return res.status(401).send({ message: 'Failed Authentication!' });
   }
 
-  const uuid = await bcrypt.hash(userGOAuthInfo.sub + userGOAuthInfo.email, 10);
+  const uuid = createHash('sha256', process.env.HASHSEC)
+    .update(userGOAuthInfo.sub + userGOAuthInfo.given_name)
+    .digest('hex');
 
+  const sessionToken = jwt.sign(uuid, process.env.JWTSEC);
+  req.session.gulid = sessionToken;
   const existingUser = await User.findOne({
-    where: {}
+    where: {
+      uuid
+    }
   });
 
-  res.status(200).send({ message: 'Success' });
+  if (existingUser) {
+    return res.redirect('/');
+  } else {
+    const newUser = await User.create({
+      uuid,
+      username: userGOAuthInfo.given_name,
+      sessionToken
+    });
+
+    return res.redirect('/');
+  }
 };
 
 module.exports = {

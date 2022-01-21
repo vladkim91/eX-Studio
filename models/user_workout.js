@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
   User_Workout.init(
     {
       user_id: {
-        type: DataTypes.UUID,
+        type: DataTypes.STRING,
         references: {
           model: 'users',
           key: 'uuid'

@@ -2,15 +2,8 @@ import React, { useState, useEffect } from 'react';
 import GoogleIcon from '../assets/google.png';
 import FacebookIcon from '../assets/facebook.png';
 import { connect } from 'react-redux';
-import { RequestAuth } from '../store/actions/ProfileActions';
 
-const mapActionsToProps = (dispatch) => {
-  return {
-    requestAuth: () => dispatch(RequestAuth())
-  };
-};
-
-function SignUp({ requestAuth }) {
+function SignUp() {
   return (
     <div className="signup">
       <div className="s-u-card">
@@ -48,4 +41,4 @@ function SignUp({ requestAuth }) {
   );
 }
 
-export default connect(null, mapActionsToProps)(SignUp);
+export default SignUp;
