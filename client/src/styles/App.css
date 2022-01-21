@@ -204,6 +204,7 @@ section {
   text-align: center;
 }
 .arrow img {
+  opacity: 0;
   height: 3em;
 }
 

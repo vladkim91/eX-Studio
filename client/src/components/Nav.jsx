@@ -27,8 +27,7 @@ function Nav({ userInfo, getUserInfoById }) {
     getUserInfoById(`cbdf9649-2c95-48c1-b761-ae5c71c3a0cc`);
   }, []);
 
-  const [openNav, SetOpenNav] = useState('sb2-ul-close')
-
+  const [openNav, SetOpenNav] = useState('sb2-ul-close');
 
   return (
     <div className="header">
@@ -45,6 +44,7 @@ function Nav({ userInfo, getUserInfoById }) {
             <div className="l-pic">
               <img src={Medal} alt="" />
             </div>
+            <p style={{ fontSize: '1.5em' }}>1</p>
           </div>
         </div>
         <Link to="/">
@@ -56,13 +56,21 @@ function Nav({ userInfo, getUserInfoById }) {
         </Link>
 
         <div className="sideBar2">
-          <div className='sb2-ul'>
-            <img src={Burger} alt="" onClick={()=>openNav==="sb2-ul-close"?SetOpenNav("sb2-ul-open"):SetOpenNav("sb2-ul-close")} />
-          <div className={openNav}>
-            <Link to={'/'}>Home</Link>
-            <Link to={'/browse'}>Browse</Link>
-            <Link to={'/journal'}>Journal</Link>
-          </div>
+          <div className="sb2-ul">
+            <img
+              src={Burger}
+              alt=""
+              onClick={() =>
+                openNav === 'sb2-ul-close'
+                  ? SetOpenNav('sb2-ul-open')
+                  : SetOpenNav('sb2-ul-close')
+              }
+            />
+            <div className={openNav}>
+              <Link to={'/'}>Home</Link>
+              <Link to={'/browse'}>Browse</Link>
+              <Link to={'/journal'}>Journal</Link>
+            </div>
           </div>
         </div>
       </nav>
