@@ -10,7 +10,7 @@ router.use('/journal', journal);
 router.use('/routine', routine);
 router.use('/user', user);
 router.use('/workout', workout);
-router.post('/account', authenticateMiddleware, account);
+router.use('/account', account);
 router.use('/exercise', exercise);
 
 module.exports = router;

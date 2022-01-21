@@ -14,7 +14,7 @@ const authenticationMiddleware = async (req, res, next) => {
 
   const payload = token.getPayload();
 
-  req.payload = payload;
+  req.userGOAuthInfo = payload;
   next();
 };
 

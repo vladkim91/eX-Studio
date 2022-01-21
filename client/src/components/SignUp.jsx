@@ -30,7 +30,7 @@ function SignUp({ requestAuth }) {
           data-client_id="51263313881-7oolcs1ckh8ovfn6fuqql2du7f11c37u.apps.googleusercontent.com"
           data-context="signin"
           data-ux_mode="redirect"
-          data-login_uri="http://localhost:3001/api/googleOAuth"
+          data-login_uri="http://localhost:3001/api/account/googleSignIn"
           data-auto_prompt="false"
         ></div>
 

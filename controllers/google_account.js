@@ -1,6 +1,18 @@
+const { User } = require('../models');
+const bcrypt = require('bcrypt');
+
 const signIn = async (req, res) => {
-  console.log('Signing in with:');
-  console.log(req.payload);
+  const { userGOAuthInfo } = req;
+
+  if (!userGOAuthInfo) {
+    return res.status(401).send({ message: 'Failed Authentication!' });
+  }
+
+  const existingUser = await User.findOne({
+    where: {}
+  });
+
+  res.status(200).send({ message: 'Success' });
 };
 
 module.exports = {

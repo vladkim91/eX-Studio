@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/vladkim91/eX-Studio#readme",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "dotenv": "^13.0.1",
     "express": "^4.17.2",
