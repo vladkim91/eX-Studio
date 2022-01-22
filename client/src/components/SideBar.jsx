@@ -2,11 +2,15 @@ import React, { useState } from 'react';
 import Burger from '../assets/burger.svg';
 import Closer from '../assets/close.svg';
 import { Link } from 'react-router-dom';
+import Client from '../store/services';
+import { useNavigate } from 'react-router-dom';
 
 function SideBar() {
   const [sideBAr, SetSideBar] = useState('min');
   const [display, SetDisplay] = useState('hide');
   const [Menu, SetMenu] = useState('Burger');
+  const navigator = useNavigate();
+
   function click(s) {
     if (s == 'min') {
       SetSideBar('max');
@@ -20,6 +24,14 @@ function SideBar() {
       SetMenu('Burger');
     }
   }
+
+  const handleLogout = async () => {
+    const result = await Client.put('/user/logout');
+    if (result.data.message === 'Success') {
+      navigator('/landing');
+    }
+  };
+
   return (
     <div className={`sideBar ${sideBAr}`}>
       <div
@@ -35,6 +47,7 @@ function SideBar() {
         <Link to="/">Home</Link>
         <Link to="/browse">Browse Trainings</Link>
         <Link to="/journal">Journal</Link>
+        <button onClick={handleLogout}>Logout</button>
       </div>
     </div>
   );

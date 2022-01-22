@@ -334,6 +334,12 @@ const getUserProfileById = async (req, res) => {
   res.status(200).send(userProfile);
 };
 
+const userLogout = (req, res) => {
+  req.session.gulid = null;
+  req.session.destroy();
+  res.status(200).send({ message: 'Success' });
+};
+
 module.exports = {
   getUserMain,
   createNewUser,
@@ -343,5 +349,6 @@ module.exports = {
   getUserCustomWorkouts,
   getUserProfileById,
   getUserExercises,
-  userSignInManual
+  userSignInManual,
+  userLogout
 };
